@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+
+	<!-- Inicio das traduções -->
+
+	<data name="MsgLoading" xml:space="preserve">
+    <value>Carregando</value>
+    <comment>Mensagem para Dialog de loading</comment>
+	</data>
+
+	<data name="TextoBotaoCadastrar" xml:space="preserve">
+    <value>Cadastrar</value>
+    <comment>Texto para o botão de Cadastrar do Form de Login</comment>
+	</data>
+
+	<data name="TextoBotaoCancelarLogin" xml:space="preserve">
+    <value>Cancelar</value>
+    <comment>Texto para o botão de cancelar do Form de Login</comment>
+	</data>
+
+	<data name="TextoBotaoOKLogin" xml:space="preserve">
+    <value>Entrar</value>
+    <comment>Texto para o botão de entrar(OK) do Form de Login</comment>
+	</data>
+
+	<data name="TextoMensagemLogin" xml:space="preserve">
+    <value>Bem vindo ao Mais!</value>
+    <comment>Texto para a mensagem do Form de Login</comment>
+	</data>
+
+	<data name="TextoCampoLoginFormLogin" xml:space="preserve">
+    <value>digite o seu e-mail</value>
+    <comment>Texto para o placeholder do campo de login do Form de Login</comment>
+	</data>
+
+	<data name="TextoCampoSenhaFormLogin" xml:space="preserve">
+    <value>digite a sua senha</value>
+    <comment>Texto para o placeholder do campo de senha do Form de Login</comment>
+	</data>
+
+	<data name="TextoPlaceHolderEmailCadastro" xml:space="preserve">
+    <value>E-mail</value>
+    <comment>Texto para o placeholder do campo de email do Form de cadastro</comment>
+	</data>
+
+	<data name="TextoPlaceHolderNomeCadastro" xml:space="preserve">
+    <value>Nome</value>
+    <comment>Texto para o placeholder do campo de nome do Form de cadastro</comment>
+	</data>
+
+	<data name="TextoPlaceHolderSenhaCadastro" xml:space="preserve">
+    <value>Senha</value>
+    <comment>Texto para o placeholder do campo de senha do Form de cadastro</comment>
+	</data>
+
+	<data name="TextoPlaceHolderDDDCadastro" xml:space="preserve">
+    <value>DDD</value>
+    <comment>Texto para o placeholder do campo de DDD do Form de cadastro</comment>
+	</data>
+
+	<data name="TextoPlaceHolderTelefoneCadastro" xml:space="preserve">
+    <value>Telefone</value>
+    <comment>Texto para o placeholder do campo de telefone do Form de cadastro</comment>
+	</data>
+
+	<data name="TextoPlaceHolderMunicipioCadastro" xml:space="preserve">
+    <value>Município</value>
+    <comment>Texto para o placeholder do campo de município do Form de cadastro</comment>
+	</data>
+
+	<data name="TextoPlaceHolderCategoriasCadastro" xml:space="preserve">
+    <value>Categorias de interesse</value>
+    <comment>Texto para o placeholder do campo de categorias do Form de cadastro</comment>
+	</data>
+
+	<data name="TextoPlaceHolderSexoCadastro" xml:space="preserve">
+    <value>Sexo</value>
+    <comment>Texto para o placeholder do campo de sexo do Form de cadastro</comment>
+	</data>
+
+	<data name="TextoSexoMasculino" xml:space="preserve">
+    <value>Masculino</value>
+    <comment>Texto para o item do campo de sexo do Form de cadastro</comment>
+	</data>
+
+	<data name="TextoSexoFeminino" xml:space="preserve">
+    <value>Feminino</value>
+    <comment>Texto para o item do campo de sexo do Form de cadastro</comment>
+	</data>
+
+	<data name="TextoBotaoCriarConta" xml:space="preserve">
+    <value>Criar Conta</value>
+    <comment>Texto para o botao de criar conta do Form de cadastro</comment>
+	</data>
+
+	<data name="TextoBotaoVoltarTelaLogin" xml:space="preserve">
+    <value>Voltar</value>
+    <comment>Texto para o botao de voltar para tela de login do Form de cadastro</comment>
+	</data>
+
+	<data name="MensagemSucessoCadastroNovoUsuario" xml:space="preserve">
+    <value>Cadastro Efetuado com sucesso!</value>
+    <comment>Texto para o retorno de sucesso na criação de uma nova conta do Form de cadastro</comment>
+	</data>
+
+	<data name="MensagemErroCadastroNovoUsuario" xml:space="preserve">
+    <value>Algo deu errado, por favor tente novamente.</value>
+    <comment>Texto para o retorno de erro na criação de uma nova conta do Form de cadastro</comment>
+	</data>
+
+	<data name="TituloPaginaEnquete" xml:space="preserve">
+    <value>Enquete</value>
+    <comment>Texto para o título da página Enquete</comment>
+	</data>
+
+	<data name="TituloTabEnquetePublica" xml:space="preserve">
+    <value>Conteúdo Público</value>
+    <comment>Texto para a aba para Enquetes Públicas da página Enquete</comment>
+	</data>
+
+	<data name="TituloTabEnqueteInteresse" xml:space="preserve">
+    <value>Conteúdo Pessoal</value>
+    <comment>Texto para a aba para Enquetes do Interesse do usuário da página Enquete</comment>
+	</data>
+
+	<data name="MsgErroCadastroUsuario" xml:space="preserve">
+    <value>Houve um erro, tente novamente.</value>
+    <comment>Texto para exibição de erro no cadastro de usuário</comment>
+	</data>
+
+	<data name="TituloErro" xml:space="preserve">
+    <value>Erro</value>
+    <comment>Texto para título de Erro</comment>
+	</data>
+
+	<data name="TituloAviso" xml:space="preserve">
+    <value>Aviso</value>
+    <comment>Texto para título de Aviso</comment>
+	</data>
+
+	<data name="MsgErroCadastroUsuarioCamposEmBranco" xml:space="preserve">
+    <value>Revise as informações preenchidas!</value>
+    <comment>Texto para exibição de erro no cadastro de usuário com campos em branco</comment>
+	</data>
+
+	<data name="TextoParaBotaoResponderEnquete" xml:space="preserve">
+    <value>Responder</value>
+    <comment>Texto para exibição no botão de responder enquente</comment>
+	</data>
+
+	<data name="TextoSelecaoDuplicadaDeRespostaEnquente" xml:space="preserve">
+    <value>Você só pode selecionar uma reposta!</value>
+    <comment>Texto para exibição ao usuário tentar marcar duas ou mais respostas para uma enquete</comment>
+	</data>
+
+	<data name="TextoEsqueciMinhaSenha" xml:space="preserve">
+    <value>Insira seu e-mail para que possamos enviar a sua senha.</value>
+    <comment>Texto para exibição ao usuário quando acessar a página de Esqueci minha senha</comment>
+	</data>
+
+	<data name="TextoResetarSenha" xml:space="preserve">
+    <value>Enviar</value>
+    <comment>Texto para exibição do botão de reset da senha na página de Esqueci minha senha</comment>
+	</data>
+
+	<data name="TextoBotaoEsqueciMinhaSenha" xml:space="preserve">
+    <value>Esqueci minha Senha</value>
+    <comment>Texto para exibição do botão Esqueci minha senha</comment>
+	</data>
+
+	<data name="MsgErroAoResponder" xml:space="preserve">
+    <value>Houve um erro ao gravar a resposta, tente novamente.</value>
+    <comment>Texto para exibição ao haver falha no processo de gravação no dispositivo da resposta dada</comment>
+	</data>
+
+	<data name="TextoParaTelaDeVotoSalvoComSucesso" xml:space="preserve">
+    <value>Seu Voto foi Salvo!</value>
+    <comment>Texto para exibição para gravação no dispositivo da resposta dada</comment>
+	</data>
+
+	<data name="TextoSucessoComVoucher" xml:space="preserve">
+    <value>Obrigado por participar, verifique a sua caixa de e-mail, pois você ganhou um VOUCHER!!</value>
+    <comment>Texto para exibição para gravação no dispositivo da resposta dada</comment>
+    </data>
+
+	<data name="TextoSucesso" xml:space="preserve">
+    <value>Sucesso</value>
+    <comment>Texto para exibição para gravação no dispositivo da resposta dada</comment>
+
+	</data>
+	<data name="TextoVoltar" xml:space="preserve">
+    <value>Voltar</value>
+    <comment>Texto para exibição ao ícone de Voltar</comment>
+	</data>
+
+	<data name="TextoBotaoSelecionarAmigos" xml:space="preserve">
+    <value>Selecionar Amigos</value>
+    <comment>Texto para exibição do Botão se seleção de amigos para nova enquete</comment>
+	</data>
+
+	<data name="TextoPlaceholderTituloNaEnquete" xml:space="preserve">
+    <value>Qual é a sua pergunta?</value>
+    <comment>Texto para exibição no campo de título como placeholder</comment>
+	</data>
+
+	<data name="TextoPlaceholderTituloNaRespostaEnquete" xml:space="preserve">
+    <value>Adicionar uma resposta...</value>
+    <comment>Texto para exibição no campo de resposta como placeholder</comment>
+	</data>
+
+	<data name="TextoBotaoAdicionarResposta" xml:space="preserve">
+    <value>Adicionar resposta</value>
+    <comment>Texto para exibição no botão de adicionar resposta</comment>
+	</data>
+
+	<data name="TextoBotaoFinalizarEnquete" xml:space="preserve">
+    <value>Finalizar enquete</value>
+    <comment>Texto para exibição no botão de finalizar enquete</comment>
+	</data>
+
+	<data name="TextoMsgCadastroSucessoEnquete" xml:space="preserve">
+    <value>Enquete cadastrada com sucesso!</value>
+    <comment>Texto para exibição da mensagem de cadastro de enquete com sucesso</comment>
+	</data>
+
+	<data name="TextoMsgCadastroErroEnquete" xml:space="preserve">
+    <value>Houve um erro ao cadastrar a enquete.</value>
+    <comment>Texto para exibição da mensagem de erro no cadastro da enquete</comment>
+	</data>
+
+	<data name="TextoBotaoImportarAmigos" xml:space="preserve">
+    <value>Importar contatos</value>
+    <comment>Texto para exibição no botão de importação de contatos</comment>
+	</data>
+
+	<!-- Fim das traduções -->
+</root>

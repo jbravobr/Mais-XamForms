@@ -1,0 +1,19 @@
+﻿<Properties StartupItem="Droid/Mais.Droid.csproj" GitUserInfo="UsingGIT">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.10.71.34.101:5555" />
+  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/Rodrigo/Projects/Mais/Mais/Paginas/BuscarPage.cs" line="66" column="1" />
+      <Breakpoint file="/Users/Rodrigo/Projects/Mais/Mais/Models/Resposta.cs" line="46" column="1" />
+      <Breakpoint file="/Users/Rodrigo/Desktop/Mais_App-master/Mais/Paginas/PerguntaRespondida.cs" line="126" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="Mais/ViewModels/CadastroViewModel.cs" line="33" offsetX="662" offsetY="187" expression="this.Usuario" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+  <DisabledProjects>
+    <String>UITests/Mais.UITests.csproj</String>
+    <String>MaisDroid/MaisDroid.csproj</String>
+    <String>iOS/Mais.iOS.csproj</String>
+  </DisabledProjects>
+</Properties>

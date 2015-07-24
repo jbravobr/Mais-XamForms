@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{FB4C1C37-1DDD-44D8-899B-16DB3D08F11F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Mais</RootNamespace>
+    <AssemblyName>Mais</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile78</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <DefineConstants>DEBUG;__MOBILE__;__IOS__;__ANDROID__</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="App.cs" />
+    <Compile Include="AsyncLock.cs" />
+    <Compile Include="AutofacConfiguration.cs" />
+    <Compile Include="Content\Estilos\Colors.cs" />
+    <Compile Include="Repositorio.cs" />
+    <Compile Include="Interfaces\IBaseRepositorio.cs" />
+    <Compile Include="Interfaces\ILocale.cs" />
+    <Compile Include="Interfaces\ILogin.cs" />
+    <Compile Include="Interfaces\ISQLite.cs" />
+    <Compile Include="Models\Categoria.cs" />
+    <Compile Include="Models\Usuario.cs" />
+    <Compile Include="Models\Enumeradores\EnumSexo.cs" />
+    <Compile Include="Paginas\ColetaDadosPage.cs" />
+    <Compile Include="Linguas\AppResources.Designer.cs">
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Estilos\Estilos.cs" />
+    <Compile Include="Paginas\CadastroPage.cs" />
+    <Compile Include="CustomControls\CategoriasViewCell.cs" />
+    <Compile Include="Helpers\RetornaCaminhoImagem.cs" />
+    <Compile Include="ViewModels\CadastroViewModel.cs" />
+    <Compile Include="Paginas\CategoriasPage.cs" />
+    <Compile Include="ViewModels\RootViewModel.cs" />
+    <Compile Include="Paginas\RootPage.cs" />
+    <Compile Include="Paginas\LoginPage.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="CustomControls\EnquetePublicaView.cs" />
+    <Compile Include="CustomControls\EnqueteInteresseView.cs" />
+    <Compile Include="ViewModels\CategoriaViewModel.cs" />
+    <Compile Include="Models\Enquete.cs" />
+    <Compile Include="Models\Resposta.cs" />
+    <Compile Include="Models\Pergunta.cs" />
+    <Compile Include="ViewModels\EnqueteViewModel.cs" />
+    <Compile Include="Mocks\CategoriaMock.cs" />
+    <Compile Include="Mocks\EnqueteMock.cs" />
+    <Compile Include="Mocks\UsuarioMock.cs" />
+    <Compile Include="CustomControls\EnqueteViewCell.cs" />
+    <Compile Include="CustomControls\TabbedMenuView.cs" />
+    <Compile Include="Conversores\SexoValueConverter.cs" />
+    <Compile Include="Paginas\MenuPage.cs" />
+    <Compile Include="CustomControls\MenuListView.cs" />
+    <Compile Include="Models\MenuItem.cs" />
+    <Compile Include="Models\MenuListData.cs" />
+    <Compile Include="Paginas\NovaEnquetePage.cs" />
+    <Compile Include="Paginas\ImportarContatosPage.cs" />
+    <Compile Include="Paginas\BuscarPage.cs" />
+    <Compile Include="Paginas\MainPage.cs" />
+    <Compile Include="Models\SubCategoria.cs" />
+    <Compile Include="Paginas\EnquetePage.cs" />
+    <Compile Include="Interfaces\ISaveAndLoadFile.cs" />
+    <Compile Include="Interfaces\IImageResizer.cs" />
+    <Compile Include="Paginas\PerguntaPage.cs" />
+    <Compile Include="ViewModels\PerguntaViewModel.cs" />
+    <Compile Include="CustomControls\ListaRespostasViewCell.cs" />
+    <Compile Include="CustomControls\ListaRespostasView.cs" />
+    <Compile Include="ViewModels\RespostaViewModel.cs" />
+    <Compile Include="CustomControls\MenuViewCell.cs" />
+    <Compile Include="Paginas\EsqueciMinhaSenhaPage.cs" />
+    <Compile Include="Paginas\VotoSalvoPage.cs" />
+    <Compile Include="Models\Enumeradores\EnumTipoEnquete.cs" />
+    <Compile Include="Models\ControleSession.cs" />
+    <Compile Include="CustomControls\CriaNovaEnqueteView.cs" />
+    <Compile Include="ViewModels\NovaEnqueteViewModel.cs" />
+    <Compile Include="Paginas\SelecaoAmigosEnquetePage.cs" />
+    <Compile Include="Models\AmigoEnvioEnquete.cs" />
+    <Compile Include="Models\Amigo.cs" />
+    <Compile Include="ViewModels\SelecaoAmigosViewModel.cs" />
+    <Compile Include="CustomControls\AmigosViewCell.cs" />
+    <Compile Include="Mocks\AmigoMock.cs" />
+    <Compile Include="Conversores\TituloCompridoConverter.cs" />
+    <Compile Include="ViewModels\ImportarContatosViewModel.cs" />
+    <Compile Include="ViewModels\EnquetePublicaViewModel.cs" />
+    <Compile Include="Service\CallAPI.cs" />
+    <Compile Include="Service\Constants.cs" />
+    <Compile Include="Service\UsuarioService.cs" />
+    <Compile Include="TestPage.cs" />
+    <Compile Include="Models\Banner.cs" />
+    <Compile Include="ViewModels\ColetaDadosViewModel.cs" />
+    <Compile Include="CustomControls\PickerSexoMais.cs" />
+    <Compile Include="CustomControls\DatePickerMais.cs" />
+    <Compile Include="CustomControls\EntryDDDMais.cs" />
+    <Compile Include="Paginas\CadastroEdicaoPage.cs" />
+    <Compile Include="Paginas\PerguntaRespondida.cs" />
+    <Compile Include="Paginas\VotoSalvoComVoucherPage.cs" />
+    <Compile Include="CustomControls\ListaRespostasEnqueteRespondidaViewCell.cs" />
+    <Compile Include="Models\PerguntaResposta.cs" />
+    <Compile Include="Interfaces\IYoutubePlayer.cs" />
+    <Compile Include="Models\Geolocalizacao.cs" />
+    <Compile Include="ViewModels\GeolocalizacaoViewModel.cs" />
+    <Compile Include="Interfaces\IFacebook.cs" />
+    <Compile Include="Paginas\TestPageFacebook.cs" />
+    <Compile Include="Paginas\EnquetePublica.cs" />
+    <Compile Include="Paginas\EnqueteInteresse.cs" />
+    <Compile Include="CustomControls\VideoPage.cs" />
+    <Compile Include="Paginas\CadastroComFacebookPage.cs" />
+    <Compile Include="Models\FacebookInfos.cs" />
+    <Compile Include="Interfaces\IFacebookIntegration.cs" />
+    <Compile Include="Paginas\LoginComFaceBookPage.cs" />
+    <Compile Include="Paginas\IndexPage.cs" />
+    <Compile Include="Paginas\RespostaPage.cs" />
+    <Compile Include="CustomControls\EnqueteMensagemView.cs" />
+    <Compile Include="Paginas\ExibirMensagemPage.cs" />
+    <Compile Include="Models\RetornoGravacaoEnquete.cs" />
+    <Compile Include="CustomControls\EntryNoKeyboard.cs" />
+    <Compile Include="Paginas\TesteRafael.cs" />
+    <Compile Include="Paginas\ExibeImagemResposta.cs" />
+    <Compile Include="Interfaces\CrossGeofenceListener.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="..\packages\Fody.1.28.3\build\Fody.targets" Condition="Exists('..\packages\Fody.1.28.3\build\Fody.targets')" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <Import Project="..\packages\Xamarin.Forms.1.4.3.6376\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.4.3.6376\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
+  <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.5.2\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite.Net">
+      <HintPath>..\packages\SQLite.Net-PCL.3.0.5\lib\portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1\SQLite.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite.Net.Async">
+      <HintPath>..\packages\SQLite.Net.Async-PCL.3.0.5\lib\portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1\SQLite.Net.Async.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLiteNetExtensions">
+      <HintPath>..\packages\SQLiteNetExtensions.1.3.0\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\SQLiteNetExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLiteNetExtensionsAsync">
+      <HintPath>..\packages\SQLiteNetExtensions.Async.1.3.0\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\SQLiteNetExtensionsAsync.dll</HintPath>
+    </Reference>
+    <Reference Include="ExifLib">
+      <HintPath>..\packages\ExifLib.PCL.1.0.1\lib\portable-net45+sl50+win+WindowsPhoneApp81+wp80+Xamarin.iOS10+MonoAndroid10+MonoTouch10\ExifLib.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Core">
+      <HintPath>..\packages\XLabs.Core.2.0.5610.2\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Platform">
+      <HintPath>..\packages\XLabs.Platform.2.0.5610.2\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Ioc">
+      <HintPath>..\packages\XLabs.IoC.2.0.5610.2\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Ioc.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Serialization">
+      <HintPath>..\packages\XLabs.Serialization.2.0.5610.2\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Forms">
+      <HintPath>..\packages\XLabs.Forms.2.0.5610.2\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="PropertyChanged">
+      <HintPath>..\packages\PropertyChanged.Fody.1.50.1\Lib\portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces">
+      <HintPath>..\packages\Rx-Interfaces.2.2.5\lib\portable-windows8+net45+wp8\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Core">
+      <HintPath>..\packages\Rx-Core.2.2.5\lib\portable-windows8+net45+wp8\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq">
+      <HintPath>..\packages\Rx-Linq.2.2.5\lib\portable-windows8+net45+wp8\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices">
+      <HintPath>..\packages\Rx-PlatformServices.2.2.5\lib\portable-windows8+net45+wp8\System.Reactive.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="ReactiveUI">
+      <HintPath>..\packages\reactiveui-core.6.5.0\lib\Portable-Net45+Win8+WP8+WPA81\ReactiveUI.dll</HintPath>
+    </Reference>
+    <Reference Include="ReactiveUI.Events_XamForms">
+      <HintPath>..\packages\reactiveui-xamforms.6.5.0\lib\Portable-Net45+WinRT45+WP8+MonoAndroid10+MonoTouch10\ReactiveUI.Events_XamForms.dll</HintPath>
+    </Reference>
+    <Reference Include="ReactiveUI.XamForms">
+      <HintPath>..\packages\reactiveui-xamforms.6.5.0\lib\Portable-Net45+WinRT45+WP8+MonoAndroid10+MonoTouch10\ReactiveUI.XamForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Splat">
+      <HintPath>..\packages\Splat.1.6.2\lib\Portable-net45+win+wpa81+wp80\Splat.dll</HintPath>
+    </Reference>
+    <Reference Include="Contacts.Plugin">
+      <HintPath>..\packages\Xam.Plugin.Contacts.1.0.0-alpha3\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Contacts.Plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="Contacts.Plugin.Abstractions">
+      <HintPath>..\packages\Xam.Plugin.Contacts.1.0.0-alpha3\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Contacts.Plugin.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Acr.DeviceInfo">
+      <HintPath>..\packages\Acr.DeviceInfo.2.2.0\lib\portable-win+net45+wp8+win8+wpa81\Acr.DeviceInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="Acr.DeviceInfo.Interface">
+      <HintPath>..\packages\Acr.DeviceInfo.2.2.0\lib\portable-win+net45+wp8+win8+wpa81\Acr.DeviceInfo.Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="Acr.UserDialogs">
+      <HintPath>..\packages\Acr.UserDialogs.3.4.1\lib\portable-win+net45+wp8+win8+wpa81\Acr.UserDialogs.dll</HintPath>
+    </Reference>
+    <Reference Include="Acr.UserDialogs.Interface">
+      <HintPath>..\packages\Acr.UserDialogs.3.4.1\lib\portable-win+net45+wp8+win8+wpa81\Acr.UserDialogs.Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\portable-wp8+netcore45+net45+wp81+wpa81\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\portable-net45+wp80+win8+wpa81+dnxcore50\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Geolocator.Plugin">
+      <HintPath>..\packages\Xam.Plugin.Geolocator.1.0.2\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Geolocator.Plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="Geolocator.Plugin.Abstractions">
+      <HintPath>..\packages\Xam.Plugin.Geolocator.1.0.2\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Geolocator.Plugin.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Core">
+      <HintPath>..\packages\Xamarin.Forms.1.4.3.6376\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml">
+      <HintPath>..\packages\Xamarin.Forms.1.4.3.6376\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform">
+      <HintPath>..\packages\Xamarin.Forms.1.4.3.6376\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Share.Forms.Plugin.Abstractions">
+      <HintPath>..\packages\Share.Plugin.Xamarin.Forms.1.0.0.0\lib\portable-net45+wp8+win8+MonoAndroid10+MonoTouch10\Share.Forms.Plugin.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Insights">
+      <HintPath>..\packages\Xamarin.Insights.1.10.4.112\lib\portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10\Xamarin.Insights.dll</HintPath>
+    </Reference>
+    <Reference Include="Geofence.Plugin.Abstractions">
+      <HintPath>..\packages\Xam.Plugin.Geofence.1.0.4\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Geofence.Plugin.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Geofence.Plugin">
+      <HintPath>..\packages\Xam.Plugin.Geofence.1.0.4\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Geofence.Plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Maps">
+      <HintPath>..\..\..\Downloads\xamarin-plugins-master\Samples\Geofence\packages\Xamarin.Forms.Maps.1.4.2.6355\lib\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Maps.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="FodyWeavers.xml" />
+    <None Include="PluginsHelp\GeolocatorReadme.txt" />
+    <None Include="Helpers\CrossGeofenceListener.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Linguas\" />
+    <Folder Include="Models\" />
+    <Folder Include="Paginas\" />
+    <Folder Include="Service\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="CustomControls\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Mocks\" />
+    <Folder Include="Conversores\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Linguas\AppResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Content\Imagens\cancel.png" />
+    <EmbeddedResource Include="Content\Imagens\ok.png" />
+    <EmbeddedResource Include="Content\Imagens\setaDireita.png" />
+    <EmbeddedResource Include="Content\Imagens\circuloEnquete.png" />
+    <EmbeddedResource Include="Content\Imagens\setaDireita2.png" />
+    <EmbeddedResource Include="Content\Imagens\buscar.png" />
+    <EmbeddedResource Include="Content\Imagens\importarContatos.png" />
+    <EmbeddedResource Include="Content\Imagens\novaEnquete.png" />
+    <EmbeddedResource Include="Content\Imagens\settings.png" />
+    <EmbeddedResource Include="Content\Imagens\banner_1.jpeg" />
+    <EmbeddedResource Include="Content\Imagens\banner_2.jpg" />
+    <EmbeddedResource Include="Content\Imagens\banner_3.jpg" />
+    <EmbeddedResource Include="Content\Imagens\banner_4.jpg" />
+    <EmbeddedResource Include="Content\Imagens\banner_5.jpg" />
+    <EmbeddedResource Include="Content\Imagens\banner_6.jpg" />
+    <EmbeddedResource Include="Content\Imagens\banner_7.jpeg" />
+    <EmbeddedResource Include="Content\Imagens\circulo_reposta_selecionada.png" />
+    <EmbeddedResource Include="Content\Imagens\circulo_resposta.png" />
+    <EmbeddedResource Include="Content\Imagens\enquete_respondida.png" />
+    <EmbeddedResource Include="Content\Imagens\selecao_botao.png" />
+    <EmbeddedResource Include="Content\Imagens\voltar.png" />
+    <EmbeddedResource Include="Content\Imagens\enqueteresp.png" />
+    <EmbeddedResource Include="Content\Imagens\fundoBotao.png" />
+    <EmbeddedResource Include="Content\Imagens\fundoBotaoClicado.png" />
+    <EmbeddedResource Include="Content\Imagens\logo_mini.png" />
+    <EmbeddedResource Include="Content\Imagens\logo.png" />
+    <EmbeddedResource Include="Content\Imagens\enquete.png" />
+    <EmbeddedResource Include="Content\Imagens\atualizar.png" />
+    <EmbeddedResource Include="Content\Imagens\LoginFacebook.png" />
+    <EmbeddedResource Include="Content\Imagens\Cancel-32.png" />
+  </ItemGroup>
+</Project>
