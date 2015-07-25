@@ -85,7 +85,15 @@ namespace Mais
                 var isLogado = await dbSession.RetornarTodos();
                 
                 if (isLogado != null && isLogado.Any(c => c.Logado))
+                {
+                    var dbUsuario = new Repositorio<Usuario>();
+                    var usuarioLogado = (await dbUsuario.RetornarTodos()).First();
+
+                    if (!App.Current.Properties.ContainsKey("UsuarioLogado"))
+                        App.Current.Properties["UsuarioLogado"] = usuarioLogado;
+
                     await this.Navigation.PushModalAsync(new MainPage());
+                }
                 else
                     await this.Navigation.PushModalAsync(new RootPage(), false);
             }

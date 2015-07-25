@@ -249,6 +249,21 @@ namespace Mais
             }
         }
 
+        public async Task<FacebookInfos> ExisteRegistroFacebook()
+        {
+            using (await Mutex.LockAsync().ConfigureAwait(false))
+            {
+                try
+                {
+                    return await this.conn.Table<FacebookInfos>().FirstOrDefaultAsync();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
         public async Task<bool> ExisteEnquetePublica()
         {
             using (await Mutex.LockAsync().ConfigureAwait(false))

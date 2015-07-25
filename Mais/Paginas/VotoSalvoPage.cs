@@ -9,6 +9,22 @@ namespace Mais
     public class VotoSalvoPage : ContentPage
     {
         Pergunta pergunta;
+        Button btnCompartilhar;
+
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            if (App.Current.Properties.ContainsKey("UsuarioLogado"))
+            {
+                var u = App.Current.Properties["UsuarioLogado"] as Usuario;
+                var dbFacebook = new Repositorio<FacebookInfos>();
+                var dadosFacebook = await dbFacebook.ExisteRegistroFacebook();
+
+                if (dadosFacebook == null || String.IsNullOrEmpty(dadosFacebook.access_token))
+                    btnCompartilhar.IsVisible = false;
+            }
+        }
 
         public VotoSalvoPage(Pergunta p)
         {
@@ -65,7 +81,7 @@ namespace Mais
 
             var overlayUP = new StackLayout { BackgroundColor = Colors._defaultColorFromHex, /*Children = { voltarStack }*/  };
 
-            var btnCompartilhar = new Button
+            btnCompartilhar = new Button
             {
                 Text = "Compartilhar",
                 Style = Estilos._estiloPadraoButton

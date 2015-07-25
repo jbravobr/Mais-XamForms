@@ -137,6 +137,16 @@ namespace Mais
                         await Acr.UserDialogs.UserDialogs.Instance.AlertAsync("Erro ao postar, tente novamente!");
                 };
 
+                if (App.Current.Properties.ContainsKey("UsuarioLogado"))
+                {
+                    var u = App.Current.Properties["UsuarioLogado"] as Usuario;
+                    var dbFacebook = new Repositorio<FacebookInfos>();
+                    var dadosFacebook = await dbFacebook.ExisteRegistroFacebook();
+
+                    if (dadosFacebook == null || String.IsNullOrEmpty(dadosFacebook.access_token))
+                        btnCompartilhar.IsVisible = false;
+                }
+
                 StackLayout perguntaLayout;
 				
                 if (!String.IsNullOrEmpty(this.urlVideo))

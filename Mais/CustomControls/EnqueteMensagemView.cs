@@ -42,14 +42,14 @@ namespace Mais
             var contanierLayout = new AbsoluteLayout
             {
                 //WidthRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenWidth - 50,
-                InputTransparent = false,
+                InputTransparent = true,
                 VerticalOptions = LayoutOptions.FillAndExpand,
             };
 
             var overlay = new Image
             {
                 /*BackgroundColor = Colors._defaultColorFromHex,*/ 
-                InputTransparent = false,
+                InputTransparent = true,
                 Aspect = Aspect.AspectFit
             };
             overlay.SetBinding(Image.SourceProperty, "ImageSource");
@@ -59,7 +59,7 @@ namespace Mais
                 Content = overlay,
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 WidthRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenWidth,
-                InputTransparent = false
+                InputTransparent = true
             };
 
 //            AbsoluteLayout.SetLayoutFlags(cView, AbsoluteLayoutFlags.PositionProportional);
@@ -136,7 +136,7 @@ namespace Mais
             absLayout.Children.Add(lblTitulo);
             //absLayout.Children.Add(frameSeta);
             //absLayout.Children.Add(imgSetaDireita);
-            absLayout.InputTransparent = true;
+            absLayout.InputTransparent = false;
 
             if (Device.OS == TargetPlatform.iOS)
                 absLayout.GestureRecognizers.Add(frame_Click_iOS);
