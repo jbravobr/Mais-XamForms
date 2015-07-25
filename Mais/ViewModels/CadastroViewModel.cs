@@ -66,7 +66,7 @@ namespace Mais
 
                 if (this.Usuario.Categorias == null || !this.Usuario.Categorias.Any())
                 {
-                    await Acr.UserDialogs.UserDialogs.Instance.AlertAsync("Você não informou nenhuma categoria");
+                    await Acr.UserDialogs.UserDialogs.Instance.AlertAsync("Selecione ao menus uma categoria, clique no botão 'Selecionar Categoria'");
                     return;
                 }
 

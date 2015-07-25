@@ -52,7 +52,7 @@ namespace Mais
                     enquetesLayout = new StackLayout
                     {
                         VerticalOptions = LayoutOptions.FillAndExpand,
-                        HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenWidth * 3,
+                        HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 1.5,
                         Orientation = StackOrientation.Vertical,
                         Padding = new Thickness(5, 50, 5, 0),
                         Children = { new Label{ Text = "Nenhum resultado encontrado !", FontSize = 28, FontAttributes = FontAttributes.Bold, YAlign = TextAlignment.Center } }
@@ -63,7 +63,7 @@ namespace Mais
                     enquetesLayout = new StackLayout
                     {
                         VerticalOptions = LayoutOptions.FillAndExpand,
-                        HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenWidth * 3,
+                        HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 1.5,
                         Orientation = StackOrientation.Vertical,
                         Padding = new Thickness(5, 3, 5, 0)
                     };

@@ -64,9 +64,11 @@ namespace Mais
                 ImageSource imgSrc = null;
 
                 if (this.EnqueteRespondida)
-                    imgSrc = ImageSource.FromResource(RetornaCaminhoImagem.GetImagemCaminho("enquete_respondida.png"));
+                    imgSrc = ImageSource.FromResource(RetornaCaminhoImagem.GetImagemUICaminho("botao_com_resposta.png"));
+                    //imgSrc = ImageSource.FromResource(RetornaCaminhoImagem.GetImagemCaminho("enquete_respondida.png"));
                 else
-                    imgSrc = ImageSource.FromResource(RetornaCaminhoImagem.GetImagemCaminho("circuloEnquete.png"));
+                    imgSrc = ImageSource.FromResource(RetornaCaminhoImagem.GetImagemUICaminho("botao_com_seta_sem_resposta.png"));
+                //imgSrc = ImageSource.FromResource(RetornaCaminhoImagem.GetImagemCaminho("circuloEnquete.png"));
 
                 return imgSrc;
             }

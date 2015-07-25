@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -60,7 +60,6 @@
     <Compile Include="CustomControls\EnquetePublicaView.cs" />
     <Compile Include="CustomControls\EnqueteInteresseView.cs" />
     <Compile Include="ViewModels\CategoriaViewModel.cs" />
-    <Compile Include="Models\Enquete.cs" />
     <Compile Include="Models\Resposta.cs" />
     <Compile Include="Models\Pergunta.cs" />
     <Compile Include="ViewModels\EnqueteViewModel.cs" />
@@ -92,6 +91,7 @@
     <Compile Include="Paginas\VotoSalvoPage.cs" />
     <Compile Include="Models\Enumeradores\EnumTipoEnquete.cs" />
     <Compile Include="Models\ControleSession.cs" />
+    <Compile Include="Models\Enquete.cs" />
     <Compile Include="CustomControls\CriaNovaEnqueteView.cs" />
     <Compile Include="ViewModels\NovaEnqueteViewModel.cs" />
     <Compile Include="Paginas\SelecaoAmigosEnquetePage.cs" />
@@ -286,6 +286,7 @@
     <Folder Include="Helpers\" />
     <Folder Include="Mocks\" />
     <Folder Include="Conversores\" />
+    <Folder Include="Content\Imagens\UI\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Linguas\AppResources.resx">
@@ -322,5 +323,11 @@
     <EmbeddedResource Include="Content\Imagens\atualizar.png" />
     <EmbeddedResource Include="Content\Imagens\LoginFacebook.png" />
     <EmbeddedResource Include="Content\Imagens\Cancel-32.png" />
+    <EmbeddedResource Include="Content\Imagens\UI\botao_com_seta.png" />
+    <EmbeddedResource Include="Content\Imagens\UI\botao_sem_seta.png" />
+    <EmbeddedResource Include="Content\Imagens\UI\fundo.png" />
+    <EmbeddedResource Include="Content\Imagens\UI\botao_com_seta_sem_resposta.png" />
+    <EmbeddedResource Include="Content\Imagens\UI\botao_com_resposta.png" />
+    <EmbeddedResource Include="Content\Imagens\UI\botao_de_baixo.png" />
   </ItemGroup>
 </Project>

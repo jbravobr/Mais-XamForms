@@ -15,7 +15,9 @@ using Xamarin;
 
 namespace Mais.Droid
 {
-    [Activity(Label = "Mais.Droid", LaunchMode = LaunchMode.SingleTask, Icon = "@drawable/ic_launcher", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "Mais.Droid", 
+        LaunchMode = LaunchMode.SingleTask, Icon = "@drawable/ic_launcher", 
+        MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicationActivity
     {
         public override void OnBackPressed()

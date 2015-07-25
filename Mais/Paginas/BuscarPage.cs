@@ -24,7 +24,6 @@ namespace Mais
                 var btnCategorias = new Button
                 { 
                     Text = AppResources.TextoPlaceHolderCategoriasCadastro, 
-                    HorizontalOptions = LayoutOptions.FillAndExpand,
                     Style = Estilos._estiloPadraoButtonFonteMenor,
                     WidthRequest = 290
                 };
@@ -42,14 +41,13 @@ namespace Mais
                 pickerTipoEnquete.Items.Add("Enquetes encerradas");
                 pickerTipoEnquete.Items.Add("Enquetes em que votei");
                 pickerTipoEnquete.Items.Add("Enquetes em que não votei");
-                pickerTipoEnquete.VerticalOptions = LayoutOptions.FillAndExpand;
                 pickerTipoEnquete.Title = "Tipo de Enquete";
                 pickerTipoEnquete.WidthRequest = 290;
                 
                 txtTitulo = new Entry();
                 txtTitulo.Placeholder = "Buscar por Título";
                 txtTitulo.WidthRequest = 290;
-                
+
                 var btnBuscar = new Button();
                 btnBuscar.Style = Estilos._estiloPadraoButtonFonteMenor;
                 btnBuscar.Text = "Buscar";
@@ -103,7 +101,7 @@ namespace Mais
                         AdicionaCategoriasAoFiltro(e);
                     });
                 
-                var abslayout = new AbsoluteLayout { WidthRequest = 200 };
+                /*var abslayout = new AbsoluteLayout { WidthRequest = 200 };
                 
                 AbsoluteLayout.SetLayoutFlags(btnCategorias, AbsoluteLayoutFlags.PositionProportional);
                 AbsoluteLayout.SetLayoutBounds(btnCategorias, new Rectangle(0.45, 0.15, AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize));
@@ -121,9 +119,23 @@ namespace Mais
                 abslayout.Children.Add(pickerTipoEnquete);
                 abslayout.Children.Add(txtTitulo);
                 abslayout.Children.Add(gridButtons);
-                abslayout.VerticalOptions = LayoutOptions.FillAndExpand;
-                
-                this.Content = abslayout;
+                abslayout.VerticalOptions = LayoutOptions.FillAndExpand;*/
+
+                var mainLayout = new StackLayout
+                {
+                    HorizontalOptions = LayoutOptions.FillAndExpand,
+                    Padding = new Thickness(5, 20, 5, 20),
+                    Spacing = 3,
+                    Children =
+                    {
+                        btnCategorias,
+                        pickerTipoEnquete,
+                        txtTitulo,
+                        gridButtons
+                    }
+                };
+
+                this.Content = mainLayout;
             }
             catch (Exception ex)
             {

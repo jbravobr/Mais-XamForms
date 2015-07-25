@@ -64,7 +64,15 @@ namespace Mais
         {
             this.BindingContext = model = App.Container.Resolve<CadastroViewModel>();
             model.ConfiguraNavigation(this.Navigation);
-            MessagingCenter.Subscribe<CategoriasPage,ICollection<Categoria>>(this, "gravarCategorias", (sender, arg) => this.model.AdicionaCategoriasSelecionadas(arg));
+            MessagingCenter.Subscribe<CategoriasPage,ICollection<Categoria>>(this, "gravarCategorias", (sender, arg) =>
+                {
+                    this.model.AdicionaCategoriasSelecionadas(arg);
+
+                    if (arg.Count > 1)
+                        this.btnCategorias.Text = String.Format("{0} Categoria selecionada", arg.Count);
+                    else
+                        this.btnCategorias.Text = String.Format("{0} Categorias selecionadas", arg.Count);
+                });
 
             var imgLogo = new Image
             {

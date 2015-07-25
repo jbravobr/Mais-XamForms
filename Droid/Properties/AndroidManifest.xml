@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="4.0.1" package="com.aplicativo.mais" android:versionCode="401">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="4.0.3" package="com.aplicativo.mais" android:versionCode="403">
 	<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="17" />
 	<application android:hardwareAccelerated="true" android:label="Mais" android:theme="@android:style/Theme.Holo.Light" android:icon="@drawable/ic_launcher">
 	</application>
