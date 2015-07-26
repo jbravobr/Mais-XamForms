@@ -53,7 +53,19 @@ namespace Mais
                 var categorias = await this.model.RetornarCategoriasDoServidor(ultimaCategoria);
                 
                 if (categorias != null && categorias.Any())
+                {
+                    var dbUsuario = new Repositorio<Usuario>();
+                    var user = (await dbUsuario.RetornarTodos()).FirstOrDefault();
+
+                    if (user != null)
+                    {
+                        foreach (var item in categorias)
+                        {
+                            item.UsuarioId = user.Id;
+                        }
+                    }
                     await dbCategoria.InserirTodos(categorias.ToList());
+                }
                 
                 #endregion
                 
@@ -86,6 +98,8 @@ namespace Mais
                 
                 if (isLogado != null && isLogado.Any(c => c.Logado))
                 {
+                    App.Current.Properties["isLogado"] = true;
+
                     var dbUsuario = new Repositorio<Usuario>();
                     var usuarioLogado = (await dbUsuario.RetornarTodos()).First();
 
@@ -95,7 +109,10 @@ namespace Mais
                     await this.Navigation.PushModalAsync(new MainPage());
                 }
                 else
+                {
+                    App.Current.Properties["isLogado"] = false;
                     await this.Navigation.PushModalAsync(new RootPage(), false);
+                }
             }
             catch (Exception ex)
             {

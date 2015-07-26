@@ -53,7 +53,7 @@ namespace Mais
                     enquetesLayout = new StackLayout
                     {
                         VerticalOptions = LayoutOptions.FillAndExpand,
-                        HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 1.5,
+                        MinimumHeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight,
                         Orientation = StackOrientation.Vertical,
                         Padding = new Thickness(5, 50, 5, 0),
                         Children = { new Label{ Text = "Nenhum resultado encontrado !", FontSize = 28, FontAttributes = FontAttributes.Bold, YAlign = TextAlignment.Center } }
@@ -64,7 +64,7 @@ namespace Mais
                     enquetesLayout = new StackLayout
                     {
                         VerticalOptions = LayoutOptions.FillAndExpand,
-                        HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 1.5,
+                        MinimumHeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight,
                         Orientation = StackOrientation.Vertical,
                         Padding = new Thickness(5, 3, 5, 0)
                     };
@@ -110,7 +110,7 @@ namespace Mais
                     }
                 }
                 var scrollEnquetes = new ScrollView { Content = enquetesLayout, Orientation = ScrollOrientation.Vertical };
-				
+                				
                 var tabbedMenu = new TabbedMenuView(this.Navigation);
                 mainLayout.Children.Add(scrollEnquetes);
                 mainLayout.Children.Add(tabbedMenu);
@@ -182,7 +182,8 @@ namespace Mais
                 mainLayout = new StackLayout
                 {
                     Orientation = StackOrientation.Vertical,
-                    HorizontalOptions = LayoutOptions.FillAndExpand
+                    VerticalOptions = LayoutOptions.FillAndExpand,
+                    MinimumHeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight
                 };
 				
                 mainLayout.ChildAdded += (sender, e) =>
@@ -219,7 +220,7 @@ namespace Mais
                 var enquetesLayout = new StackLayout
                 {
                     VerticalOptions = LayoutOptions.FillAndExpand,
-                    HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenWidth * 3,
+                    MinimumHeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight,
                     Orientation = StackOrientation.Vertical,
                     Padding = new Thickness(5, 3, 5, 0)
                 };
@@ -296,7 +297,7 @@ namespace Mais
             var enquetesLayout = new StackLayout
             {   
                 VerticalOptions = LayoutOptions.FillAndExpand,
-                HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenWidth * 3,
+                MinimumHeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight,
                 Orientation = StackOrientation.Vertical,
                 Padding = new Thickness(5, 3, 5, 0)
             };

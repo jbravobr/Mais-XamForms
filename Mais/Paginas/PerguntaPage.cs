@@ -119,7 +119,7 @@ namespace Mais
                     {
                         perguntaLayout = new StackLayout
                         {
-                            HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenWidth * 2,
+                            MinimumHeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight,
                             HorizontalOptions = LayoutOptions.Start,
                             Children = { imgThumbVideo, listaRespostas },
                             Padding = 20
@@ -128,7 +128,7 @@ namespace Mais
                     else
                         perguntaLayout = new StackLayout
                         {
-                            HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenWidth * 2,
+                            MinimumHeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight,
                             HorizontalOptions = LayoutOptions.Start,
                             Children = { webView, listaRespostas },
                             Padding = 20
@@ -139,7 +139,7 @@ namespace Mais
                 {
                     perguntaLayout = new StackLayout
                     {
-                        HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenWidth * 2,
+                        MinimumHeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight,
                         HorizontalOptions = LayoutOptions.Start,
                         Children = { Imagem, listaRespostas },
                         Padding = 20
@@ -149,7 +149,7 @@ namespace Mais
                 {
                     perguntaLayout = new StackLayout
                     {
-                        HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenWidth * 2,
+                        MinimumHeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight,
                         HorizontalOptions = LayoutOptions.Start,
                         Children = { listaRespostas },
                         Padding = 20

@@ -66,7 +66,7 @@ namespace Mais
 
                 if (this.Usuario.Categorias == null || !this.Usuario.Categorias.Any())
                 {
-                    await Acr.UserDialogs.UserDialogs.Instance.AlertAsync("Selecione ao menus uma categoria, clique no botão 'Selecionar Categoria'");
+                    await Acr.UserDialogs.UserDialogs.Instance.AlertAsync("Selecione ao menos uma categoria, clique no botão 'Selecionar Categoria'");
                     return;
                 }
 
@@ -140,7 +140,15 @@ namespace Mais
                 }
             }
             else
-                await Acr.UserDialogs.UserDialogs.Instance.AlertAsync("Informe todas as informações solicitadas.");
+            {
+                if (this.Usuario.Categorias == null || !this.Usuario.Categorias.Any())
+                {
+                    await Acr.UserDialogs.UserDialogs.Instance.AlertAsync("Selecione ao menos uma categoria, clique no botão 'Selecionar Categoria'");
+                    return;
+                }
+                else
+                    await Acr.UserDialogs.UserDialogs.Instance.AlertAsync("Informe todas as informações solicitadas.");
+            }
         }
 
         private async Task Voltar()

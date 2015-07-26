@@ -3,6 +3,8 @@
 using Xamarin.Forms;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Xamarin;
 
 namespace Mais
 {
@@ -16,12 +18,15 @@ namespace Mais
 
             Master = menuPage;
 
-            Detail = new NavigationPage(new MenuPrincipalPage());
-
-//			if (enquetesFiltradas != null && enquetesFiltradas.Any())
-//				Detail = new NavigationPage(new EnquetePage(0, enquetesFiltradas));
-//			else
-//				Detail = new NavigationPage(new EnquetePage());
+            if (!((bool)App.Current.Properties["isLogado"]))
+                Detail = new NavigationPage(new MenuPrincipalPage());
+            else
+            {
+                if (enquetesFiltradas != null && enquetesFiltradas.Any())
+                    Detail = new NavigationPage(new EnquetePage(0, enquetesFiltradas));
+                else
+                    Detail = new NavigationPage(new EnquetePage());
+            }
         }
 
         public MainPage(Page _page)

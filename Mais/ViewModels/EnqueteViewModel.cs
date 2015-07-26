@@ -198,12 +198,24 @@ namespace Mais
 
             var c = _userCategorias.Select(x => x.CategoriaId);
 
-            foreach (var item in c)
-            {
-                categorias += item.ToString() + ';';
-            }
+            if (c == null || !c.Any())
+            {              
+                foreach (var item in usuario.Categorias)
+                {
+                    categorias += item.Id.ToString() + ';';
+                }
 
-            categorias = categorias.TrimEnd(';');
+                categorias = categorias.TrimEnd(';');
+            }
+            else
+            {
+                foreach (var item in c)
+                {
+                    categorias += item.ToString() + ';';
+                }
+
+                categorias = categorias.TrimEnd(';');
+            }
 
             var temBannerGravado = await db.ExisteBanner();
             if (!temBannerGravado)

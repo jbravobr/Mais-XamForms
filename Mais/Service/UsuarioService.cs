@@ -225,6 +225,16 @@ namespace Mais
                     var json = await response.Content.ReadAsStringAsync();
                     var usuario = JsonConvert.DeserializeObject<Usuario>(json);
 
+                    var dbCategoria = new Repositorio<Categoria>();
+
+                    foreach (var item in usuario.Categorias)
+                    {
+                        var cat = await dbCategoria.RetornarPorId(item.Id);
+                        cat.UsuarioId = usuario.Id;
+
+                        await dbCategoria.Atualizar(cat);
+                    }
+
                     App.Current.Properties["UsuarioLogado"] = usuario;
 
                     return await Task.FromResult(true);
