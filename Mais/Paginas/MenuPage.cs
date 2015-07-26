@@ -9,8 +9,8 @@ namespace Mais
 
         public MenuPage()
         {
-            //if (Device.OS == TargetPlatform.iOS)
-            Icon = "settings.png";
+            if (Device.OS == TargetPlatform.iOS)
+                Icon = "settings.png";
 			
             Title = "menu";
             BackgroundColor = Colors._defaultColorFromHex;

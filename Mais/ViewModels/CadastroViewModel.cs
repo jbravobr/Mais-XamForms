@@ -70,6 +70,15 @@ namespace Mais
                     return;
                 }
 
+                var categorias = string.Empty;
+                foreach (var categoria in this.Usuario.Categorias)
+                {
+                    categorias += categoria.Id.ToString() + ';';
+                }
+                categorias = categorias.TrimEnd(';');
+
+                this.Usuario.CategoriaMobileSelection = categorias;
+
                 var cadastrou = await this.service.CadastraNovoUsuario(this.Usuario);
 
                 try
@@ -83,15 +92,10 @@ namespace Mais
                                 if (autenticado)
                                 {
                                     var dbUsuario = new Repositorio<Usuario>();
-                                    var _usuarioLogado = App.Current.Properties.ContainsKey("UsuarioLogado") ? App.Current.Properties["UsuarioLogado"] as Usuario : null;
 
                                     var temUsuario = (await dbUsuario.RetornarTodos()).FirstOrDefault();
-                                    if (_usuarioLogado != null)
-                                        await dbUsuario.InserirAsync(_usuarioLogado);
-
-                                    temUsuario = (await dbUsuario.RetornarTodos()).FirstOrDefault();
                                     if (temUsuario != null)
-                                        await dbUsuario.InserirAsync(_usuarioLogado);
+                                        await dbUsuario.Inserir(cadastrou);
 
                                     var dbSession = new Repositorio<ControleSession>();
                                     await dbSession.Inserir(new ControleSession { Logado = true });
@@ -105,7 +109,12 @@ namespace Mais
                                     Acr.UserDialogs.UserDialogs.Instance.Alert("Dados incorretos!", "Erro", "OK");
                             });
 
-                        await db.InserirAsync(cadastrou);
+                        await db.Inserir(cadastrou);
+                        foreach (var categoria in cadastrou.Categorias)
+                        {
+                            var dbUsuarioCategoria = new Repositorio<UsuarioCategoria>();
+                            dbUsuarioCategoria.Inserir(new UsuarioCategoria{ CategoriaId = categoria.Id });
+                        }
 
                         Task.Run(() => Acr.UserDialogs
 						 .UserDialogs

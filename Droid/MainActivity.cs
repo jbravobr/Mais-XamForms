@@ -16,7 +16,7 @@ using Xamarin;
 namespace Mais.Droid
 {
     [Activity(Label = "Mais.Droid", 
-        LaunchMode = LaunchMode.SingleTask, Icon = "@drawable/ic_launcher", 
+        LaunchMode = LaunchMode.SingleTask,
         MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicationActivity
     {

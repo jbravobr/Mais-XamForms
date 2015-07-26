@@ -96,6 +96,8 @@ namespace Mais
 
         public async Task TrataClique()
         {
+            Acr.UserDialogs.UserDialogs.Instance.ShowLoading("Carregando...");
+
             var service = App.Container.Resolve<ILogin>();
             var lista = await model.AdicionarAmigo(this.contatos);
             var dbAmigos = new Repositorio<Amigo>();
@@ -132,6 +134,8 @@ namespace Mais
             cellTemplate.SetBinding(TextCell.TextProperty, "Nome");
             cellTemplate.SetBinding(TextCell.DetailProperty, "NroTelefone");
             this.listViewContatos.ItemTemplate = cellTemplate;
+
+            Acr.UserDialogs.UserDialogs.Instance.HideLoading();
         }
 
         private IEnumerable<Amigo> CastContactsParaAmigo(ICollection<Contact> contacts)

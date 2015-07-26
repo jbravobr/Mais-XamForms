@@ -118,7 +118,7 @@ namespace Mais
                             }
                         }
 
-                        if (this.Respostas.Any(r => r.temVoucher))
+                        if (enquete.TemVoucher)
                         {
                             var pagina = Activator.CreateInstance(typeof(VotoSalvoComVoucherPage), new[]{ this.Pergunta }) as VotoSalvoComVoucherPage;
                             await this.Navigation.PushModalAsync(pagina);

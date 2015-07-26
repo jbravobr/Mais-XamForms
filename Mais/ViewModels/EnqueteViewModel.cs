@@ -193,12 +193,17 @@ namespace Mais
 
             var categorias = String.Empty;
 
-            if (App.Current.Properties.ContainsKey("UsuarioLogado"))
-            {
-                var usuarioLogado = App.Current.Properties["UsuarioLogado"] as Usuario;
+            var dbUsuarioCategoria = new Repositorio<UsuarioCategoria>();
+            var _userCategorias = await dbUsuarioCategoria.RetornarTodos();
 
-                categorias = usuarioLogado.Categorias.Select(x => x.EnqueteId).Aggregate((x, y) => x + ';' + y).ToString();
+            var c = _userCategorias.Select(x => x.CategoriaId);
+
+            foreach (var item in c)
+            {
+                categorias += item.ToString() + ';';
             }
+
+            categorias = categorias.TrimEnd(';');
 
             var temBannerGravado = await db.ExisteBanner();
             if (!temBannerGravado)

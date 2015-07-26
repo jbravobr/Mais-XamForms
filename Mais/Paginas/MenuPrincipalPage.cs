@@ -75,9 +75,9 @@ namespace Mais
             var box1 = new AbsoluteLayout();
 
             AbsoluteLayout.SetLayoutFlags(imgBox, AbsoluteLayoutFlags.PositionProportional);
-            AbsoluteLayout.SetLayoutBounds(imgBox, new Rectangle(0.50, 0.15, AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize));
+            AbsoluteLayout.SetLayoutBounds(imgBox, new Rectangle(0.50, 0.16, AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize));
             AbsoluteLayout.SetLayoutFlags(lblItem1, AbsoluteLayoutFlags.PositionProportional);
-            AbsoluteLayout.SetLayoutBounds(lblItem1, new Rectangle(0.50, 0.15, AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize));
+            AbsoluteLayout.SetLayoutBounds(lblItem1, new Rectangle(0.50, 0.16, AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize));
 
             AbsoluteLayout.SetLayoutFlags(imgBox2, AbsoluteLayoutFlags.PositionProportional);
             AbsoluteLayout.SetLayoutBounds(imgBox2, new Rectangle(0.50, 0.25, AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize));

@@ -38,6 +38,7 @@ namespace Mais
                     await conn.CreateTableAsync<Amigo>();
                     await conn.CreateTableAsync<Banner>();
                     await conn.CreateTableAsync<FacebookInfos>();
+                    await conn.CreateTableAsync<UsuarioCategoria>();
                 }
             }
             catch (Exception ex)
