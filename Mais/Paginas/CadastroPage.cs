@@ -39,9 +39,9 @@ namespace Mais
                     var _categorias = arg.Select(x => x.Nome).Aggregate((a, b) => a + ',' + b).TrimEnd(',');
 
                     if (_categorias.Length > 0)
-                    {
                         this.btnCategorias.Text = String.Format("{0} Categorias selecionadas!", arg.Count);
-                    }
+                    else
+                        this.btnCategorias.Text = String.Format("{0} Categoria selecionada!", arg.Count);
                 });
 
             var imgLogo = new Image

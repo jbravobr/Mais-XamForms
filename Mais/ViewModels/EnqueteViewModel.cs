@@ -191,10 +191,19 @@ namespace Mais
             List<Banner> ultimoBanner;
             var dbBanner = new Repositorio<Banner>();
 
+            var categorias = String.Empty;
+
+            if (App.Current.Properties.ContainsKey("UsuarioLogado"))
+            {
+                var usuarioLogado = App.Current.Properties["UsuarioLogado"] as Usuario;
+
+                categorias = usuarioLogado.Categorias.Select(x => x.EnqueteId).Aggregate((x, y) => x + ';' + y).ToString();
+            }
+
             var temBannerGravado = await db.ExisteBanner();
             if (!temBannerGravado)
             {
-                banners = await this.service.RetornarBanners(-1, 1);
+                banners = await this.service.RetornarBanners(-1, 1, categorias);
 
                 foreach (var banner in banners.ToList())
                 {
@@ -207,8 +216,8 @@ namespace Mais
             {
                 ultimoBanner = await dbBanner.RetornarTodos();
                 banners = ultimoBanner != null ? 
-					await this.service.RetornarBanners(ultimoBanner.OrderByDescending(e => e.Id).First().Id, 1) : 
-					await this.service.RetornarBanners(-1, 1);
+					await this.service.RetornarBanners(ultimoBanner.OrderByDescending(e => e.Id).First().Id, 1, categorias) : 
+					await this.service.RetornarBanners(-1, 1, categorias);
 
                 foreach (var banner in banners.ToList())
                 {

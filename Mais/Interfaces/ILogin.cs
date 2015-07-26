@@ -22,7 +22,7 @@ namespace Mais
 
         Task<ICollection<Categoria>> RetornarCategorias(int categoriaId);
 
-        Task<ICollection<Banner>> RetornarBanners(int id, int empresaId);
+        Task<ICollection<Banner>> RetornarBanners(int id, int empresaId, string categorias);
 
         Task<bool> GravaGeolocalizacao(Geolocalizacao geo);
 

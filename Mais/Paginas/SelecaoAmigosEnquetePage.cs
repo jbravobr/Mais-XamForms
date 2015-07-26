@@ -45,10 +45,12 @@ namespace Mais
                 }
             };
 
-            var imgCancel = new Image
+            var imgCancel = new Button
             {
-                Source = ImageSource.FromResource(RetornaCaminhoImagem.GetImagemCaminho("cancel.png")),
-                HorizontalOptions = LayoutOptions.StartAndExpand
+                //Source = ImageSource.FromResource(RetornaCaminhoImagem.GetImagemCaminho("cancel.png")),
+                Style = Estilos._estiloPadraoButtonFonteMenor,
+                HorizontalOptions = LayoutOptions.StartAndExpand,
+                Text = "Salvar"
             };
             imgCancel.GestureRecognizers.Add(imgCancel_Tapped);
 
@@ -61,7 +63,7 @@ namespace Mais
 
             var headerWrap = new StackLayout
             {
-                BackgroundColor = Colors._defaultColorFromHex,
+                BackgroundColor = Color.Transparent,
                 WidthRequest = screenWidth - 1,
                 HeightRequest = 60,
                 VerticalOptions = LayoutOptions.Start,

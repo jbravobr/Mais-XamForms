@@ -6,46 +6,48 @@ using System.Linq;
 
 namespace Mais
 {
-	public class MainPage : MasterDetailPage
-	{
-		public MainPage(List<Enquete> enquetesFiltradas = null)
-		{
-			var menuPage = new MenuPage();
+    public class MainPage : MasterDetailPage
+    {
+        public MainPage(List<Enquete> enquetesFiltradas = null)
+        {
+            var menuPage = new MenuPage();
 
-			menuPage.Menu.ItemSelected += (sender, e) => NavigateTo(e.SelectedItem as MenuItem);
+            menuPage.Menu.ItemSelected += (sender, e) => NavigateTo(e.SelectedItem as MenuItem);
 
-			Master = menuPage;
+            Master = menuPage;
 
-			if (enquetesFiltradas != null && enquetesFiltradas.Any())
-				Detail = new NavigationPage(new EnquetePage(0, enquetesFiltradas));
-			else
-				Detail = new NavigationPage(new EnquetePage());
-		}
+            Detail = new NavigationPage(new MenuPrincipalPage());
 
-		public MainPage(Page _page)
-		{
-			var menuPage = new MenuPage();
+//			if (enquetesFiltradas != null && enquetesFiltradas.Any())
+//				Detail = new NavigationPage(new EnquetePage(0, enquetesFiltradas));
+//			else
+//				Detail = new NavigationPage(new EnquetePage());
+        }
 
-			menuPage.Menu.ItemSelected += (sender, e) => NavigateTo(e.SelectedItem as MenuItem);
+        public MainPage(Page _page)
+        {
+            var menuPage = new MenuPage();
 
-			Master = menuPage;
-			Detail = new NavigationPage(_page);
-		}
+            menuPage.Menu.ItemSelected += (sender, e) => NavigateTo(e.SelectedItem as MenuItem);
 
-		void NavigateTo(MenuItem menu)
-		{
-			var displayPage = (Page)Activator.CreateInstance(menu.TipoPagina);
+            Master = menuPage;
+            Detail = new NavigationPage(_page);
+        }
 
-			if (displayPage.GetType() == typeof(EnquetePublica))
-				Detail = new NavigationPage(new EnquetePage(1));
-			else if (displayPage.GetType() == typeof(EnqueteInteresse))
-				Detail = new NavigationPage(new EnquetePage(2));
-			else
-				Detail = new NavigationPage(displayPage);
+        void NavigateTo(MenuItem menu)
+        {
+            var displayPage = (Page)Activator.CreateInstance(menu.TipoPagina);
 
-			IsPresented = false;
-		}
-	}
+            if (displayPage.GetType() == typeof(EnquetePublica))
+                Detail = new NavigationPage(new EnquetePage(1));
+            else if (displayPage.GetType() == typeof(EnqueteInteresse))
+                Detail = new NavigationPage(new EnquetePage(2));
+            else
+                Detail = new NavigationPage(displayPage);
+
+            IsPresented = false;
+        }
+    }
 }
 
 

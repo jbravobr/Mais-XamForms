@@ -15,6 +15,7 @@ namespace Mais
         bool OnApperaringLoaded = false;
         int tipo;
         List<Enquete> enquetesFiltradas;
+        StackLayout stackBanner;
 
         protected async override void OnAppearing()
         {
@@ -304,11 +305,24 @@ namespace Mais
             var banners = model.Banners;
             if (banners != null && banners.Any())
             {
-                var stackBanner = new StackLayout
-                { 
-                    Children = { new EnqueteInteresseView(model.Banners[0]) },
-                    Padding = new Thickness(0, 0, 0, 10)
-                };
+                if (Device.OS == TargetPlatform.Android)
+                {
+                    stackBanner = new StackLayout
+                    { 
+                        Children = { new EnqueteInteresseView(model.Banners[0]) },
+                        Padding = new Thickness(0, 0, 0, 10)
+                    };
+                }
+                else
+                {
+                    stackBanner = new StackLayout
+                    { 
+                        Children = { new EnqueteInteresseView(model.Banners[0]) },
+                        Padding = new Thickness(0, 0, 0, 10),
+                        VerticalOptions = LayoutOptions.CenterAndExpand,
+                        HorizontalOptions = LayoutOptions.CenterAndExpand
+                    };
+                }
 
                 var oldIndex = 1;
 

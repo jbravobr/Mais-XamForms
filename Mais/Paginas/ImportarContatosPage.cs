@@ -40,7 +40,8 @@ namespace Mais
                         return;
 
                     contatos = CrossContacts.Current.Contacts
-				.Where(c => !String.IsNullOrEmpty(c.FirstName) && c.Phones.Count > 0)
+                        .Where(c => !String.IsNullOrEmpty(c.FirstName) && c.Phones.Count > 0
+                        && c.Phones.All(p => p.Type == PhoneType.Mobile))
 				.ToList()
 				.OrderBy(c => c.FirstName)
 				.ToList();
@@ -123,7 +124,7 @@ namespace Mais
                 this.listViewContatos.ItemsSource = (await dbAmigos.RetornarTodos()).Distinct();
             else
             {
-                this.listViewContatos.ItemsSource = new ObservableCollection<Amigo>(CastContactsParaAmigo(this.contatos).ToList());
+                this.listViewContatos.ItemsSource = new ObservableCollection<Amigo>(CastContactsParaAmigo(this.contatos).Distinct().ToList());
             }
 
             var cellTemplate = new DataTemplate(typeof(TextCell));

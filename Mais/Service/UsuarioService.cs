@@ -235,11 +235,11 @@ namespace Mais
             return await Task.FromResult(false);
         }
 
-        public async Task<ICollection<Banner>> RetornarBanners(int id, int empresaId)
+        public async Task<ICollection<Banner>> RetornarBanners(int id, int empresaId, string categorias)
         {
             using (var client = CallAPI.RetornaClientHttp())
             {
-                response = await client.GetAsync(string.Format("{0}{1}/{2}", Constants.uriGetBanners, id, empresaId));
+                response = await client.GetAsync(string.Format("{0}{1}/{2}/{3}", Constants.uriGetBanners, id, empresaId, categorias));
 
                 if (response.IsSuccessStatusCode)
                 {

@@ -28,6 +28,10 @@ namespace Mais
                         Text = AppResources.TituloTabEnquetePublica, 
                         TextColor = Color.White,
                         FontSize = 18,
+                        FontFamily = Device.OnPlatform(
+                            iOS: "Helvetica",
+                            Android: "Roboto",
+                            WinPhone: "Segoe"),
                         FontAttributes = FontAttributes.Bold,
                         LineBreakMode = LineBreakMode.WordWrap,
                         VerticalOptions = LayoutOptions.CenterAndExpand,
@@ -56,6 +60,10 @@ namespace Mais
                         Text = AppResources.TituloTabEnqueteInteresse, 
                         TextColor = Color.White,
                         FontSize = 18,
+                        FontFamily = Device.OnPlatform(
+                            iOS: "Helvetica",
+                            Android: "Roboto",
+                            WinPhone: "Segoe"),
                         LineBreakMode = LineBreakMode.WordWrap,
                         FontAttributes = FontAttributes.Bold,
                         VerticalOptions = LayoutOptions.CenterAndExpand,

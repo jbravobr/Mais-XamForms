@@ -138,6 +138,7 @@
     <Compile Include="Paginas\TesteRafael.cs" />
     <Compile Include="Paginas\ExibeImagemResposta.cs" />
     <Compile Include="Interfaces\CrossGeofenceListener.cs" />
+    <Compile Include="Paginas\MenuPrincipalPage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Fody.1.28.3\build\Fody.targets" Condition="Exists('..\packages\Fody.1.28.3\build\Fody.targets')" />
