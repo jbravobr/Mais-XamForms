@@ -177,7 +177,7 @@ namespace Mais
                 if (categoriasSelecionadas != null && categoriasSelecionadas.Any() && !controle)
                 {
                     _toList = new List<Enquete>{ new Enquete{ Titulo = "Nenhum" } };
-                    await this.Navigation.PushModalAsync(new MainPage());
+                    await this.Navigation.PushModalAsync(new MainPage(_toList));
                     return;
                 }
                 
@@ -209,7 +209,7 @@ namespace Mais
                 if (pickerTipoEnquete.SelectedIndex != -1 && !controle)
                 {
                     _toList = new List<Enquete>{ new Enquete{ Titulo = "Nenhum" } };
-                    await this.Navigation.PushModalAsync(new MainPage());
+                    await this.Navigation.PushModalAsync(new MainPage(_toList));
                     return;
                 }
 

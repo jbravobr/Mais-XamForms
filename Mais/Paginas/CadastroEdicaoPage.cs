@@ -32,8 +32,20 @@ namespace Mais
 
             btnCategorias.Clicked += async (sender, e) =>
             {
-                if (model != null && model.Usuario != null && model.Usuario.Categorias != null && model.Usuario.Categorias.Any())
-                    await this.Navigation.PushModalAsync(new CategoriasPage(model.Usuario.Categorias));
+                if (model != null && model.Usuario != null && (model.Usuario.Categorias != null && model.Usuario.Categorias.Any() || !String.IsNullOrEmpty(model.Usuario.CategoriaMobileSelection)))
+                {
+                    var dbCategorias = new Repositorio<Categoria>();
+                    var categorias = new List<Categoria>();
+
+                    foreach (var item in model.Usuario.CategoriaMobileSelection.Split(';'))
+                    {
+                        var catId = Convert.ToInt32(item);
+                        var c = await dbCategorias.RetornarPorId(catId);
+                        categorias.Add(c);
+                    }
+
+                    await this.Navigation.PushModalAsync(new CategoriasPage(categorias));
+                }
                 else
                     await this.Navigation.PushModalAsync(new CategoriasPage(null));
             };
@@ -69,9 +81,9 @@ namespace Mais
                     this.model.AdicionaCategoriasSelecionadas(arg);
 
                     if (arg.Count > 1)
-                        this.btnCategorias.Text = String.Format("{0} Categoria selecionada", arg.Count);
+                        this.btnCategorias.Text = String.Format("{0} Categorias selecionada", arg.Count);
                     else
-                        this.btnCategorias.Text = String.Format("{0} Categorias selecionadas", arg.Count);
+                        this.btnCategorias.Text = String.Format("{0} Categoria selecionadas", arg.Count);
                 });
 
             var imgLogo = new Image

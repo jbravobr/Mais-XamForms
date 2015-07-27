@@ -30,6 +30,16 @@ namespace Mais
 
         public async Task<bool> AtualizarCadastro(Usuario user, INavigation nav)
         {
+            var categorias = string.Empty;
+            foreach (var item in this.Categorias)
+            {
+                categorias += item.Id.ToString() + ';';
+            }
+
+            categorias.TrimEnd(';');
+
+            user.CategoriaMobileSelection = categorias;
+
             var atualizou = await service.AtualizarUsuario(user);
 
             if (atualizou)

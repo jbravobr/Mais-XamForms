@@ -196,26 +196,14 @@ namespace Mais
             var dbUsuarioCategoria = new Repositorio<UsuarioCategoria>();
             var _userCategorias = await dbUsuarioCategoria.RetornarTodos();
 
-            var c = _userCategorias.Select(x => x.CategoriaId);
-
-            if (c == null || !c.Any())
-            {              
-                foreach (var item in usuario.Categorias)
-                {
-                    categorias += item.Id.ToString() + ';';
-                }
-
-                categorias = categorias.TrimEnd(';');
-            }
-            else
+            var dbCat = new Repositorio<Categoria>();
+                                    
+            foreach (var item in usuario.CategoriaMobileSelection.Split(';'))
             {
-                foreach (var item in c)
-                {
-                    categorias += item.ToString() + ';';
-                }
-
-                categorias = categorias.TrimEnd(';');
+                categorias += item + ';';
             }
+
+            categorias = categorias.TrimEnd(';');
 
             var temBannerGravado = await db.ExisteBanner();
             if (!temBannerGravado)

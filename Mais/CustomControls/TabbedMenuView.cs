@@ -82,7 +82,6 @@ namespace Mais
                 Children = { buttonLeft, buttonRight },
                 VerticalOptions = LayoutOptions.EndAndExpand,
                 BackgroundColor = Color.FromHex("#F7F7F7"),
-                MinimumHeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight,
                 Padding = new Thickness(0, Device.OnPlatform(0, 10, 0), 0, 0)
             };
 

@@ -100,12 +100,12 @@ namespace Mais
 
                             if (salvouNoServidor == null || !salvouNoServidor.Any())
                             {
-                                Acr.UserDialogs.UserDialogs.Instance.AlertAsync("Erro ao salvar resposta, tente novamente");
+                                await Acr.UserDialogs.UserDialogs.Instance.AlertAsync("Erro ao salvar resposta, tente novamente");
                                 return;
                             }
 
                             var dbperguntaResposta = new Repositorio<PerguntaResposta>();
-                            dbperguntaResposta.InserirTodos(salvouNoServidor.ToList());
+                            await dbperguntaResposta.InserirTodos(salvouNoServidor.ToList());
 
                             var dbResposta = new Repositorio<Resposta>();
                             foreach (var pr in salvouNoServidor)
@@ -114,7 +114,7 @@ namespace Mais
                                 var _resposta = await dbResposta.ProcurarPorFiltro(porPerguntaServerId);
                                 _resposta.percentualResposta = pr.percentual;
 									
-                                dbResposta.Atualizar(_resposta);
+                                await dbResposta.Atualizar(_resposta);
                             }
                         }
 

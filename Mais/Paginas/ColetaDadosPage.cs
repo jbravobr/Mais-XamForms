@@ -51,21 +51,8 @@ namespace Mais
                     ultimaCategoria = (await dbCategoria.RetornarTodos()).OrderByDescending(c => c.Id).First().Id;
                 
                 var categorias = await this.model.RetornarCategoriasDoServidor(ultimaCategoria);
-                
-                if (categorias != null && categorias.Any())
-                {
-                    var dbUsuario = new Repositorio<Usuario>();
-                    var user = (await dbUsuario.RetornarTodos()).FirstOrDefault();
 
-                    if (user != null)
-                    {
-                        foreach (var item in categorias)
-                        {
-                            item.UsuarioId = user.Id;
-                        }
-                    }
-                    await dbCategoria.InserirTodos(categorias.ToList());
-                }
+                dbCategoria.InserirTodos(categorias.ToList());
                 
                 #endregion
                 
@@ -99,12 +86,6 @@ namespace Mais
                 if (isLogado != null && isLogado.Any(c => c.Logado))
                 {
                     App.Current.Properties["isLogado"] = true;
-
-                    var dbUsuario = new Repositorio<Usuario>();
-                    var usuarioLogado = (await dbUsuario.RetornarTodos()).First();
-
-                    if (!App.Current.Properties.ContainsKey("UsuarioLogado"))
-                        App.Current.Properties["UsuarioLogado"] = usuarioLogado;
 
                     await this.Navigation.PushModalAsync(new MainPage());
                 }

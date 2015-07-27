@@ -1,12 +1,6 @@
 ﻿<Properties StartupItem="Droid/Mais.Droid.csproj" GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.10.71.34.101:5555" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Mais/Paginas/EnquetePage.cs">
-    <Files>
-      <File FileName="Mais/Paginas/EnquetePage.cs" Line="112" Column="54" />
-      <File FileName="Mais/Paginas/PerguntaPage.cs" Line="153" Column="25" />
-      <File FileName="Mais/Paginas/PerguntaRespondida.cs" Line="227" Column="25" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.Xamarin_Android_API_21" />
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/Rodrigo/Projects/Mais/Mais/Paginas/BuscarPage.cs" line="66" column="1" />

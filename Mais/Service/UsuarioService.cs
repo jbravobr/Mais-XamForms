@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Linq;
 
 using Newtonsoft.Json;
 using System.Diagnostics;
@@ -226,6 +227,7 @@ namespace Mais
                     var usuario = JsonConvert.DeserializeObject<Usuario>(json);
 
                     var dbCategoria = new Repositorio<Categoria>();
+                    var cats = string.Empty;
 
                     foreach (var item in usuario.Categorias)
                     {
@@ -233,9 +235,16 @@ namespace Mais
                         cat.UsuarioId = usuario.Id;
 
                         await dbCategoria.Atualizar(cat);
-                    }
 
-                    App.Current.Properties["UsuarioLogado"] = usuario;
+                        cats += item.Id.ToString() + ';';
+                    }
+                    cats = cats.TrimEnd(';');
+                    usuario.CategoriaMobileSelection = cats;
+
+                    var dbUsuario = new Repositorio<Usuario>();
+                    dbUsuario.Inserir(usuario);
+
+                    App.Current.Properties["UsuarioLogado"] = (await dbUsuario.RetornarTodos()).FirstOrDefault();
 
                     return await Task.FromResult(true);
                 }
