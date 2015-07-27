@@ -141,7 +141,7 @@ namespace Mais
                     {
                         perguntaLayout = new StackLayout
                         {
-                            HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 1.75,
+                            HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2,
                             HorizontalOptions = LayoutOptions.Start,
                             Children = { imgThumbVideo, listaRespostas, btnCompartilhar },
                             Padding = 20
@@ -151,7 +151,7 @@ namespace Mais
                     {
                         perguntaLayout = new StackLayout
                         {
-                            HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 1.75,
+                            HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2,
                             HorizontalOptions = LayoutOptions.Start,
                             Children = { webView, listaRespostas, btnCompartilhar },
                             Padding = 20
@@ -164,7 +164,7 @@ namespace Mais
                     {
                         perguntaLayout = new StackLayout
                         {
-                            HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 1.75,
+                            HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2,
                             HorizontalOptions = LayoutOptions.Start,
                             Children = { imgThumbVideo, btnCompartilhar },
                             Padding = 20
@@ -174,7 +174,7 @@ namespace Mais
                     {
                         perguntaLayout = new StackLayout
                         {
-                            HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 1.75,
+                            HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2,
                             HorizontalOptions = LayoutOptions.Start,
                             Children = { webView, btnCompartilhar },
                             Padding = 20
@@ -189,7 +189,7 @@ namespace Mais
                 {
                     perguntaLayout = new StackLayout
                     {
-                        HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 1.75,
+                        HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2,
                         HorizontalOptions = LayoutOptions.Start,
                         Children = { Imagem, listaRespostas, btnCompartilhar },
                         Padding = 20
@@ -199,7 +199,7 @@ namespace Mais
                 {
                     perguntaLayout = new StackLayout
                     {
-                        HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 1.75,
+                        HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2,
                         HorizontalOptions = LayoutOptions.Start,
                         Children = { Imagem, btnCompartilhar },
                         Padding = 20
@@ -213,7 +213,7 @@ namespace Mais
                 {
                     perguntaLayout = new StackLayout
                     {
-                        HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 1.75,
+                        HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2,
                         HorizontalOptions = LayoutOptions.Start,
                         Children = { listaRespostas, btnCompartilhar },
                         Padding = 20
@@ -223,7 +223,7 @@ namespace Mais
                 {
                     perguntaLayout = new StackLayout
                     {
-                        HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 1.75,
+                        HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2,
                         HorizontalOptions = LayoutOptions.Start,
                         Children = { btnCompartilhar },
                         Padding = 20
@@ -267,7 +267,7 @@ namespace Mais
             {
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 Orientation = StackOrientation.Vertical,
-                HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenWidth * 1.75,
+                HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenWidth * 2,
                 Padding = new Thickness(0, 20, 0, 10)
             };
 

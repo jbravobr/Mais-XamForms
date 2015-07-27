@@ -153,7 +153,7 @@ namespace Mais
             {
                 if (this.Usuario.Categorias == null || !this.Usuario.Categorias.Any())
                 {
-                    await Acr.UserDialogs.UserDialogs.Instance.AlertAsync("Selecione ao menos uma categoria, clique no botão 'Selecionar Categoria'");
+                    await Acr.UserDialogs.UserDialogs.Instance.AlertAsync("Selecione ao menos uma categoria, clique no botão 'Categorias de Interesse'");
                     return;
                 }
                 else

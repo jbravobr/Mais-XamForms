@@ -66,7 +66,7 @@ namespace Mais
 
             var sucesso = new Label
             {
-                Style = Estilos._estiloFonteSucessoResposta,
+                Style = Estilos._estiloFonteSucessoRespostaSucessoVoucher,
                 Text = AppResources.TextoSucessoComVoucher
             };
 
@@ -124,10 +124,10 @@ namespace Mais
             AbsoluteLayout.SetLayoutBounds(overlayUP, new Rectangle(1, 0, 1, 0.55));
 
             AbsoluteLayout.SetLayoutFlags(sucesso, AbsoluteLayoutFlags.PositionProportional);
-            AbsoluteLayout.SetLayoutBounds(sucesso, new Rectangle(0.5, 0.15, AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize));
+            AbsoluteLayout.SetLayoutBounds(sucesso, new Rectangle(0.5, 0.30, AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize));
 
             AbsoluteLayout.SetLayoutFlags(aviso, AbsoluteLayoutFlags.PositionProportional);
-            AbsoluteLayout.SetLayoutBounds(aviso, new Rectangle(0.5, 0.20, AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize));
+            AbsoluteLayout.SetLayoutBounds(aviso, new Rectangle(0.5, 0.15, AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize));
 
             AbsoluteLayout.SetLayoutFlags(imagem, AbsoluteLayoutFlags.PositionProportional);
             AbsoluteLayout.SetLayoutBounds(imagem, new Rectangle(0.5, 0.55, AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize));

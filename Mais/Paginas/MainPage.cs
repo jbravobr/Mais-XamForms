@@ -19,7 +19,10 @@ namespace Mais
             Master = menuPage;
 
             if (!((bool)App.Current.Properties["isLogado"]))
+            {
+                App.Current.Properties["isLogado"] = true;
                 Detail = new NavigationPage(new MenuPrincipalPage());
+            }
             else
             {
                 if (enquetesFiltradas != null && enquetesFiltradas.Any())

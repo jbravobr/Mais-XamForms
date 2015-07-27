@@ -87,6 +87,7 @@ namespace Mais
             };
 
             Task.Delay(10000, CancellationToken.None).ContinueWith(capturaPosicaoPeriodica, CancellationToken.None);
+
         }
 
         protected override void OnSleep()

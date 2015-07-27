@@ -10,7 +10,6 @@ using Android.OS;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using Acr.UserDialogs;
-using Share.Forms.Plugin.Droid;
 using Xamarin;
 
 namespace Mais.Droid
@@ -29,10 +28,8 @@ namespace Mais.Droid
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            //Geofence.Plugin.CrossGeofence.Initialize<CrossGeofenceListener>();
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
-            ShareImplementation.Init();
             UserDialogs.Init(() => (Activity)Forms.Context);
             Insights.Initialize("0d729b1f8027a9219421908d521e3af664ae52fc", Forms.Context);
 

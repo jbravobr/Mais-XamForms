@@ -1,11 +1,16 @@
 ﻿<Properties StartupItem="Droid/Mais.Droid.csproj" GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.Xamarin_Android_API_21" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.Nexus 4 (KitKat)" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Mais/App.cs">
+    <Files>
+      <File FileName="Droid/MainActivity.cs" Line="39" Column="35" />
+      <File FileName="Mais/Interfaces/CrossGeofenceListener.cs" Line="4" Column="21" />
+      <File FileName="Mais/App.cs" Line="65" Column="45" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/Rodrigo/Projects/Mais/Mais/Paginas/BuscarPage.cs" line="66" column="1" />
       <Breakpoint file="/Users/Rodrigo/Projects/Mais/Mais/Models/Resposta.cs" line="46" column="1" />
-      <Breakpoint file="/Users/Rodrigo/Desktop/Mais_App-master/Mais/ViewModels/PerguntaViewModel.cs" line="121" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
