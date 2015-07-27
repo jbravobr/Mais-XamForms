@@ -32,6 +32,7 @@ namespace Mais.Droid
             global::Xamarin.Forms.Forms.Init(this, bundle);
             UserDialogs.Init(() => (Activity)Forms.Context);
             Insights.Initialize("0d729b1f8027a9219421908d521e3af664ae52fc", Forms.Context);
+            Geofence.Plugin.CrossGeofence.Initialize<CrossGeofenceListener>();
 
             LoadApplication(new App());
         }

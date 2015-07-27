@@ -108,27 +108,27 @@ namespace Mais
                 Source = ImageSource.FromResource(RetornaCaminhoImagem.GetImagemCaminho("logo.png"))
             };
 
-//            Double Latitude;
-//            Double Longitude;
-//            GeofenceCircularRegion region;
-//
-//            Latitude = -23.0063245;
-//            Longitude = -43.4303358;
-//
-//            region = new GeofenceCircularRegion("Endereço da Natália", Latitude, Longitude, 100)
-//            {
-//                NotifyOnStay = true,
-//                NotifyOnEntry = true,
-//                NotifyOnExit = true,
-//                StayedInThresholdDuration = TimeSpan.FromMinutes(5),
-//                Persistent = true,
-//                ShowNotification = true,
-//                NotificationEntryMessage = "Entrou na área marcada - PushWoosh",
-//                NotificationExitMessage = "Saiu da área marcada - PushWoosh",
-//                NotificationStayMessage = "Continua dentro da área marcada - PushWoosh"
-//            };
-//
-//            CrossGeofence.Current.StartMonitoring(region);
+            Double Latitude;
+            Double Longitude;
+            Geofence.Plugin.Abstractions.GeofenceCircularRegion region;
+
+            Latitude = -23.0063245;
+            Longitude = -43.4303358;
+
+            region = new Geofence.Plugin.Abstractions.GeofenceCircularRegion("Endereço da Natália", Latitude, Longitude, 100)
+            {
+                NotifyOnStay = true,
+                NotifyOnEntry = true,
+                NotifyOnExit = true,
+                StayedInThresholdDuration = TimeSpan.FromMinutes(5),
+                Persistent = true,
+                ShowNotification = true,    
+                NotificationEntryMessage = "Entrou na área marcada - PushWoosh",
+                NotificationExitMessage = "Saiu da área marcada - PushWoosh",
+                NotificationStayMessage = "Continua dentro da área marcada - PushWoosh"
+            };
+
+            Geofence.Plugin.CrossGeofence.Current.StartMonitoring(region);
 
             this.Content = new StackLayout
             {

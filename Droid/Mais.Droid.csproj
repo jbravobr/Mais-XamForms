@@ -171,6 +171,15 @@
     <Reference Include="Xamarin.Android.Support.v7.MediaRouter">
       <HintPath>..\packages\Xamarin.Android.Support.v7.MediaRouter.22.2.0.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.MediaRouter.dll</HintPath>
     </Reference>
+    <Reference Include="GooglePlayServicesLib">
+      <HintPath>..\packages\Xamarin.GooglePlayServices.22.0.0.0\lib\MonoAndroid41\GooglePlayServicesLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Geofence.Plugin">
+      <HintPath>..\..\..\Downloads\xamarin-plugins-master\Samples\Geofence\packages\Xam.Plugin.Geofence.1.0.4\lib\MonoAndroid10\Geofence.Plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="Geofence.Plugin.Abstractions">
+      <HintPath>..\..\..\Downloads\xamarin-plugins-master\Samples\Geofence\packages\Xam.Plugin.Geofence.1.0.4\lib\MonoAndroid10\Geofence.Plugin.Abstractions.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mais\Mais.csproj">
