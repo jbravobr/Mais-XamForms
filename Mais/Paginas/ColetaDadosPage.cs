@@ -10,12 +10,18 @@ using Xamarin;
 
 //using Geofence.Plugin.Abstractions;
 //using Geofence.Plugin;
+using System.Collections.Generic;
 
 namespace Mais
 {
     public class ColetaDadosPage : ContentPage
     {
         ColetaDadosViewModel model;
+        Geofence.Plugin.Abstractions.GeofenceCircularRegion region;
+        Geofence.Plugin.Abstractions.GeofenceCircularRegion region2;
+        Geofence.Plugin.Abstractions.GeofenceCircularRegion region3;
+        Geofence.Plugin.Abstractions.GeofenceCircularRegion region4;
+        Geofence.Plugin.Abstractions.GeofenceCircularRegion region5;
 
         protected async override void OnAppearing()
         {
@@ -52,7 +58,7 @@ namespace Mais
                 
                 var categorias = await this.model.RetornarCategoriasDoServidor(ultimaCategoria);
 
-                dbCategoria.InserirTodos(categorias.ToList());
+                await dbCategoria.InserirTodos(categorias.ToList());
                 
                 #endregion
                 
@@ -69,6 +75,21 @@ namespace Mais
                 
                         return true;
                     });
+
+                var locator = CrossGeolocator.Current;
+                
+                if (locator.IsGeolocationAvailable && locator.IsGeolocationEnabled)
+                {
+                    var regioes = new List<Geofence.Plugin.Abstractions.GeofenceCircularRegion>();
+
+                    regioes.Add(region);
+                    regioes.Add(region2);
+                    regioes.Add(region3);
+                    regioes.Add(region4);
+                    regioes.Add(region5);
+
+                    Geofence.Plugin.CrossGeofence.Current.StartMonitoring(regioes);
+                }
             }
             catch (Exception ex)
             {
@@ -110,12 +131,11 @@ namespace Mais
 
             Double Latitude;
             Double Longitude;
-            Geofence.Plugin.Abstractions.GeofenceCircularRegion region;
 
             Latitude = -23.0063245;
             Longitude = -43.4303358;
 
-            region = new Geofence.Plugin.Abstractions.GeofenceCircularRegion("Endereço da Natália", Latitude, Longitude, 100)
+            region = new Geofence.Plugin.Abstractions.GeofenceCircularRegion("Endereço da Natália - Casa", Latitude, Longitude, 100)
             {
                 NotifyOnStay = true,
                 NotifyOnEntry = true,
@@ -123,13 +143,63 @@ namespace Mais
                 StayedInThresholdDuration = TimeSpan.FromMinutes(5),
                 Persistent = true,
                 ShowNotification = true,    
-                NotificationEntryMessage = "Entrou na área marcada - PushWoosh",
-                NotificationExitMessage = "Saiu da área marcada - PushWoosh",
-                NotificationStayMessage = "Continua dentro da área marcada - PushWoosh"
+                NotificationEntryMessage = "Entrou na área marcada (Casa) - PushWoosh",
+                NotificationExitMessage = "Saiu da área marcada (Casa) - PushWoosh",
+                NotificationStayMessage = "Continua dentro da área marcada (Casa) - PushWoosh"
             };
 
-            Geofence.Plugin.CrossGeofence.Current.StartMonitoring(region);
+            region5 = new Geofence.Plugin.Abstractions.GeofenceCircularRegion("Endereço da Natália - Downtown", -23.0035499, -43.3175759, 100)
+            {
+                NotifyOnStay = true,
+                NotifyOnEntry = true,
+                NotifyOnExit = true,
+                StayedInThresholdDuration = TimeSpan.FromMinutes(5),
+                Persistent = true,
+                ShowNotification = true,    
+                NotificationEntryMessage = "Entrou na área marcada (Downtown) - PushWoosh",
+                NotificationExitMessage = "Saiu da área marcada (Downtown) - PushWoosh",
+                NotificationStayMessage = "Continua dentro da área marcada (Downtown) - PushWoosh"
+            };
 
+            region2 = new Geofence.Plugin.Abstractions.GeofenceCircularRegion("Endereço da Natália - Simonsen", -22.9997858, -43.3455864, 100)
+            {
+                NotifyOnStay = true,
+                NotifyOnEntry = true,
+                NotifyOnExit = true,
+                StayedInThresholdDuration = TimeSpan.FromMinutes(5),
+                Persistent = true,
+                ShowNotification = true,    
+                NotificationEntryMessage = "Entrou na área marcada (Simonsen) - PushWoosh",
+                NotificationExitMessage = "Saiu da área marcada (Simonsen) - PushWoosh",
+                NotificationStayMessage = "Continua dentro da área marcada (Simonsen) - PushWoosh"
+            };
+
+            region3 = new Geofence.Plugin.Abstractions.GeofenceCircularRegion("Endereço da Natália - Novo Leblon", -23.0031046, -43.3819627, 100)
+            {
+                NotifyOnStay = true,
+                NotifyOnEntry = true,
+                NotifyOnExit = true,
+                StayedInThresholdDuration = TimeSpan.FromMinutes(5),
+                Persistent = true,
+                ShowNotification = true,    
+                NotificationEntryMessage = "Entrou na área marcada (Novo Leblon) - PushWoosh",
+                NotificationExitMessage = "Saiu da área marcada (Novo Leblon) - PushWoosh",
+                NotificationStayMessage = "Continua dentro da área marcada (Novo Leblon) - PushWoosh"
+            };
+
+            region4 = new Geofence.Plugin.Abstractions.GeofenceCircularRegion("Endereço Teste Desenvolvimento - RM", -19.9953039, -44.0165218, 100)
+            {
+                NotifyOnStay = true,
+                NotifyOnEntry = true,
+                NotifyOnExit = true,
+                StayedInThresholdDuration = TimeSpan.FromMinutes(5),
+                Persistent = true,
+                ShowNotification = true,    
+                NotificationEntryMessage = "Entrou na área marcada (RM) - PushWoosh",
+                NotificationExitMessage = "Saiu da área marcada (RM) - PushWoosh",
+                NotificationStayMessage = "Continua dentro da área marcada (RM) - PushWoosh"
+            };
+                       
             this.Content = new StackLayout
             {
                 VerticalOptions = LayoutOptions.Center,

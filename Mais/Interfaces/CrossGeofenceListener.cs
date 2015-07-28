@@ -11,17 +11,17 @@ namespace Mais
 
         public void OnMonitoringStarted(string region)
         {
-            UserDialogs.Instance.Alert(String.Format("Geofence started to monitoring at {0} - via Event Trigger", region));
+            UserDialogs.Instance.Alert(String.Format("Geofence iniciado"));
         }
 
         public void OnMonitoringStopped()
         {
-            UserDialogs.Instance.Alert("Geofence stopped - via Event Trigger");
+            UserDialogs.Instance.Alert("Geofence finalizado");
         }
 
         public void OnMonitoringStopped(string identifier)
         {
-            UserDialogs.Instance.Alert(String.Format("Geofence stopped to {0} - via Event Trigger", identifier));
+            UserDialogs.Instance.Alert(String.Format("Geofence finalizado por {0} - via Event Trigger", identifier));
         }
 
         public void OnRegionStateChanged(GeofenceResult result)
@@ -77,7 +77,7 @@ namespace Mais
 
         public void OnError(string error)
         {
-            UserDialogs.Instance.Alert(String.Format("Error: {0} - via Event Trigger", error));
+            UserDialogs.Instance.Alert(String.Format("Erro: {0} - via Event Trigger", error));
         }
 
         #endregion

@@ -16,7 +16,7 @@ namespace Mais
 
         public int UsuarioId { get; set; }
 
-        public string NroTelefone { get; set; }
+        public string FacebookID { get; set; }
 
         [Ignore]
         public bool Selecionado { get; set; }

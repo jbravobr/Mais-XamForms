@@ -69,6 +69,18 @@ namespace Mais.Droid
             view.Measure(msw, msh);
             view.Layout(0, 0, r - l, b - t);
         }
+
+        public override bool OnKeyUp(Keycode keyCode, KeyEvent e)
+        {
+            if (keyCode == Keycode.Back || e.KeyCode == Keycode.Back)
+            {
+                var activity = this.Context as Activity;
+
+                activity.FragmentManager.PopBackStack();
+            }
+
+            return true;
+        }
     }
 }
 

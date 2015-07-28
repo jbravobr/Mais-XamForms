@@ -9,7 +9,7 @@ using Autofac;
 
 namespace Mais
 {
-    public class CadastroComFacebook : ContentPage
+    public class CadastroComFacebookPage : ContentPage
     {
         readonly CadastroViewModel model;
         PickerSexoMais sexoPicker;
@@ -48,7 +48,7 @@ namespace Mais
                 }		
             }
 
-            MessagingCenter.Subscribe<CadastroComFacebook>(this, "CadastrouComFacebook", async (obj) =>
+            MessagingCenter.Subscribe<CadastroComFacebookPage>(this, "CadastrouComFacebook", async (obj) =>
                 {
                     Acr.UserDialogs.UserDialogs.Instance.ShowLoading("Atualizando informações ...");
 
@@ -71,7 +71,7 @@ namespace Mais
                 });			
         }
 
-        public CadastroComFacebook()
+        public CadastroComFacebookPage()
         {
             this.BindingContext = model = App.Container.Resolve<CadastroViewModel>();
             model.ConfiguraNavigation(this.Navigation);

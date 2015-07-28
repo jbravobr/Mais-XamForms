@@ -287,6 +287,32 @@ namespace Mais
             return await Task.FromResult(false);
         }
 
+        public async Task<bool> GravaChavePushWoosh(string token, int usuarioId)
+        {
+            using (var client = CallAPI.RetornaClientHttp())
+            {
+                response = await client.GetAsync(String.Format("{0}{1}/{2}", Constants.uriAtualizaUsuarioPushWoosh, token, usuarioId));
+
+                if (response.IsSuccessStatusCode)
+                    return await Task.FromResult(true);
+
+                return await Task.FromResult(false);
+            }
+        }
+
+        public async Task<bool> AtualizaFacebookToken(string token, int usuarioId)
+        {
+            using (var client = CallAPI.RetornaClientHttp())
+            {
+                response = await client.GetAsync(String.Format("{0}{1}/{2}", Constants.uriAtualizaUsuarioFacebook, token, usuarioId));
+
+                if (response.IsSuccessStatusCode)
+                    return await Task.FromResult(true);
+
+                return await Task.FromResult(false);
+            }
+        }
+
         #endregion
     }
 }

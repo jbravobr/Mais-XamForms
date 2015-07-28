@@ -39,6 +39,10 @@ namespace Mais
         public const string uriEsqueciSenha = "errou";
 
         public const string uriGetAmigos = "retornaamigosencontrados";
+
+        public const string uriAtualizaUsuarioPushWoosh = "atualizapush/";
+
+        public const string uriAtualizaUsuarioFacebook = "atualizafacebook/";
     }
 }
 

@@ -53,8 +53,15 @@ namespace Mais
         public async Task<ObservableCollection<Enquete>> GetEnquetesPublicas()
         {
             Acr.UserDialogs.UserDialogs.Instance.ShowLoading("Buscando Enquetes...");
+
+            if (App.PushWooshToken != null && !String.IsNullOrEmpty(App.PushWooshToken))
+            {
+                var dbUsuario = new Repositorio<Usuario>();
+                var _user = (await dbUsuario.RetornarTodos()).FirstOrDefault();
+                await this.service.GravaChavePushWoosh(App.PushWooshToken, _user.Id);
+            }
+
             var db = new Repositorio<Enquete>();
-            var dbUsuario = new Repositorio<Usuario>();
 
             var ultimaEnquete = 0;
             ICollection<Enquete> listaEnquetes = null;

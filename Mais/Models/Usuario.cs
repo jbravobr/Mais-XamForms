@@ -33,6 +33,10 @@ namespace Mais
         public string Telefone { get; set; }
 
         public string Municipio { get; set; }
+
+        public string FacebookID { get; set; }
+
+        public string PushWooshToken { get; set; }
     }
 }
 

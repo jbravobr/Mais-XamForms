@@ -40,6 +40,12 @@ namespace Mais
 
             user.CategoriaMobileSelection = categorias;
 
+            var dbFacebook = new Repositorio<FacebookInfos>();
+            var _token = (await dbFacebook.RetornarTodos()).FirstOrDefault();
+
+            if (_token != null)
+                user.FacebookID = _token.access_token;
+
             var atualizou = await service.AtualizarUsuario(user);
 
             if (atualizou)
@@ -88,6 +94,12 @@ namespace Mais
                 categorias = categorias.TrimEnd(';');
 
                 this.Usuario.CategoriaMobileSelection = categorias;
+
+                var dbFacebook = new Repositorio<FacebookInfos>();
+                var _token = (await dbFacebook.RetornarTodos()).FirstOrDefault();
+
+                if (_token != null)
+                    Usuario.FacebookID = _token.access_token;
 
                 var cadastrou = await this.service.CadastraNovoUsuario(this.Usuario);
 

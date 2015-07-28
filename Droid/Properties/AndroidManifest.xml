@@ -1,8 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.aplicativo.mais" android:versionCode="503" android:versionName="5.0.3">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.aplicativo.mais" android:versionCode="506" android:versionName="5.0.6">
 	<uses-sdk android:minSdkVersion="15" android:targetSdkVersion="21" />
 	<application android:hardwareAccelerated="true" android:label="Mais" android:theme="@android:style/Theme.Holo.Light" android:icon="@drawable/ic_launcher">
-    <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+		<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+		<meta-data android:name="PW_APPID" android:value="DD549-64BF7" />
+		<meta-data android:name="PW_PROJECT_ID" android:value="A940238896744" />
+		<activity android:name="com.arellomobile.android.push.PushWebview" />
+		<activity android:name="com.arellomobile.android.push.MessageActivity" />
+		<activity android:name="com.arellomobile.android.push.PushHandlerActivity" />
+		<receiver android:name="com.google.android.gcm.GCMBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+			<intent-filter>
+				<!-- Receives the actual messages. -->
+				<action android:name="com.google.android.c2dm.intent.RECEIVE" />
+				<!-- Receives the registration id. -->
+				<action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+				<category android:name="PACKAGE_NAME" />
+			</intent-filter>
+		</receiver>
+		<service android:name="com.arellomobile.android.push.PushGCMIntentService" />
 	</application>
 	<uses-permission android:name="android.permission.WRITE_CONTACTS" />
 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -11,5 +26,23 @@
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.READ_CONTACTS" />
 	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+	<uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+	<uses-permission android:name="android.permission.VIBRATE" />
+	<!--library-->
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+	<!-- GCM connects to Google Services. -->
+	<uses-permission android:name="android.permission.INTERNET" />
+	<!-- GCM requires a Google account. -->
+	<uses-permission android:name="android.permission.GET_ACCOUNTS" />
+	<!-- Keeps the processor from sleeping when a message is received. -->
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+	<!--
+ Creates a custom permission so only this app can receive its messages.
+ NOTE: the permission *must* be called PACKAGE.permission.C2D_MESSAGE,
+       where PACKAGE is the application's package name.
+-->
+	<permission android:name="com.aplicativo.mais.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+	<uses-permission android:name="com.aplicativo.mais.permission.C2D_MESSAGE" />
+	<!-- This app has permission to register and receive data message. -->
+	<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 </manifest>

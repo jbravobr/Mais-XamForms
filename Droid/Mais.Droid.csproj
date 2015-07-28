@@ -114,9 +114,6 @@
     <Reference Include="Microsoft.Threading.Tasks.Extensions">
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\portable-net45+win8+wpa81\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="Geolocator.Plugin.Abstractions">
-      <HintPath>..\packages\Xam.Plugin.Geolocator.1.0.2\lib\MonoAndroid10\Geolocator.Plugin.Abstractions.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.Auth.Android">
       <HintPath>..\packages\Xamarin.Auth.NoXamStore.1.0.0\lib\MonoAndroid\Xamarin.Auth.Android.dll</HintPath>
     </Reference>
@@ -180,11 +177,21 @@
     <Reference Include="Geofence.Plugin.Abstractions">
       <HintPath>..\..\..\Downloads\xamarin-plugins-master\Samples\Geofence\packages\Xam.Plugin.Geofence.1.0.4\lib\MonoAndroid10\Geofence.Plugin.Abstractions.dll</HintPath>
     </Reference>
+    <Reference Include="Geolocator.Plugin">
+      <HintPath>..\packages\Xam.Plugin.Geolocator.1.0.2\lib\MonoAndroid10\Geolocator.Plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="Geolocator.Plugin.Abstractions">
+      <HintPath>..\packages\Xam.Plugin.Geolocator.1.0.2\lib\MonoAndroid10\Geolocator.Plugin.Abstractions.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mais\Mais.csproj">
       <Project>{FB4C1C37-1DDD-44D8-899B-16DB3D08F11F}</Project>
       <Name>Mais</Name>
+    </ProjectReference>
+    <ProjectReference Include="PushwooshSDK\PushwooshSDK.csproj">
+      <Project>{0549FEEA-F489-40C9-8288-863FE9FA6EE7}</Project>
+      <Name>PushwooshSDK</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -210,6 +217,7 @@
     <None Include="Assets\AboutAssets.txt" />
     <None Include="packages.config" />
     <None Include="FodyWeavers.xml" />
+    <None Include="PluginsHelp\GeolocatorReadme.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\layout\" />

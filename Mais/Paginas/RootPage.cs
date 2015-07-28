@@ -44,9 +44,9 @@ namespace Mais
             img_Click.Tapped += async (sender, e) =>
             {
                 if (Device.OS == TargetPlatform.iOS)
-                    await this.Navigation.PushModalAsync(new CadastroComFacebook());
+                    await this.Navigation.PushModalAsync(new CadastroComFacebookPage());
                 else
-                    await this.Navigation.PushModalAsync(new CadastroComFacebook());
+                    await this.Navigation.PushModalAsync(new CadastroComFacebookPage());
             };
 
             imgFacebook.GestureRecognizers.Add(img_Click);

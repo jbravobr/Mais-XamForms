@@ -33,6 +33,10 @@ namespace Mais
         Task<bool> EsqueciMinhaSenha(string email);
 
         Task<ICollection<Usuario>> RetornarAmigos(List<string> telefones);
+
+        Task<bool> GravaChavePushWoosh(string token, int usuarioId);
+
+        Task<bool> AtualizaFacebookToken(string token, int usuarioId);
     }
 }
 

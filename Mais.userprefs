@@ -1,10 +1,10 @@
 ﻿<Properties StartupItem="Droid/Mais.Droid.csproj" GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.10.71.34.101:5555" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Mais/Paginas/ColetaDadosPage.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.Nexus 4 (KitKat)" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Droid/FacebookIntegration_Droid.cs">
     <Files>
-      <File FileName="Droid/MainActivity.cs" Line="35" Column="79" />
-      <File FileName="Mais/Paginas/ColetaDadosPage.cs" Line="131" Column="1" />
-      <File FileName="Droid/Properties/AndroidManifest.xml" Line="14" Column="98" />
+      <File FileName="Droid/Facebook_Droid.cs" Line="82" Column="5" />
+      <File FileName="Droid/FacebookIntegration_Droid.cs" Line="14" Column="52" />
+      <File FileName="Mais/Paginas/ImportarContatosPage.cs" Line="22" Column="52" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
