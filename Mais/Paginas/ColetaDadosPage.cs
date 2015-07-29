@@ -76,20 +76,20 @@ namespace Mais
                         return true;
                     });
 
-                var locator = CrossGeolocator.Current;
-                
-                if (locator.IsGeolocationAvailable && locator.IsGeolocationEnabled)
-                {
-                    var regioes = new List<Geofence.Plugin.Abstractions.GeofenceCircularRegion>();
-
-                    regioes.Add(region);
-                    regioes.Add(region2);
-                    regioes.Add(region3);
-                    regioes.Add(region4);
-                    regioes.Add(region5);
-
-                    Geofence.Plugin.CrossGeofence.Current.StartMonitoring(regioes);
-                }
+//                var locator = CrossGeolocator.Current;
+//                
+//                if (locator.IsGeolocationAvailable && locator.IsGeolocationEnabled)
+//                {
+//                    var regioes = new List<Geofence.Plugin.Abstractions.GeofenceCircularRegion>();
+//
+//                    regioes.Add(region);
+//                    regioes.Add(region2);
+//                    regioes.Add(region3);
+//                    regioes.Add(region4);
+//                    regioes.Add(region5);
+//
+//                    Geofence.Plugin.CrossGeofence.Current.StartMonitoring(regioes);
+//                }
             }
             catch (Exception ex)
             {

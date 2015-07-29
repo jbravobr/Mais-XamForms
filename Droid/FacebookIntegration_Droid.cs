@@ -56,7 +56,7 @@ namespace Mais.Droid
             return (IDictionary<string, object>)result;
         }
 
-        public async Task<List<IDictionary<string,object>>> GetAmigos(string userToken)
+        public async Task<RootObject> GetAmigos(string userToken)
         {
             var fb = new FacebookClient(userToken);
             object result = null;
@@ -65,14 +65,14 @@ namespace Mais.Droid
                     if (!t.IsFaulted)
                     {
                         var jsonString = (await t).ToString();
-                        var i = JsonConvert.DeserializeObject <List<IDictionary<string,object>>>(jsonString);
+                        var i = JsonConvert.DeserializeObject <RootObject>(jsonString);
                         result = i;
                         return i;
                     }
                     return null;
                 });
 
-            return (List<IDictionary<string,object>>)result;
+            return (RootObject)result;
         }
     }
 }

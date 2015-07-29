@@ -36,6 +36,10 @@ namespace Mais
 
         public string FacebookID { get; set; }
 
+        [JsonIgnore]
+        public string FacebookToken { get; set; }
+
+        [JsonIgnore]
         public string PushWooshToken { get; set; }
     }
 }

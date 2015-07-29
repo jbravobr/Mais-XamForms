@@ -59,10 +59,10 @@ namespace Mais
 
             if (_usuario != null)
             {
-                var friends = await DependencyService.Get<IFacebook>().GetAmigos(_usuario.FacebookID);
+                var friends = await DependencyService.Get<IFacebook>().GetAmigos(_usuario.FacebookToken);
                 var dbAmigos = new Repositorio<Amigo>();
                     
-                var tels = friends.data.SelectMany(x => x.id).ToList();
+                var tels = friends.data.Select(x => x.id).ToList();
                 var existemNoServer = await service.RetornarAmigos(tels);
 
                 var amigos = new List<Amigo>();

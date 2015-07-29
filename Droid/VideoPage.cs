@@ -21,6 +21,11 @@ namespace Mais.Droid
         {
         }
 
+        protected override void OnFocusChanged(bool gainFocus, FocusSearchDirection direction, Android.Graphics.Rect previouslyFocusedRect)
+        {
+            base.OnFocusChanged(gainFocus, direction, previouslyFocusedRect);
+        }
+
         protected override void OnElementChanged(ElementChangedEventArgs<Page> e)
         {
             base.OnElementChanged(e);

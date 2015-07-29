@@ -44,7 +44,10 @@ namespace Mais
             var _token = (await dbFacebook.RetornarTodos()).FirstOrDefault();
 
             if (_token != null)
-                user.FacebookID = _token.access_token;
+            {
+                user.FacebookID = _token.user_id;
+                user.FacebookToken = _token.access_token;
+            }
 
             var atualizou = await service.AtualizarUsuario(user);
 
@@ -99,7 +102,10 @@ namespace Mais
                 var _token = (await dbFacebook.RetornarTodos()).FirstOrDefault();
 
                 if (_token != null)
-                    Usuario.FacebookID = _token.access_token;
+                {
+                    this.Usuario.FacebookID = _token.user_id;
+                    this.Usuario.FacebookToken = _token.access_token;
+                }
 
                 var cadastrou = await this.service.CadastraNovoUsuario(this.Usuario);
 
