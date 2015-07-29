@@ -28,7 +28,7 @@ namespace Mais
                 Text = AppResources.TextoBotaoImportarAmigos,
                 Style = Estilos._estiloPadraoButtonFonteMenor,
             };
-            btnImportar.IsEnabled = false;
+            btnImportar.IsEnabled = true;
             btnImportar.Clicked += async (sender, e) => await TrataClique();
 
             listViewContatos = new ListView();
@@ -54,14 +54,15 @@ namespace Mais
 
             var service = App.Container.Resolve<ILogin>();
 
-            if (App.Current.Properties.ContainsKey("UsuarioLogado"))
-            {
-                var _user = App.Current.Properties["UsuarioLogado"] as Usuario;
+            var dbUsuario = new Repositorio<Usuario>();
+            var _usuario = (await dbUsuario.RetornarTodos()).FirstOrDefault();
 
-                var friends = await DependencyService.Get<IFacebook>().GetAmigos(_user.FacebookID);
+            if (_usuario != null)
+            {
+                var friends = await DependencyService.Get<IFacebook>().GetAmigos(_usuario.FacebookID);
                 var dbAmigos = new Repositorio<Amigo>();
                     
-                var tels = friends.SelectMany(x => x.Keys).ToList();
+                var tels = friends.data.SelectMany(x => x.id).ToList();
                 var existemNoServer = await service.RetornarAmigos(tels);
 
                 var amigos = new List<Amigo>();

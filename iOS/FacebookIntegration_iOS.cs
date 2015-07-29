@@ -65,15 +65,41 @@ namespace Mais.iOS
                     if (!t.IsFaulted)
                     {
                         var jsonString = (await t).ToString();
-                        var i = JsonConvert.DeserializeObject <List<IDictionary<string,object>>>(jsonString);
+                        var i = JsonConvert.DeserializeObject <RootObject>(jsonString);
                         result = i;
                         return i;
                     }
                     return null;
                 });
 
-            return (List<IDictionary<string,object>>)result;
+            return (RootObject)result;
         }
+    }
+
+    public class Datum
+    {
+        public string name { get; set; }
+
+        public string id { get; set; }
+    }
+
+    public class Paging
+    {
+        public string next { get; set; }
+    }
+
+    public class Summary
+    {
+        public int total_count { get; set; }
+    }
+
+    public class RootObject
+    {
+        public List<Datum> data { get; set; }
+
+        public Paging paging { get; set; }
+
+        public Summary summary { get; set; }
     }
 }
 

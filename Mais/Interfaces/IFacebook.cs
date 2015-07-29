@@ -10,7 +10,7 @@ namespace Mais
 
         Task<IDictionary<string,object>> RecuperaDadosUsuario(string userToken);
 
-        Task<List<IDictionary<string,object>>> GetAmigos(string userToken);
+        Task<RootObject> GetAmigos(string userToken);
 
         Task<bool> PostToWall(string message, string userToken);
     }

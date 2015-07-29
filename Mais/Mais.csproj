@@ -140,6 +140,7 @@
     <Compile Include="Interfaces\CrossGeofenceListener.cs" />
     <Compile Include="Paginas\MenuPrincipalPage.cs" />
     <Compile Include="Models\UsuarioCategoria.cs" />
+    <Compile Include="Models\RootObj.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Fody.1.28.3\build\Fody.targets" Condition="Exists('..\packages\Fody.1.28.3\build\Fody.targets')" />

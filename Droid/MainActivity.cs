@@ -51,6 +51,7 @@ namespace Mais.Droid
         public override void OnBackPressed()
         {
             this.RequestedOrientation = Android.Content.PM.ScreenOrientation.Portrait;
+
             base.OnBackPressed();
         }
 

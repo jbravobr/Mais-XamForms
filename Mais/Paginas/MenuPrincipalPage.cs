@@ -16,14 +16,15 @@ namespace Mais
             menus = new ListView();
             menus.ItemsSource = data;
             menus.VerticalOptions = LayoutOptions.FillAndExpand;
-            BackgroundColor = Color.Transparent;
-            menus.SeparatorVisibility = SeparatorVisibility.Default;
+            menus.BackgroundColor = Color.Transparent;
+            menus.SeparatorVisibility = SeparatorVisibility.None;
             menus.ItemTemplate = new DataTemplate(typeof(MenuViewCell));
             menus.ItemTapped += async (sender, e) => NavigateTo(e.Item as MenuItem);
 
             var mainLayout = new StackLayout
             {
                 VerticalOptions = LayoutOptions.FillAndExpand,
+                BackgroundColor = Color.Transparent,
                 Orientation = StackOrientation.Vertical,
                 Padding = new Thickness(10, 90, 10, 0),
                 Children = { menus }
