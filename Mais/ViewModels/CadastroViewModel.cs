@@ -49,6 +49,8 @@ namespace Mais
                 user.FacebookToken = _token.access_token;
             }
 
+            user.EmpresaApp = 1;
+
             var atualizou = await service.AtualizarUsuario(user);
 
             if (atualizou)
@@ -106,6 +108,8 @@ namespace Mais
                     this.Usuario.FacebookID = _token.user_id;
                     this.Usuario.FacebookToken = _token.access_token;
                 }
+
+                this.Usuario.EmpresaApp = 1;
 
                 var cadastrou = await this.service.CadastraNovoUsuario(this.Usuario);
 

@@ -36,6 +36,8 @@ namespace Mais
 
         public string FacebookID { get; set; }
 
+        public int? EmpresaApp { get; set; }
+
         [JsonIgnore]
         public string FacebookToken { get; set; }
 
