@@ -19,6 +19,13 @@ namespace Mais
         ListView listViewContatos;
         List<Amigo> amigosImportados;
 
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            await Acr.UserDialogs.UserDialogs.Instance.ConfirmAsync("Nesta tela você irá importar os seus amigos do Facebook que também usam o Mais e poderá criar enquetes entre vocês", "Informação", "OK", "Cancel");
+        }
+
         public ImportarContatosPage()
         {
             this.BindingContext = model = new ImportarContatosViewModel();

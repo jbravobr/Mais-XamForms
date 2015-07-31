@@ -56,7 +56,7 @@ namespace Mais.iOS
             return (IDictionary<string, object>)result;
         }
 
-        public async Task<List<IDictionary<string,object>>> GetAmigos(string userToken)
+        public async Task<RootObject> GetAmigos(string userToken)
         {
             var fb = new FacebookClient(userToken);
             object result = null;
@@ -74,32 +74,6 @@ namespace Mais.iOS
 
             return (RootObject)result;
         }
-    }
-
-    public class Datum
-    {
-        public string name { get; set; }
-
-        public string id { get; set; }
-    }
-
-    public class Paging
-    {
-        public string next { get; set; }
-    }
-
-    public class Summary
-    {
-        public int total_count { get; set; }
-    }
-
-    public class RootObject
-    {
-        public List<Datum> data { get; set; }
-
-        public Paging paging { get; set; }
-
-        public Summary summary { get; set; }
     }
 }
 

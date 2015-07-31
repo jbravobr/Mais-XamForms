@@ -2,12 +2,29 @@
 
 using Xamarin.Forms;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Mais
 {
     public class MenuPrincipalPage : ContentPage
     {
         ListView menus;
+
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            var control = new Repositorio<ControleSession>();
+            var isLogado = (await control.RetornarTodos()).First();
+
+            if (!isLogado.ViuTutorial)
+            {
+                if (Device.OS == TargetPlatform.Android)
+                    await this.Navigation.PushModalAsync(new TutorialPage_Android());
+                else
+                    await this.Navigation.PushModalAsync(new TutorialPage_iOS());
+            }
+        }
 
         public MenuPrincipalPage()
         {

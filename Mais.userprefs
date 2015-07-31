@@ -1,11 +1,8 @@
 ﻿<Properties StartupItem="Droid/Mais.Droid.csproj" GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone5s.8.4" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.10.71.34.101:5555" />
   <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/Rodrigo/Projects/Mais/Mais/Paginas/BuscarPage.cs" line="66" column="1" />
-      <Breakpoint file="/Users/Rodrigo/Projects/Mais/Mais/Models/Resposta.cs" line="46" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
     <Watch file="Mais/ViewModels/CadastroViewModel.cs" line="33" offsetX="662" offsetY="187" expression="this.Usuario" liveUpdate="False" />
@@ -13,5 +10,6 @@
   <DisabledProjects>
     <String>UITests/Mais.UITests.csproj</String>
     <String>MaisDroid/MaisDroid.csproj</String>
+    <String>iOS/Mais.iOS.csproj</String>
   </DisabledProjects>
 </Properties>

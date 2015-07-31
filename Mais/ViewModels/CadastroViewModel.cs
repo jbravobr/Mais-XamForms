@@ -4,6 +4,7 @@ using Xamarin.Forms;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
+using Xamarin;
 
 namespace Mais
 {
@@ -73,113 +74,129 @@ namespace Mais
 
         private async Task EfetuarCadastro()
         {
-
-            if (this.Usuario.Sexo != null &&
-                this.Usuario.DataNascimento != null &&
-                (this.Usuario.Categorias != null && this.Usuario.Categorias.Any()) &&
-                this.Usuario.DDD != null &&
-                this.Usuario.Telefone != null &&
-                this.Usuario.Nome != null &&
-                this.Usuario.Email != null &&
-                this.Usuario.Municipio != null)
+            try
             {
-                var db = new Repositorio<Usuario>();
-
-                if (this.Usuario.Categorias == null || !this.Usuario.Categorias.Any())
+                Acr.UserDialogs.UserDialogs.Instance.ShowLoading("Enviando...");
+                
+                if (this.Usuario.Sexo != null &&
+                    this.Usuario.DataNascimento != null &&
+                    (this.Usuario.Categorias != null && this.Usuario.Categorias.Any()) &&
+                    this.Usuario.DDD != null &&
+                    this.Usuario.Telefone != null &&
+                    this.Usuario.Nome != null &&
+                    this.Usuario.Email != null &&
+                    this.Usuario.Municipio != null)
                 {
-                    await Acr.UserDialogs.UserDialogs.Instance.AlertAsync("Selecione ao menos uma categoria, clique no botão 'Selecionar Categoria'");
-                    return;
-                }
-
-                var categorias = string.Empty;
-                foreach (var categoria in this.Usuario.Categorias)
-                {
-                    categorias += categoria.Id.ToString() + ';';
-                }
-                categorias = categorias.TrimEnd(';');
-
-                this.Usuario.CategoriaMobileSelection = categorias;
-
-                var dbFacebook = new Repositorio<FacebookInfos>();
-                var _token = (await dbFacebook.RetornarTodos()).FirstOrDefault();
-
-                if (_token != null)
-                {
-                    this.Usuario.FacebookID = _token.user_id;
-                    this.Usuario.FacebookToken = _token.access_token;
-                }
-
-                this.Usuario.EmpresaApp = 1;
-
-                var cadastrou = await this.service.CadastraNovoUsuario(this.Usuario);
-
-                try
-                {
-                    if (cadastrou != null)
+                    var db = new Repositorio<Usuario>();
+                
+                    if (this.Usuario.Categorias == null || !this.Usuario.Categorias.Any())
                     {
-                        this.Logar = new Action(async () =>
-                            {
-                                var autenticado = await this.service.FazerLogin(this.Usuario.Email, this.Usuario.Senha);
-
-                                if (autenticado)
-                                {
-                                    var dbUsuario = new Repositorio<Usuario>();
-
-                                    var temUsuario = (await dbUsuario.RetornarTodos()).FirstOrDefault();
-                                    if (temUsuario != null)
-                                        await dbUsuario.Inserir(cadastrou);
-
-                                    var dbSession = new Repositorio<ControleSession>();
-                                    await dbSession.Inserir(new ControleSession { Logado = true });
-
-                                    if (temUsuario != null)
-                                        await this.Navigation.PushModalAsync(new MainPage());
-                                    else
-                                        await Acr.UserDialogs.UserDialogs.Instance.AlertAsync("Erro na gravação do usuário");
-                                }
-                                else
-                                    Acr.UserDialogs.UserDialogs.Instance.Alert("Dados incorretos!", "Erro", "OK");
-                            });
-
-                        await db.Inserir(cadastrou);
-                        foreach (var categoria in cadastrou.Categorias)
+                        await Acr.UserDialogs.UserDialogs.Instance.AlertAsync("Selecione ao menos uma categoria, clique no botão 'Selecionar Categoria'");
+                        return;
+                    }
+                
+                    var categorias = string.Empty;
+                    foreach (var categoria in this.Usuario.Categorias)
+                    {
+                        categorias += categoria.Id.ToString() + ';';
+                    }
+                    categorias = categorias.TrimEnd(';');
+                
+                    this.Usuario.CategoriaMobileSelection = categorias;
+                
+                    var dbFacebook = new Repositorio<FacebookInfos>();
+                    var _token = (await dbFacebook.RetornarTodos()).FirstOrDefault();
+                
+                    if (_token != null)
+                    {
+                        this.Usuario.FacebookID = _token.user_id;
+                        this.Usuario.FacebookToken = _token.access_token;
+                    }
+                
+                    this.Usuario.EmpresaApp = 1;
+                
+                    var cadastrou = await this.service.CadastraNovoUsuario(this.Usuario);
+                
+                    try
+                    {
+                        if (cadastrou != null)
                         {
-                            var dbUsuarioCategoria = new Repositorio<UsuarioCategoria>();
-                            dbUsuarioCategoria.Inserir(new UsuarioCategoria{ CategoriaId = categoria.Id });
+                            this.Logar = new Action(async () =>
+                                {
+                                    var autenticado = await this.service.FazerLogin(this.Usuario.Email, this.Usuario.Senha);
+                
+                                    if (autenticado)
+                                    {
+                                        var dbUsuario = new Repositorio<Usuario>();
+                
+                                        var temUsuario = (await dbUsuario.RetornarTodos()).FirstOrDefault();
+                                        if (temUsuario != null)
+                                            await dbUsuario.Inserir(cadastrou);
+                
+                                        var dbSession = new Repositorio<ControleSession>();
+                                        await dbSession.Inserir(new ControleSession { Logado = true });
+                
+                                        if (temUsuario != null)
+                                            await this.Navigation.PushModalAsync(new MainPage());
+                                        else
+                                            await Acr.UserDialogs.UserDialogs.Instance.AlertAsync("Erro na gravação do usuário");
+                                    }
+                                    else
+                                        Acr.UserDialogs.UserDialogs.Instance.Alert("Dados incorretos!", "Erro", "OK");
+                                });
+                
+                            await db.Inserir(cadastrou);
+                            foreach (var categoria in cadastrou.Categorias)
+                            {
+                                var dbUsuarioCategoria = new Repositorio<UsuarioCategoria>();
+                                dbUsuarioCategoria.Inserir(new UsuarioCategoria{ CategoriaId = categoria.Id });
+                            }
+                
+                            Acr.UserDialogs.UserDialogs.Instance.HideLoading();
+                
+                            Task.Run(() => Acr.UserDialogs
+                .UserDialogs
+                .Instance
+                                .ShowSuccess(AppResources.MensagemSucessoCadastroNovoUsuario));
+                
+                            this.Logar.Invoke();
                         }
-
-                        Task.Run(() => Acr.UserDialogs
-						 .UserDialogs
-						 .Instance
-                            .ShowSuccess(AppResources.MensagemSucessoCadastroNovoUsuario));
-
-                        this.Logar.Invoke();
+                        else
+                        {
+                            Acr.UserDialogs.UserDialogs.Instance.HideLoading();
+                
+                            await Acr.UserDialogs
+                .UserDialogs
+                .Instance
+                .AlertAsync(AppResources.MsgErroCadastroUsuario, AppResources.TituloErro, "OK");
+                        }
                     }
-                    else
+                    catch (NullReferenceException)
                     {
+                        Acr.UserDialogs.UserDialogs.Instance.HideLoading();
+                
                         await Acr.UserDialogs
-						.UserDialogs
-						.Instance
-						.AlertAsync(AppResources.MsgErroCadastroUsuario, AppResources.TituloErro, "OK");
+                .UserDialogs
+                .Instance
+                .AlertAsync(AppResources.MsgErroCadastroUsuarioCamposEmBranco, AppResources.TituloErro, "OK");
                     }
-                }
-                catch (NullReferenceException)
-                {
-                    await Acr.UserDialogs
-					.UserDialogs
-					.Instance
-					.AlertAsync(AppResources.MsgErroCadastroUsuarioCamposEmBranco, AppResources.TituloErro, "OK");
-                }
-            }
-            else
-            {
-                if (this.Usuario.Categorias == null || !this.Usuario.Categorias.Any())
-                {
-                    await Acr.UserDialogs.UserDialogs.Instance.AlertAsync("Selecione ao menos uma categoria, clique no botão 'Categorias de Interesse'");
-                    return;
                 }
                 else
-                    await Acr.UserDialogs.UserDialogs.Instance.AlertAsync("Informe todas as informações solicitadas.");
+                {
+                    Acr.UserDialogs.UserDialogs.Instance.HideLoading();
+                
+                    if (this.Usuario.Categorias == null || !this.Usuario.Categorias.Any())
+                    {
+                        await Acr.UserDialogs.UserDialogs.Instance.AlertAsync("Selecione ao menos uma categoria, clique no botão 'Categorias de Interesse'");
+                        return;
+                    }
+                    else
+                        await Acr.UserDialogs.UserDialogs.Instance.AlertAsync("Informe todas as informações solicitadas.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Insights.Report(ex);
             }
         }
 
@@ -198,8 +215,15 @@ namespace Mais
 
         public void AdicionaCategoriasSelecionadas(ICollection<Categoria> categorias)
         {
-            this.Categorias = categorias;
-            this.Usuario.Categorias = categorias.ToList();
+            try
+            {
+                this.Categorias = categorias;
+                this.Usuario.Categorias = categorias.ToList();
+            }
+            catch (Exception ex)
+            {
+                Insights.Report(ex);
+            }
         }
 
         public async Task<Usuario> RetornarUsuario()

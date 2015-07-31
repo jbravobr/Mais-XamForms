@@ -171,12 +171,6 @@
     <Reference Include="GooglePlayServicesLib">
       <HintPath>..\packages\Xamarin.GooglePlayServices.22.0.0.0\lib\MonoAndroid41\GooglePlayServicesLib.dll</HintPath>
     </Reference>
-    <Reference Include="Geofence.Plugin">
-      <HintPath>..\..\..\Downloads\xamarin-plugins-master\Samples\Geofence\packages\Xam.Plugin.Geofence.1.0.4\lib\MonoAndroid10\Geofence.Plugin.dll</HintPath>
-    </Reference>
-    <Reference Include="Geofence.Plugin.Abstractions">
-      <HintPath>..\..\..\Downloads\xamarin-plugins-master\Samples\Geofence\packages\Xam.Plugin.Geofence.1.0.4\lib\MonoAndroid10\Geofence.Plugin.Abstractions.dll</HintPath>
-    </Reference>
     <Reference Include="Geolocator.Plugin">
       <HintPath>..\packages\Xam.Plugin.Geolocator.1.0.2\lib\MonoAndroid10\Geolocator.Plugin.dll</HintPath>
     </Reference>

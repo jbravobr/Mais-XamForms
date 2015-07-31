@@ -141,6 +141,8 @@
     <Compile Include="Paginas\MenuPrincipalPage.cs" />
     <Compile Include="Models\UsuarioCategoria.cs" />
     <Compile Include="Models\RootObj.cs" />
+    <Compile Include="Paginas\TutorialPage_iOS.cs" />
+    <Compile Include="Paginas\TutorialPage_Android.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Fody.1.28.3\build\Fody.targets" Condition="Exists('..\packages\Fody.1.28.3\build\Fody.targets')" />
@@ -255,9 +257,6 @@
     <Reference Include="Xamarin.Insights">
       <HintPath>..\packages\Xamarin.Insights.1.10.4.112\lib\portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10\Xamarin.Insights.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Forms.Maps">
-      <HintPath>..\..\..\Downloads\xamarin-plugins-master\Samples\Geofence\packages\Xamarin.Forms.Maps.1.4.2.6355\lib\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Maps.dll</HintPath>
-    </Reference>
     <Reference Include="Acr.Settings">
       <HintPath>..\packages\Acr.Settings.4.2.5\lib\portable-net45+netcore45+win8+wpa81+wp8+MonoAndroid10+Xamarin.iOS10\Acr.Settings.dll</HintPath>
     </Reference>
@@ -338,5 +337,7 @@
     <EmbeddedResource Include="Content\Imagens\UI\botao_com_seta_sem_resposta.png" />
     <EmbeddedResource Include="Content\Imagens\UI\botao_com_resposta.png" />
     <EmbeddedResource Include="Content\Imagens\UI\botao_de_baixo.png" />
+    <EmbeddedResource Include="Content\Imagens\tutorial_android.PNG" />
+    <EmbeddedResource Include="Content\Imagens\tutorial_ios.PNG" />
   </ItemGroup>
 </Project>
