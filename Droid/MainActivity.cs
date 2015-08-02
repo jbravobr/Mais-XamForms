@@ -20,7 +20,7 @@ using System.Net.Http.Headers;
 
 namespace Mais.Droid
 {
-    [Activity(Label = "Mais.Droid", 
+    [Activity(Label = "Mais", 
         LaunchMode = LaunchMode.SingleTask,
         MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation),
         IntentFilter(new string[]{ "com.aplicativo.mais.MESSAGE" }, Categories = new string[]{ "android.intent.category.DEFAULT" })]

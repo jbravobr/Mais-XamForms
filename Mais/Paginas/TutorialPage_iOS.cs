@@ -30,18 +30,21 @@ namespace Mais
 
         public TutorialPage_iOS()
         {
+            var img = new Image
+            { 
+                Source = ImageSource.FromResource(RetornaCaminhoImagem.GetImagemCaminho("tutorial_ios.PNG")), 
+                Aspect = Aspect.Fill,
+                VerticalOptions = LayoutOptions.FillAndExpand
+            };
+
+
+            var img_Click = new TapGestureRecognizer();
+            img_Click.Tapped += async (sender, e) => await this.Navigation.PushModalAsync(new NavigationPage(new MenuPrincipalPage()));
+
             Content = new StackLayout
             { 
                 VerticalOptions = LayoutOptions.FillAndExpand,
-                Children =
-                {
-                    new Image
-                    { 
-                        Source = ImageSource.FromResource(RetornaCaminhoImagem.GetImagemCaminho("tutorial_android.png")), 
-                        Aspect = Aspect.Fill,
-                        VerticalOptions = LayoutOptions.FillAndExpand
-                    }
-                }
+                Children = { img }
             };
         }
     }
