@@ -190,7 +190,7 @@ namespace Mais
                 {
                     VerticalOptions = LayoutOptions.FillAndExpand,
                     Orientation = StackOrientation.Vertical,
-                    HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenWidth * 2,
+                    HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2,
                     Padding = new Thickness(0, 20, 0, 10)
                 };
                 

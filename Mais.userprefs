@@ -1,8 +1,10 @@
 ﻿<Properties StartupItem="Droid/Mais.Droid.csproj" GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.Nexus 4 (KitKat)" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.10.71.34.101:5555" />
   <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/Rodrigo/Desktop/Mais_App-master/Mais/ViewModels/EnqueteViewModel.cs" line="339" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
     <Watch file="Mais/ViewModels/CadastroViewModel.cs" line="33" offsetX="662" offsetY="187" expression="this.Usuario" liveUpdate="False" />

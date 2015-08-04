@@ -136,7 +136,7 @@ namespace Mais
                 if (enquetesFiltradas != null && enquetesFiltradas.Any())
                     this.enquetesFiltradas = enquetesFiltradas;
 				
-                this.Title = "APLICATIVO MAIS";
+                this.Title = "MAIS APP";
                 this.BackgroundColor = Color.FromHex("#F7F7F7");
 				
                 this.ToolbarItems.Add(new ToolbarItem

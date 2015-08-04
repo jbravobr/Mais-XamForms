@@ -36,7 +36,6 @@ namespace Mais
 
             var imgCancel = new Button
             {
-                //Source = ImageSource.FromResource(RetornaCaminhoImagem.GetImagemCaminho("cancel.png")),
                 Style = Estilos._estiloPadraoButtonFonteMenor,
                 HorizontalOptions = LayoutOptions.StartAndExpand,
                 Text = "Salvar"
@@ -45,7 +44,6 @@ namespace Mais
             {
                 if (this.Content.IsVisible == true)
                 {
-                    //await this.LayoutTo(new Rectangle(0, 0, screenWidth * -1, screenHeight * -1), 750, Easing.CubicOut);
                     MessagingCenter.Send<SelecaoAmigosEnquetePage,ICollection<Amigo>>(this, "gravarAmigos", this.model.Amigos.Where(b => b.Selecionado).ToList());
                     await this.Navigation.PopModalAsync();
                 }

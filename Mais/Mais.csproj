@@ -143,6 +143,7 @@
     <Compile Include="Models\RootObj.cs" />
     <Compile Include="Paginas\TutorialPage_iOS.cs" />
     <Compile Include="Paginas\TutorialPage_Android.cs" />
+    <Compile Include="Helpers\GenericComparer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Fody.1.28.3\build\Fody.targets" Condition="Exists('..\packages\Fody.1.28.3\build\Fody.targets')" />

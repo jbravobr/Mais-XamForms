@@ -91,6 +91,7 @@ namespace Mais
                 
                     if (this.Usuario.Categorias == null || !this.Usuario.Categorias.Any())
                     {
+                        Acr.UserDialogs.UserDialogs.Instance.HideLoading();
                         await Acr.UserDialogs.UserDialogs.Instance.AlertAsync("Selecione ao menos uma categoria, clique no botão 'Selecionar Categoria'");
                         return;
                     }
@@ -123,6 +124,8 @@ namespace Mais
                         {
                             this.Logar = new Action(async () =>
                                 {
+                                    Acr.UserDialogs.UserDialogs.Instance.HideLoading();
+
                                     var autenticado = await this.service.FazerLogin(this.Usuario.Email, this.Usuario.Senha);
                 
                                     if (autenticado)
@@ -157,7 +160,7 @@ namespace Mais
                             Task.Run(() => Acr.UserDialogs
                 .UserDialogs
                 .Instance
-                                .ShowSuccess(AppResources.MensagemSucessoCadastroNovoUsuario));
+                                .ShowSuccess(AppResources.MensagemSucessoCadastroNovoUsuario, 2));
                 
                             this.Logar.Invoke();
                         }

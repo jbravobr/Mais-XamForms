@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Diagnostics;
 using Xamarin;
+using System.Linq;
 
 namespace Mais
 {
@@ -70,24 +71,29 @@ namespace Mais
                 capturaPosicaoPeriodica = _task =>
                 {
                     var locator = CrossGeolocator.Current;
+                    var dbUsuario = new Repositorio<Usuario>();
+                    var usuarioLogado = (dbUsuario.RetornarTodos()).Result.FirstOrDefault();
                 
-                    if (locator.IsGeolocationAvailable && locator.IsGeolocationEnabled)
+                    if (usuarioLogado != null)
                     {
-                        locator.DesiredAccuracy = 50;
-                        var pos = locator.GetPositionAsync(10000);
-                        pos.Wait();
-                
-                        var geo = new Geolocalizacao
+                        if (locator.IsGeolocationAvailable && locator.IsGeolocationEnabled)
                         {
-                            Latitude = pos.Result.Latitude,
-                            Longitude = pos.Result.Longitude,
-                            UsuarioId = 1,
-                        };
-                        var service = App.Container.Resolve<GeolocalizacaoViewModel>();
-                        service.GravaGeolocalizacao(geo).Wait();
+                            locator.DesiredAccuracy = 50;
+                            var pos = locator.GetPositionAsync(10000);
+                            pos.Wait();
                 
-                        Task.Delay(10000, CancellationToken.None).ContinueWith(capturaPosicaoPeriodica, CancellationToken.None);
-                        //Debug.WriteLine(String.Format("Posição é: LAT: {0} e LONG {1} - Data: {2}", geo.Latitude, geo.Longitude, DateTime.Now.ToString()));
+                            var geo = new Geolocalizacao
+                            {
+                                Latitude = pos.Result.Latitude,
+                                Longitude = pos.Result.Longitude,
+                                UsuarioId = usuarioLogado.Id,
+                            };
+                            var service = App.Container.Resolve<GeolocalizacaoViewModel>();
+                            service.GravaGeolocalizacao(geo).Wait();
+                
+                            Task.Delay(10000, CancellationToken.None).ContinueWith(capturaPosicaoPeriodica, CancellationToken.None);
+                            //Debug.WriteLine(String.Format("Posição é: LAT: {0} e LONG {1} - Data: {2}", geo.Latitude, geo.Longitude, DateTime.Now.ToString()));
+                        }
                     }
                 };
                 
@@ -108,28 +114,31 @@ namespace Mais
                 capturaPosicaoPeriodica = _task =>
                 {
                     var locator = CrossGeolocator.Current;
+                    var dbUsuario = new Repositorio<Usuario>();
+                    var usuarioLogado = (dbUsuario.RetornarTodos()).Result.FirstOrDefault();
 
-                    if (locator.IsGeolocationAvailable && locator.IsGeolocationEnabled)
+                    if (usuarioLogado != null)
                     {
-                        locator.DesiredAccuracy = 50;
-                        var pos = locator.GetPositionAsync(10000);
-                        pos.Wait();
-
-                        var geo = new Geolocalizacao
+                        if (locator.IsGeolocationAvailable && locator.IsGeolocationEnabled)
                         {
-                            Latitude = pos.Result.Latitude,
-                            Longitude = pos.Result.Longitude,
-                            UsuarioId = 1,
-                        };
-                        var service = App.Container.Resolve<GeolocalizacaoViewModel>();
-                        service.GravaGeolocalizacao(geo).Wait();
+                            locator.DesiredAccuracy = 50;
+                            var pos = locator.GetPositionAsync(10000);
+                            pos.Wait();
 
-                        Task.Delay(10000, CancellationToken.None).ContinueWith(capturaPosicaoPeriodica, CancellationToken.None);
-                        //Debug.WriteLine(String.Format("Posição é: LAT: {0} e LONG {1} - Data: {2}", geo.Latitude, geo.Longitude, DateTime.Now.ToString()));
+                            var geo = new Geolocalizacao
+                            {
+                                Latitude = pos.Result.Latitude,
+                                Longitude = pos.Result.Longitude,
+                                UsuarioId = usuarioLogado.Id,
+                            };
+                            var service = App.Container.Resolve<GeolocalizacaoViewModel>();
+                            service.GravaGeolocalizacao(geo).Wait();
+
+                            Task.Delay(10000, CancellationToken.None).ContinueWith(capturaPosicaoPeriodica, CancellationToken.None);
+                            //Debug.WriteLine(String.Format("Posição é: LAT: {0} e LONG {1} - Data: {2}", geo.Latitude, geo.Longitude, DateTime.Now.ToString()));
+                        }
                     }
                 };
-
-                Task.Delay(10000, CancellationToken.None).ContinueWith(capturaPosicaoPeriodica, CancellationToken.None);
             }
             catch (Exception ex)
             {
@@ -145,28 +154,31 @@ namespace Mais
                 capturaPosicaoPeriodica = _task =>
                 {
                     var locator = CrossGeolocator.Current;
+                    var dbUsuario = new Repositorio<Usuario>();
+                    var usuarioLogado = (dbUsuario.RetornarTodos()).Result.FirstOrDefault();
 
-                    if (locator.IsGeolocationAvailable && locator.IsGeolocationEnabled)
+                    if (usuarioLogado != null)
                     {
-                        locator.DesiredAccuracy = 50;
-                        var pos = locator.GetPositionAsync(10000);
-                        pos.Wait();
-
-                        var geo = new Geolocalizacao
+                        if (locator.IsGeolocationAvailable && locator.IsGeolocationEnabled)
                         {
-                            Latitude = pos.Result.Latitude,
-                            Longitude = pos.Result.Longitude,
-                            UsuarioId = 1,
-                        };
-                        var service = App.Container.Resolve<GeolocalizacaoViewModel>();
-                        service.GravaGeolocalizacao(geo).Wait();
+                            locator.DesiredAccuracy = 50;
+                            var pos = locator.GetPositionAsync(10000);
+                            pos.Wait();
 
-                        Task.Delay(10000, CancellationToken.None).ContinueWith(capturaPosicaoPeriodica, CancellationToken.None);
-                        //Debug.WriteLine(String.Format("Posição é: LAT: {0} e LONG {1} - Data: {2}", geo.Latitude, geo.Longitude, DateTime.Now.ToString()));
+                            var geo = new Geolocalizacao
+                            {
+                                Latitude = pos.Result.Latitude,
+                                Longitude = pos.Result.Longitude,
+                                UsuarioId = usuarioLogado.Id,
+                            };
+                            var service = App.Container.Resolve<GeolocalizacaoViewModel>();
+                            service.GravaGeolocalizacao(geo).Wait();
+
+                            Task.Delay(10000, CancellationToken.None).ContinueWith(capturaPosicaoPeriodica, CancellationToken.None);
+                            //Debug.WriteLine(String.Format("Posição é: LAT: {0} e LONG {1} - Data: {2}", geo.Latitude, geo.Longitude, DateTime.Now.ToString()));
+                        }
                     }
                 };
-
-                Task.Delay(10000, CancellationToken.None).ContinueWith(capturaPosicaoPeriodica, CancellationToken.None);
             }
             catch (Exception ex)
             {

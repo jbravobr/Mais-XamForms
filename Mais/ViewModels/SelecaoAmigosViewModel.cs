@@ -16,7 +16,7 @@ namespace Mais
         public async Task RetornarAmigos()
         {
             var db = new Repositorio<Amigo>();
-            var amigos = await db.RetornarTodos();
+            var amigos = (await db.RetornarTodos()).Distinct();
 
             this.Amigos = new ObservableCollection<Amigo>(amigos.Distinct().OrderBy(x => x.Nome));
         }

@@ -18,13 +18,13 @@ namespace Mais
 
             await dbControlaSession.Atualizar(_control);
 
-            Device.StartTimer(TimeSpan.FromSeconds(10), (() =>
-                {                    
-                    this.Navigation.PushModalAsync(new NavigationPage(new MenuPrincipalPage()));
-                    return false;
-                }
-                    
-                ));
+//            Device.StartTimer(TimeSpan.FromSeconds(10), (() =>
+//                {                    
+//                    this.Navigation.PushModalAsync(new NavigationPage(new MenuPrincipalPage()));
+//                    return false;
+//                }
+//                    
+//                ));
         }
 
         public TutorialPage_Android()

@@ -54,80 +54,88 @@ namespace Mais
         {
             Acr.UserDialogs.UserDialogs.Instance.ShowLoading("Buscando Enquetes...");
 
-            if (App.PushWooshToken != null && !String.IsNullOrEmpty(App.PushWooshToken))
+            try
             {
-                var dbUsuario = new Repositorio<Usuario>();
-                var _user = (await dbUsuario.RetornarTodos()).FirstOrDefault();
-                await this.service.GravaChavePushWoosh(App.PushWooshToken, _user.Id);
-            }
-
-            var db = new Repositorio<Enquete>();
-
-            var ultimaEnquete = 0;
-            ICollection<Enquete> listaEnquetes = null;
-
-            var temRegistro = await db.ExisteEnquetePublica();
-            if (!temRegistro)
-            {
-                listaEnquetes = await this.service.RetornarEnquetesPublicas(-1);
-                await db.InserirTodos(listaEnquetes.ToList());
-
-                foreach (var item in listaEnquetes)
+                if (App.PushWooshToken != null && !String.IsNullOrEmpty(App.PushWooshToken))
                 {
-                    if (!String.IsNullOrEmpty(item.Imagem))
-                        await DependencyService.Get<ISaveAndLoadFile>().BaixaImagemSalvarEmDisco(item.Imagem, Constants.baseImageAddress);
-
-                    if (!String.IsNullOrEmpty(item.UrlVideo))
-                    {
-                        var str = new Uri(item.UrlVideo).Segments;
-
-                        var url = String.Format(Constants.uriYoutubeThumbnail, str[2]);
-                        await DependencyService.Get<ISaveAndLoadFile>().BaixaThumbnailYoutubeSalvarEmDisco(url, String.Concat(str[2], ".jpg"));
-                    }
-
-                    foreach (var resposta in item.Pergunta.Respostas)
-                    {
-                        if (!String.IsNullOrEmpty(resposta.Imagem))
-                            await DependencyService.Get<ISaveAndLoadFile>().BaixaImagemSalvarEmDisco(resposta.Imagem, Constants.baseImageAddress);
-                    }
+                    var dbUsuario = new Repositorio<Usuario>();
+                    var _user = (await dbUsuario.RetornarTodos()).FirstOrDefault();
+                    await this.service.GravaChavePushWoosh(App.PushWooshToken, _user.Id);
                 }
-            }
-            else
-            {
-                ultimaEnquete = (await db.RetornarTodos()).OrderByDescending(e => e.Id).First(e => e.ServerEnqueteId != -1 && e.Tipo == EnumTipoEnquete.Publica).ServerEnqueteId;
-                listaEnquetes = await this.service.RetornarEnquetesPublicas(ultimaEnquete);
-
-                if (listaEnquetes != null && listaEnquetes.Any())
+                
+                var db = new Repositorio<Enquete>();
+                
+                var ultimaEnquete = 0;
+                ICollection<Enquete> listaEnquetes = null;
+                
+                var temRegistro = await db.ExisteEnquetePublica();
+                if (!temRegistro)
                 {
+                    listaEnquetes = await this.service.RetornarEnquetesPublicas(-1);
                     await db.InserirTodos(listaEnquetes.ToList());
-
+                
                     foreach (var item in listaEnquetes)
                     {
                         if (!String.IsNullOrEmpty(item.Imagem))
                             await DependencyService.Get<ISaveAndLoadFile>().BaixaImagemSalvarEmDisco(item.Imagem, Constants.baseImageAddress);
-
+                
                         if (!String.IsNullOrEmpty(item.UrlVideo))
                         {
                             var str = new Uri(item.UrlVideo).Segments;
-
+                
                             var url = String.Format(Constants.uriYoutubeThumbnail, str[2]);
                             await DependencyService.Get<ISaveAndLoadFile>().BaixaThumbnailYoutubeSalvarEmDisco(url, String.Concat(str[2], ".jpg"));
                         }
+                
+                        foreach (var resposta in item.Pergunta.Respostas)
+                        {
+                            if (!String.IsNullOrEmpty(resposta.Imagem))
+                                await DependencyService.Get<ISaveAndLoadFile>().BaixaImagemSalvarEmDisco(resposta.Imagem, Constants.baseImageAddress);
+                        }
                     }
                 }
-
-                var enquetesNoTelefone = (await db.RetornarTodos()).Where(e => e.Tipo == EnumTipoEnquete.Publica);
-
-                foreach (var enquete in enquetesNoTelefone)
+                else
                 {
-                    if (!listaEnquetes.Contains(enquete))
-                        listaEnquetes.Add(enquete);
+                    ultimaEnquete = (await db.RetornarTodos()).OrderByDescending(e => e.Id).First(e => e.ServerEnqueteId != -1 && e.Tipo == EnumTipoEnquete.Publica).ServerEnqueteId;
+                    listaEnquetes = await this.service.RetornarEnquetesPublicas(ultimaEnquete);
+                
+                    if (listaEnquetes != null && listaEnquetes.Any())
+                    {
+                        await db.InserirTodos(listaEnquetes.ToList());
+                
+                        foreach (var item in listaEnquetes)
+                        {
+                            if (!String.IsNullOrEmpty(item.Imagem))
+                                await DependencyService.Get<ISaveAndLoadFile>().BaixaImagemSalvarEmDisco(item.Imagem, Constants.baseImageAddress);
+                
+                            if (!String.IsNullOrEmpty(item.UrlVideo))
+                            {
+                                var str = new Uri(item.UrlVideo).Segments;
+                
+                                var url = String.Format(Constants.uriYoutubeThumbnail, str[2]);
+                                await DependencyService.Get<ISaveAndLoadFile>().BaixaThumbnailYoutubeSalvarEmDisco(url, String.Concat(str[2], ".jpg"));
+                            }
+                        }
+                    }
+                
+                    var enquetesNoTelefone = (await db.RetornarTodos()).Where(e => e.Tipo == EnumTipoEnquete.Publica);
+                
+                    foreach (var enquete in enquetesNoTelefone)
+                    {
+                        if (!listaEnquetes.Contains(enquete))
+                            listaEnquetes.Add(enquete);
+                    }
                 }
+                
+                Acr.UserDialogs.UserDialogs.Instance.HideLoading();
+                //return new ObservableCollection<Enquete>(listaEnquetes.Where(e => e.Tipo == EnumTipoEnquete.Publica));
+                return await this.GetMensagens(listaEnquetes.Where(e => e.Tipo == EnumTipoEnquete.Publica));
             }
-
-            Acr.UserDialogs.UserDialogs.Instance.HideLoading();
-            //return new ObservableCollection<Enquete>(listaEnquetes.Where(e => e.Tipo == EnumTipoEnquete.Publica));
-            return await this.GetMensagens(listaEnquetes.Where(e => e.Tipo == EnumTipoEnquete.Publica));
+            catch (Exception ex)
+            {
+                Insights.Report(ex);
+                return null;
+            }
         }
 
         public async Task<ObservableCollection<Enquete>> GetEnquetesDeSeuInteresse()
@@ -201,10 +209,7 @@ namespace Mais
             var categorias = String.Empty;
 
             var dbUsuarioCategoria = new Repositorio<UsuarioCategoria>();
-            var _userCategorias = await dbUsuarioCategoria.RetornarTodos();
-
-            var dbCat = new Repositorio<Categoria>();
-                                    
+                                                
             foreach (var item in usuario.CategoriaMobileSelection.Split(';'))
             {
                 categorias += item + ';';
@@ -251,81 +256,89 @@ namespace Mais
             Acr.UserDialogs.UserDialogs.Instance.ShowLoading("Buscando Mensagens...");
             var db = new Repositorio<Enquete>();
 
-            var ultimaEnquete = 0;
-            ICollection<Enquete> listaEnquetes = null;
-
-            var temRegistro = await db.ExisteMensagem();
-            if (!temRegistro)
+            try
             {
-                listaEnquetes = await this.service.RetornarMensagens(-1, 1);
-
-                if (listaEnquetes != null && listaEnquetes.Any())
+                var ultimaEnquete = 0;
+                ICollection<Enquete> listaEnquetes = null;
+                
+                var temRegistro = await db.ExisteMensagem();
+                if (!temRegistro)
                 {
-                    await db.InserirTodos(listaEnquetes.ToList());
-
-                    foreach (var item in listaEnquetes)
+                    listaEnquetes = await this.service.RetornarMensagens(-1, 1);
+                
+                    if (listaEnquetes != null && listaEnquetes.Any())
                     {
-                        if (!String.IsNullOrEmpty(item.Imagem))
-                            await DependencyService.Get<ISaveAndLoadFile>().BaixaImagemSalvarEmDisco(item.Imagem, Constants.baseImageAddress);
-
-                        if (!String.IsNullOrEmpty(item.UrlVideo))
+                        await db.InserirTodos(listaEnquetes.ToList());
+                
+                        foreach (var item in listaEnquetes)
                         {
-                            var str = new Uri(item.UrlVideo).Segments;
-
-                            var url = String.Format(Constants.uriYoutubeThumbnail, str[2]);
-                            await DependencyService.Get<ISaveAndLoadFile>().BaixaThumbnailYoutubeSalvarEmDisco(url, String.Concat(str[2], ".jpg"));
+                            if (!String.IsNullOrEmpty(item.Imagem))
+                                await DependencyService.Get<ISaveAndLoadFile>().BaixaImagemSalvarEmDisco(item.Imagem, Constants.baseImageAddress);
+                
+                            if (!String.IsNullOrEmpty(item.UrlVideo))
+                            {
+                                var str = new Uri(item.UrlVideo).Segments;
+                
+                                var url = String.Format(Constants.uriYoutubeThumbnail, str[2]);
+                                await DependencyService.Get<ISaveAndLoadFile>().BaixaThumbnailYoutubeSalvarEmDisco(url, String.Concat(str[2], ".jpg"));
+                            }
                         }
                     }
                 }
-            }
-            else
-            {
-                ultimaEnquete = (await db.RetornarTodos()).OrderByDescending(e => e.Id).First(e => e.ServerEnqueteId != -1 && e.Tipo == EnumTipoEnquete.Mensagem).ServerEnqueteId;
-                listaEnquetes = await this.service.RetornarMensagens(ultimaEnquete, 1);
-
-                if (listaEnquetes != null && listaEnquetes.Any())
-                {
-                    await db.InserirTodos(listaEnquetes.ToList());
-
-                    foreach (var item in listaEnquetes)
-                    {
-                        if (!String.IsNullOrEmpty(item.Imagem))
-                            await DependencyService.Get<ISaveAndLoadFile>().BaixaImagemSalvarEmDisco(item.Imagem, Constants.baseImageAddress);
-
-                        if (!String.IsNullOrEmpty(item.UrlVideo))
-                        {
-                            var str = new Uri(item.UrlVideo).Segments;
-
-                            var url = String.Format(Constants.uriYoutubeThumbnail, str[2]);
-                            await DependencyService.Get<ISaveAndLoadFile>().BaixaThumbnailYoutubeSalvarEmDisco(url, String.Concat(str[2], ".jpg"));
-                        }
-                    }
-                }
-
-                var enquetesNoTelefone = (await db.RetornarTodos()).Where(e => e.Tipo == EnumTipoEnquete.Mensagem);
-
-                if (listaEnquetes == null)
-                    listaEnquetes = enquetesNoTelefone.ToList();
                 else
                 {
-                    foreach (var enquete in enquetesNoTelefone)
+                    ultimaEnquete = (await db.RetornarTodos()).OrderByDescending(e => e.Id).First(e => e.ServerEnqueteId != -1 && e.Tipo == EnumTipoEnquete.Mensagem).ServerEnqueteId;
+                    listaEnquetes = await this.service.RetornarMensagens(ultimaEnquete, 1);
+                
+                    if (listaEnquetes != null && listaEnquetes.Any())
                     {
-                        if (!listaEnquetes.Contains(enquete))
-                            listaEnquetes.Add(enquete);
+                        await db.InserirTodos(listaEnquetes.ToList());
+                
+                        foreach (var item in listaEnquetes)
+                        {
+                            if (!String.IsNullOrEmpty(item.Imagem))
+                                await DependencyService.Get<ISaveAndLoadFile>().BaixaImagemSalvarEmDisco(item.Imagem, Constants.baseImageAddress);
+                
+                            if (!String.IsNullOrEmpty(item.UrlVideo))
+                            {
+                                var str = new Uri(item.UrlVideo).Segments;
+                
+                                var url = String.Format(Constants.uriYoutubeThumbnail, str[2]);
+                                await DependencyService.Get<ISaveAndLoadFile>().BaixaThumbnailYoutubeSalvarEmDisco(url, String.Concat(str[2], ".jpg"));
+                            }
+                        }
+                    }
+                
+                    var enquetesNoTelefone = (await db.RetornarTodos()).Where(e => e.Tipo == EnumTipoEnquete.Mensagem);
+                
+                    if (listaEnquetes == null)
+                        listaEnquetes = enquetesNoTelefone.ToList();
+                    else
+                    {
+                        foreach (var enquete in enquetesNoTelefone)
+                        {
+                            if (!listaEnquetes.Contains(enquete))
+                                listaEnquetes.Add(enquete);
+                        }
                     }
                 }
+                
+                Acr.UserDialogs.UserDialogs.Instance.HideLoading();
+                
+                IEnumerable<Enquete> x = null;
+                
+                if (listaEnquetes != null && listaEnquetes.Any())
+                    x = enquetes.Union(listaEnquetes.Where(e => e.Tipo == EnumTipoEnquete.Mensagem));
+                else
+                    x = enquetes;
+                
+                return new ObservableCollection<Enquete>(x);
             }
-
-            Acr.UserDialogs.UserDialogs.Instance.HideLoading();
-
-            IEnumerable<Enquete> x = null;
-
-            if (listaEnquetes != null && listaEnquetes.Any())
-                x = enquetes.Union(listaEnquetes.Where(e => e.Tipo == EnumTipoEnquete.Mensagem));
-            else
-                x = enquetes;
-
-            return new ObservableCollection<Enquete>(x);
+            catch (Exception ex)
+            {
+                Insights.Report(ex);
+                return null;
+            }
         }
 
         public async Task CarregarRespostas(int enqueteId)

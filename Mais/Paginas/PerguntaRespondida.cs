@@ -123,7 +123,6 @@ namespace Mais
 
             if (App.Current.Properties.ContainsKey("UsuarioLogado"))
             {
-                var u = App.Current.Properties["UsuarioLogado"] as Usuario;
                 var dbFacebook = new Repositorio<FacebookInfos>();
                 var dadosFacebook = await dbFacebook.ExisteRegistroFacebook();
 
@@ -141,7 +140,7 @@ namespace Mais
                     {
                         perguntaLayout = new StackLayout
                         {
-                            HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2,
+                            HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2.5,
                             HorizontalOptions = LayoutOptions.Start,
                             Children = { imgThumbVideo, listaRespostas, /*btnCompartilhar*/ },
                             Padding = 20
@@ -151,7 +150,7 @@ namespace Mais
                     {
                         perguntaLayout = new StackLayout
                         {
-                            HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2,
+                            HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2.5,
                             HorizontalOptions = LayoutOptions.Start,
                             Children = { webView, listaRespostas, /*btnCompartilhar*/ },
                             Padding = 20
@@ -164,7 +163,7 @@ namespace Mais
                     {
                         perguntaLayout = new StackLayout
                         {
-                            HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2,
+                            HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2.5,
                             HorizontalOptions = LayoutOptions.Start,
                             Children = { imgThumbVideo, /*btnCompartilhar*/ },
                             Padding = 20
@@ -174,7 +173,7 @@ namespace Mais
                     {
                         perguntaLayout = new StackLayout
                         {
-                            HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2,
+                            HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2.5,
                             HorizontalOptions = LayoutOptions.Start,
                             Children = { webView, /*btnCompartilhar*/ },
                             Padding = 20
@@ -189,7 +188,7 @@ namespace Mais
                 {
                     perguntaLayout = new StackLayout
                     {
-                        HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2,
+                        HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2.5,
                         HorizontalOptions = LayoutOptions.Start,
                         Children = { Imagem, listaRespostas, /*btnCompartilhar*/ },
                         Padding = 20
@@ -199,7 +198,7 @@ namespace Mais
                 {
                     perguntaLayout = new StackLayout
                     {
-                        HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2,
+                        HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2.5,
                         HorizontalOptions = LayoutOptions.Start,
                         Children = { Imagem, /*btnCompartilhar*/ },
                         Padding = 20
@@ -213,7 +212,7 @@ namespace Mais
                 {
                     perguntaLayout = new StackLayout
                     {
-                        HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2,
+                        HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2.5,
                         HorizontalOptions = LayoutOptions.Start,
                         Children = { listaRespostas, /*btnCompartilhar*/ },
                         Padding = 20
@@ -223,7 +222,7 @@ namespace Mais
                 {
                     perguntaLayout = new StackLayout
                     {
-                        HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2,
+                        HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2.5,
                         HorizontalOptions = LayoutOptions.Start,
                         //Children = { btnCompartilhar },
                         Padding = 20

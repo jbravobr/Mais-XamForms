@@ -15,9 +15,7 @@ namespace Mais
     {
         readonly ImportarContatosViewModel model;
         Button btnImportar;
-        List<Contact> contatos;
         ListView listViewContatos;
-        List<Amigo> amigosImportados;
 
         protected async override void OnAppearing()
         {
@@ -57,7 +55,7 @@ namespace Mais
 
         public async Task TrataClique()
         {
-            Acr.UserDialogs.UserDialogs.Instance.ShowLoading("Carregando...");
+            Acr.UserDialogs.UserDialogs.Instance.ShowLoading("Importando...");
 
             var service = App.Container.Resolve<ILogin>();
 
@@ -69,14 +67,14 @@ namespace Mais
                 var friends = await DependencyService.Get<IFacebook>().GetAmigos(_usuario.FacebookToken);
                 var dbAmigos = new Repositorio<Amigo>();
                     
-                var tels = friends.data.Select(x => x.id).ToList();
+                var tels = friends.data.Distinct().Select(x => x.id).ToList();
                 var existemNoServer = await service.RetornarAmigos(tels);
 
                 var amigos = new List<Amigo>();
 
                 if (existemNoServer != null && existemNoServer.Any())
                 {
-                    foreach (var item in existemNoServer)
+                    foreach (var item in existemNoServer.Distinct())
                     {
                         amigos.Add(new Amigo
                             {
@@ -86,7 +84,7 @@ namespace Mais
                             });
                     }
 
-                    dbAmigos.InserirTodos(amigos);
+                    await dbAmigos.InserirTodos(amigos.Distinct().ToList());
                 }
 
                 this.listViewContatos.ItemsSource = (await dbAmigos.RetornarTodos()).Distinct();
