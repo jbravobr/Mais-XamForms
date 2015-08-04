@@ -346,24 +346,11 @@ namespace Mais
                                         stackBanner.Children.Clear();
                                         stackBanner.Children.Add(obj);
                                     }
+
                                     oldIndex++;
-                                }
-                            }
-                            else
-                            {
-                                oldIndex--;
 
-                                if (model.Banners.Skip((oldIndex * -1)).Take(1).Any())
-                                {
-                                    var obj = new EnqueteInteresseView(model.Banners.Skip((oldIndex * -1)).Take(1).First());
-
-                                    if (Device.OS == TargetPlatform.iOS)
-                                        stackBanner.Children[0] = obj;
-                                    else
-                                    {
-                                        stackBanner.Children.Clear();
-                                        stackBanner.Children.Add(obj);
-                                    }
+                                    if (oldIndex >= banners.Count)
+                                        oldIndex = 0;
                                 }
                             }
 
