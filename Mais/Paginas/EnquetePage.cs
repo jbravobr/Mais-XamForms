@@ -70,17 +70,19 @@ namespace Mais
                     };
 				
                     var cat = string.Empty;
-                    var enquetesAgrupadas = from e in this.model.Enquetes
+                    var enquetesAgrupadas = from e in this.model.Enquetes.Distinct()
                                                            group e by e.Categoria.Nome into g
                                                            select new
 					{
 						CategoriaId = g.Key,
 						Enquetes = g.ToList()
 					};
+
+                    List<int> enquetesNatela = new List<int>();
 				
-                    foreach (var enquete in enquetesAgrupadas)
+                    foreach (var enquete in enquetesAgrupadas.Distinct())
                     {
-                        foreach (var item in enquete.Enquetes)
+                        foreach (var item in enquete.Enquetes.Distinct())
                         {
                             if (String.IsNullOrEmpty(cat) || cat != item.Categoria.Nome)
                             {
@@ -96,15 +98,17 @@ namespace Mais
                                 enquetesLayout.Children.Add(lblCategoriaNome);
                             }
 				
-                            if (item.Tipo == EnumTipoEnquete.Publica)
+                            if (item.Tipo == EnumTipoEnquete.Publica && !enquetesNatela.Contains(item.Id))
                             {
                                 var frame = new EnquetePublicaView(item);
                                 enquetesLayout.Children.Add(frame);
+                                enquetesNatela.Add(item.Id);
                             }
-                            else if (item.Tipo == EnumTipoEnquete.Mensagem)
+                            else if (item.Tipo == EnumTipoEnquete.Mensagem && !enquetesNatela.Contains(item.Id))
                             {
                                 var frame = new EnqueteMensagemView(item);
-                                enquetesLayout.Children.Add(frame);	
+                                enquetesLayout.Children.Add(frame);
+                                enquetesNatela.Add(item.Id);
                             }
                         }
                     }
@@ -233,9 +237,11 @@ namespace Mais
 						Enquetes = g.ToList()
 					};
 				
-                foreach (var enquete in enquetesAgrupadas)
+                List<int> enquetesNatela = new List<int>();
+
+                foreach (var enquete in enquetesAgrupadas.Distinct())
                 {
-                    foreach (var item in enquete.Enquetes)
+                    foreach (var item in enquete.Enquetes.Distinct())
                     {
                         if (String.IsNullOrEmpty(cat) || cat != item.Categoria.Nome)
                         {
@@ -251,15 +257,17 @@ namespace Mais
                             enquetesLayout.Children.Add(lblCategoriaNome);
                         }
 				
-                        if (item.Tipo == EnumTipoEnquete.Publica)
+                        if (item.Tipo == EnumTipoEnquete.Publica && !enquetesNatela.Contains(item.Id))
                         {
                             var frame = new EnquetePublicaView(item);
                             enquetesLayout.Children.Add(frame);
+                            enquetesNatela.Add(item.Id);
                         }
-                        else if (item.Tipo == EnumTipoEnquete.Mensagem)
+                        else if (item.Tipo == EnumTipoEnquete.Mensagem && !enquetesNatela.Contains(item.Id))
                         {
                             var frame = new EnqueteMensagemView(item);
                             enquetesLayout.Children.Add(frame);	
+                            enquetesNatela.Add(item.Id);
                         }
                     }
                 }
@@ -362,13 +370,13 @@ namespace Mais
 
             var cat = string.Empty;
 
-            foreach (var enquete in this.model.Enquetes)
+            foreach (var enquete in this.model.Enquetes.Distinct())
             {
                 if (enquete.Categoria == null && enquete.CategoriaId <= 0 && enquete.Tipo != EnumTipoEnquete.Mensagem)
                     enquete.Categoria = new Categoria{ Nome = "Suas Enquetes" };
             }
 
-            var enquetesAgrupadas = from e in this.model.Enquetes
+            var enquetesAgrupadas = from e in this.model.Enquetes.Distinct()
                                              group e by e.Categoria.Nome into g
                                              select new
 				{
@@ -376,9 +384,11 @@ namespace Mais
 					Enquetes = g.ToList()
 				};
 
-            foreach (var enquete in enquetesAgrupadas)
+            List<int> enquetesNaTela = new List<int>();
+
+            foreach (var enquete in enquetesAgrupadas.Distinct())
             {
-                foreach (var item in enquete.Enquetes)
+                foreach (var item in enquete.Enquetes.Distinct())
                 {
                     if (String.IsNullOrEmpty(cat) || cat != item.Categoria.Nome)
                     {
@@ -395,15 +405,17 @@ namespace Mais
                         enquetesLayout.Children.Add(lblCategoriaNome);
                     }
 
-                    if (item.Tipo == EnumTipoEnquete.Interesse)
+                    if (item.Tipo == EnumTipoEnquete.Interesse && !enquetesNaTela.Contains(item.Id))
                     {
                         var frame = new EnquetePublicaView(item);
                         enquetesLayout.Children.Add(frame);
+                        enquetesNaTela.Add(item.Id);
                     }
-                    else if (item.Tipo == EnumTipoEnquete.Mensagem)
+                    else if (item.Tipo == EnumTipoEnquete.Mensagem && !enquetesNaTela.Contains(item.Id))
                     {
                         var frame = new EnqueteMensagemView(item);
                         enquetesLayout.Children.Add(frame);	
+                        enquetesNaTela.Add(item.Id);
                     }
                 }
             }
