@@ -42,6 +42,17 @@ namespace Mais
             Detail = new NavigationPage(_page);
         }
 
+        public MainPage(bool enquetePessoal)
+        {
+            var menuPage = new MenuPage();
+
+            menuPage.Menu.ItemSelected += (sender, e) => NavigateTo(e.SelectedItem as MenuItem);
+
+            Master = menuPage;
+            Detail = new NavigationPage(new EnquetePage(2));
+        }
+
+
         void NavigateTo(MenuItem menu)
         {
             var displayPage = (Page)Activator.CreateInstance(menu.TipoPagina);

@@ -51,20 +51,34 @@ namespace Mais
                 var imgExcluir_Click = new TapGestureRecognizer();
                 imgExcluir_Click.Tapped += async (sender, e) =>
                 {
-                    var dbEnquete = new Repositorio<Enquete>();
-                    var enquete = await dbEnquete.RetornarPorId(enqueteId);
-                    enquete.AtivaNoFront = false;
-                    await this.Navigation.PopAsync();
+                    var confirmConfig = new Acr.UserDialogs.ConfirmConfig();
+                    confirmConfig.CancelText = "Cancelar";
+                    confirmConfig.OkText = "OK";
+                    confirmConfig.Message = "Tem certeza que deseja excluir esta enquete?";
+
+                    var canRemove = await Acr.UserDialogs.UserDialogs.Instance.ConfirmAsync(confirmConfig);
+
+                    if (canRemove)
+                    {
+                        var dbEnquete = new Repositorio<Enquete>();
+                        var enquete = await dbEnquete.RetornarPorId(enqueteId);
+                        enquete.AtivaNoFront = false;
+                        await dbEnquete.Atualizar(enquete);
+                        await this.Navigation.PushModalAsync(new MainPage(true));
+                    }
                 };
                 imgExcluir.GestureRecognizers.Add(imgExcluir_Click);
 
                 var lblUsuarioCriador = new Label
                 {
-                    Text = UsuarioCriador,
+                    Text = String.IsNullOrEmpty(UsuarioCriador) ? "Você" : UsuarioCriador,
                     IsVisible = !String.IsNullOrEmpty(UsuarioCriador) && ehInteresse,
-                    FontSize = 10,
-                    FontAttributes = FontAttributes.Italic,
-                    TextColor = Color.Blue,
+                    FontFamily = Device.OnPlatform(
+                        iOS: "Helvetica",
+                        Android: "Roboto",
+                        WinPhone: "Segoe"
+                    ),
+                    FontAttributes = FontAttributes.Bold,
                     HorizontalOptions = LayoutOptions.EndAndExpand
                 };
 				
