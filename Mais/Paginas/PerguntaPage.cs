@@ -78,6 +78,7 @@ namespace Mais
                         Android: "Roboto",
                         WinPhone: "Segoe"
                     ),
+                    FontSize = 12,
                     FontAttributes = FontAttributes.Bold,
                     HorizontalOptions = LayoutOptions.EndAndExpand
                 };
