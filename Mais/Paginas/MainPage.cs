@@ -28,7 +28,7 @@ namespace Mais
                 if (enquetesFiltradas != null && enquetesFiltradas.Any())
                     Detail = new NavigationPage(new EnquetePage(0, enquetesFiltradas));
                 else
-                    Detail = new NavigationPage(new EnquetePage());
+                    Detail = new NavigationPage(new EnquetePage(1));
             }
         }
 

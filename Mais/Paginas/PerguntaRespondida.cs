@@ -23,6 +23,10 @@ namespace Mais
         string[] str;
         Image imgThumbVideo;
         WebView webView;
+        Image imgExcluir;
+        bool ehInteresse;
+        int enqueteId;
+        string UsuarioCriador;
 
         protected async override void OnAppearing()
         {
@@ -33,6 +37,33 @@ namespace Mais
             model.AdicionarPergunta(await model.GetPerguntaPorId(perguntaID));
             this.pergunta = model.Pergunta;
             this.model.ConfigurarNavigation(this.Navigation);
+
+            imgExcluir = new Image
+            {
+                Source = ImageSource.FromResource(RetornaCaminhoImagem.GetImagemCaminho("waste.png")),
+                HorizontalOptions = LayoutOptions.EndAndExpand,
+                Aspect = Aspect.AspectFill,
+                IsVisible = ehInteresse
+            };
+            var imgExcluir_Click = new TapGestureRecognizer();
+            imgExcluir_Click.Tapped += async (sender, e) =>
+            {
+                var dbEnquete = new Repositorio<Enquete>();
+                var enquete = await dbEnquete.RetornarPorId(enqueteId);
+                enquete.AtivaNoFront = false;
+                await this.Navigation.PopAsync();
+            };
+            imgExcluir.GestureRecognizers.Add(imgExcluir_Click);
+
+            var lblUsuarioCriador = new Label
+            {
+                Text = UsuarioCriador,
+                IsVisible = !String.IsNullOrEmpty(UsuarioCriador) && ehInteresse,
+                FontSize = 10,
+                FontAttributes = FontAttributes.Italic,
+                TextColor = Color.Blue,
+                HorizontalOptions = LayoutOptions.EndAndExpand
+            };
 
             var lblTitulo = new Label
             {
@@ -116,7 +147,7 @@ namespace Mais
                 var postou = await DependencyService.Get<IFacebook>().PostToWall(msg, userToken.First().access_token);
 
                 if (postou)
-                    await this.Navigation.PushModalAsync(new EnquetePage());
+                    await this.Navigation.PushModalAsync(new EnquetePage(1));
                 else
                     await Acr.UserDialogs.UserDialogs.Instance.AlertAsync("Erro ao postar, tente novamente!");
             };
@@ -142,7 +173,7 @@ namespace Mais
                         {
                             HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2.5,
                             HorizontalOptions = LayoutOptions.Start,
-                            Children = { imgThumbVideo, listaRespostas, /*btnCompartilhar*/ },
+                            Children = { lblUsuarioCriador, imgExcluir, imgThumbVideo, listaRespostas, /*btnCompartilhar*/ },
                             Padding = 20
                         };
                     }
@@ -152,7 +183,7 @@ namespace Mais
                         {
                             HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2.5,
                             HorizontalOptions = LayoutOptions.Start,
-                            Children = { webView, listaRespostas, /*btnCompartilhar*/ },
+                            Children = { lblUsuarioCriador, imgExcluir, webView, listaRespostas, /*btnCompartilhar*/ },
                             Padding = 20
                         };
                     }
@@ -165,7 +196,7 @@ namespace Mais
                         {
                             HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2.5,
                             HorizontalOptions = LayoutOptions.Start,
-                            Children = { imgThumbVideo, /*btnCompartilhar*/ },
+                            Children = { lblUsuarioCriador, imgExcluir, imgThumbVideo, /*btnCompartilhar*/ },
                             Padding = 20
                         };
                     }
@@ -175,7 +206,7 @@ namespace Mais
                         {
                             HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2.5,
                             HorizontalOptions = LayoutOptions.Start,
-                            Children = { webView, /*btnCompartilhar*/ },
+                            Children = { lblUsuarioCriador, imgExcluir, webView, /*btnCompartilhar*/ },
                             Padding = 20
                         };   
                     }
@@ -236,12 +267,15 @@ namespace Mais
             this.mainLayout.Children.Add(perguntaLayout);
         }
 
-        public PerguntaRespondidaPage(int perguntaId, string imagemNome, string urlvideo, bool? temVoucher = null)
+        public PerguntaRespondidaPage(int perguntaId, string imagemNome, string urlvideo, bool ehInteresse, int enqueteId, string usuarioCriador, bool? temVoucher = null)
         {
             this.perguntaID = perguntaId;	
             this.imagem = imagemNome;
             this.urlVideo = urlvideo;
             this.temVoucher = temVoucher;
+            this.ehInteresse = ehInteresse;
+            this.enqueteId = enqueteId;
+            this.UsuarioCriador = String.Format("Criada por {0}", usuarioCriador);
 
             btnResponder = new Button
             {

@@ -118,12 +118,13 @@ namespace Mais
                 var tabbedMenu = new TabbedMenuView(this.Navigation);
                 mainLayout.Children.Add(scrollEnquetes);
                 mainLayout.Children.Add(tabbedMenu);
-				
+
                 if (tipo == 1)
                     await CarregaEnquetesPublicas();
-				
+
                 if (tipo == 2)
                     await CarregaEnquetesInteresse();
+	
             }
             catch (Exception ex)
             {
@@ -211,8 +212,10 @@ namespace Mais
             try
             {
                 Application.Current.Properties["Pagina"] = 1;
+
                 mainLayout.Children.RemoveAt(0);
                 mainLayout.Children[0].IsVisible = false;
+
 				
                 var ldg = Acr.UserDialogs.UserDialogs.Instance.Loading(AppResources.MsgLoading);
                 ldg.Show();
@@ -292,14 +295,16 @@ namespace Mais
         private async Task CarregaEnquetesInteresse()
         {
             Application.Current.Properties["Pagina"] = 2;
+
             mainLayout.Children.RemoveAt(0);
             mainLayout.Children[0].IsVisible = false;
+
 
             var ldg = Acr.UserDialogs.UserDialogs.Instance.Loading(AppResources.MsgLoading);
             ldg.Show();
 
             model.Enquetes = await model.GetEnquetesDeSeuInteresse();
-            this.BindingContext = model.Enquetes;
+            this.BindingContext = model.Enquetes.Where(x => x.AtivaNoFront);
 
             var enquetesLayout = new StackLayout
             {   
@@ -370,13 +375,13 @@ namespace Mais
 
             var cat = string.Empty;
 
-            foreach (var enquete in this.model.Enquetes.Distinct())
+            foreach (var enquete in this.model.Enquetes.Where(x=>x.AtivaNoFront).Distinct())
             {
                 if (enquete.Categoria == null && enquete.CategoriaId <= 0 && enquete.Tipo != EnumTipoEnquete.Mensagem)
                     enquete.Categoria = new Categoria{ Nome = "Suas Enquetes" };
             }
 
-            var enquetesAgrupadas = from e in this.model.Enquetes.Distinct()
+            var enquetesAgrupadas = from e in this.model.Enquetes.Where(x => x.AtivaNoFront).Distinct()
                                              group e by e.Categoria.Nome into g
                                              select new
 				{

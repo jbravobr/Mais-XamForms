@@ -85,6 +85,11 @@ namespace Mais
         public bool TemVoucher{ get; set; }
 
         public int QtdePush { get; set; }
+
+        public string UsuarioCriador { get; set; }
+
+        //[JsonIgnore]
+        public bool AtivaNoFront { get; set; }
     }
 
     public enum EnumStatusEnquete

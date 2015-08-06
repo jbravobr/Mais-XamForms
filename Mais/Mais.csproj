@@ -340,5 +340,6 @@
     <EmbeddedResource Include="Content\Imagens\UI\botao_de_baixo.png" />
     <EmbeddedResource Include="Content\Imagens\tutorial_android.PNG" />
     <EmbeddedResource Include="Content\Imagens\tutorial_ios.PNG" />
+    <EmbeddedResource Include="Content\Imagens\waste.png" />
   </ItemGroup>
 </Project>

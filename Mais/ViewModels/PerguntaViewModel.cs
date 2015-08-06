@@ -110,7 +110,7 @@ namespace Mais
                             var dbResposta = new Repositorio<Resposta>();
                             foreach (var pr in salvouNoServidor)
                             {
-                                Expression<Func<Resposta,bool>> porPerguntaServerId = (x) => x.PerguntaServerId == pr.PerguntaId;
+                                Expression<Func<Resposta,bool>> porPerguntaServerId = (x) => x.PerguntaServerId == pr.PerguntaId && x.RespostaServerId == pr.RespostaId;
                                 var _resposta = await dbResposta.ProcurarPorFiltro(porPerguntaServerId);
                                 _resposta.percentualResposta = pr.percentual;
 									

@@ -23,6 +23,10 @@ namespace Mais
         Image imgThumbVideo;
         WebView webView;
         Image imgResposta;
+        Image imgExcluir;
+        bool ehInteresse;
+        int enqueteId;
+        string UsuarioCriador;
 
         protected async override void OnAppearing()
         {
@@ -35,6 +39,34 @@ namespace Mais
                 model.AdicionarPergunta(await model.GetPerguntaPorId(perguntaID));
                 this.pergunta = model.Pergunta;
                 this.model.ConfigurarNavigation(this.Navigation);
+
+                imgExcluir = new Image
+                {
+                    Source = ImageSource.FromResource(RetornaCaminhoImagem.GetImagemCaminho("waste.png")),
+                    HorizontalOptions = LayoutOptions.EndAndExpand,
+                    HeightRequest = 40,
+                    WidthRequest = 44,
+                    IsVisible = ehInteresse
+                };
+                var imgExcluir_Click = new TapGestureRecognizer();
+                imgExcluir_Click.Tapped += async (sender, e) =>
+                {
+                    var dbEnquete = new Repositorio<Enquete>();
+                    var enquete = await dbEnquete.RetornarPorId(enqueteId);
+                    enquete.AtivaNoFront = false;
+                    await this.Navigation.PopAsync();
+                };
+                imgExcluir.GestureRecognizers.Add(imgExcluir_Click);
+
+                var lblUsuarioCriador = new Label
+                {
+                    Text = UsuarioCriador,
+                    IsVisible = !String.IsNullOrEmpty(UsuarioCriador) && ehInteresse,
+                    FontSize = 10,
+                    FontAttributes = FontAttributes.Italic,
+                    TextColor = Color.Blue,
+                    HorizontalOptions = LayoutOptions.EndAndExpand
+                };
 				
                 var lblTitulo = new Label
                 {
@@ -121,7 +153,7 @@ namespace Mais
                         {
                             HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2,
                             HorizontalOptions = LayoutOptions.Start,
-                            Children = { imgThumbVideo, listaRespostas },
+                            Children = { lblUsuarioCriador, imgExcluir, imgThumbVideo, listaRespostas },
                             Padding = 20
                         };
                     }
@@ -130,7 +162,7 @@ namespace Mais
                         {
                             HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2,
                             HorizontalOptions = LayoutOptions.Start,
-                            Children = { webView, listaRespostas },
+                            Children = { lblUsuarioCriador, imgExcluir, webView, listaRespostas },
                             Padding = 20
                         };
 						
@@ -141,7 +173,7 @@ namespace Mais
                     {
                         HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2,
                         HorizontalOptions = LayoutOptions.Start,
-                        Children = { Imagem, listaRespostas },
+                        Children = { lblUsuarioCriador, imgExcluir, Imagem, listaRespostas },
                         Padding = 20
                     };
                 }
@@ -151,7 +183,7 @@ namespace Mais
                     {
                         HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2,
                         HorizontalOptions = LayoutOptions.Start,
-                        Children = { listaRespostas },
+                        Children = { lblUsuarioCriador, imgExcluir, listaRespostas },
                         Padding = 20
                     };
                 }
@@ -168,7 +200,7 @@ namespace Mais
             }
         }
 
-        public PerguntaPage(int perguntaId, string imagemNome, string urlvideo, bool temVoucher)
+        public PerguntaPage(int perguntaId, string imagemNome, string urlvideo, bool temVoucher, bool ehInteresse, int enqueteId, string usuarioCriador)
         {
             try
             {
@@ -176,7 +208,10 @@ namespace Mais
                 this.imagem = imagemNome;
                 this.urlVideo = urlvideo;
                 this.temVoucher = temVoucher;
-                
+                this.ehInteresse = ehInteresse;
+                this.enqueteId = enqueteId;
+                this.UsuarioCriador = String.Format("Criada por {0}", usuarioCriador);
+
                 btnResponder = new Button
                 {
                     Style = Estilos._estiloPadraoButton,

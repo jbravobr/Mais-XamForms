@@ -74,6 +74,7 @@ namespace Mais
                     this.Enquete.UsuarioId = usuarioLogado.Id;
                     this.Enquete.ServerEnqueteId = -1;
                     this.Enquete.propria = true;
+                    this.Enquete.AtivaNoFront = true;
 
                     List<Resposta> gravou = new List<Resposta>();
                     var db = new Repositorio<Enquete>();

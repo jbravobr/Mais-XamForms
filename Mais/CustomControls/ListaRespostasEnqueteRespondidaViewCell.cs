@@ -71,6 +71,7 @@ namespace Mais
                 imgResposta.WidthRequest = 120;
                 imgResposta.SetBinding(Image.SourceProperty, new Binding("ImgRespostaSource"));
                 imgResposta.SetBinding(Image.ClassIdProperty, new Binding("Imagem"));
+                imgResposta.HorizontalOptions = LayoutOptions.EndAndExpand;
                                
                 var imgResposta_Click = new TapGestureRecognizer();
                 imgResposta_Click.Tapped += (sender, e) =>
@@ -86,7 +87,8 @@ namespace Mais
                     ColumnDefinitions =
                     {
                         new ColumnDefinition{ Width = new GridLength(1, GridUnitType.Auto) },
-                        new ColumnDefinition{ Width = new GridLength(20, GridUnitType.Auto) }
+                        new ColumnDefinition{ Width = new GridLength(20, GridUnitType.Auto) },
+                        //new ColumnDefinition{ Width = new GridLength(20, GridUnitType.Auto) }
                     },
                     RowDefinitions =
                     {
@@ -99,7 +101,6 @@ namespace Mais
                 gridPercentual.Children.Add(box, 0, 1);
                 gridPercentual.Children.Add(lblPercentualResposta, 1, 1);
                 gridPercentual.Children.Add(imgResposta, 2, 1);
-
                 
                 this.View = gridPercentual;
             }

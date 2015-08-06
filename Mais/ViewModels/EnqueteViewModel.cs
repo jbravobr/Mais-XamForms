@@ -39,17 +39,6 @@ namespace Mais
             await db.InserirTodos(enquetes);
         }
 
-        //		public async Task<ObservableCollection<Enquete>> GetEnquetesPublicas()
-        //		{
-        //			return new ObservableCollection<Enquete>(EnqueteMock.MockEnquetes().Where(x => x.Tipo == EnumTipoEnquete.Publica));
-        //		}
-        //
-        //		public async Task<ObservableCollection<Enquete>> GetEnquetesInteresse()
-        //		{
-        //			return new ObservableCollection<Enquete>(EnqueteMock.MockEnquetes().Where(x => x.Tipo == EnumTipoEnquete.Interesse));
-        //		}
-
-
         public async Task<ObservableCollection<Enquete>> GetEnquetesPublicas()
         {
             Acr.UserDialogs.UserDialogs.Instance.ShowLoading("Buscando Enquetes...");
@@ -347,11 +336,12 @@ namespace Mais
             {
                 var dbEnquete = new Repositorio<Enquete>();
                 var enquete = (await dbEnquete.RetornarTodos()).First(x => x.Id == enqueteId);
+                var ehInteresse = enquete.Tipo == EnumTipoEnquete.Interesse;
                 
                 if (enquete.EnqueteRespondida)
-                    await this.Navigation.PushAsync(new PerguntaRespondidaPage(enquete.Pergunta.Id, enquete.Imagem, enquete.UrlVideo, enquete.TemVoucher));
+                    await this.Navigation.PushAsync(new PerguntaRespondidaPage(enquete.Pergunta.Id, enquete.Imagem, enquete.UrlVideo, ehInteresse, enquete.Id, enquete.UsuarioCriador, enquete.TemVoucher));
                 else
-                    await this.Navigation.PushAsync(new PerguntaPage(enquete.Pergunta.Id, enquete.Imagem, enquete.UrlVideo, enquete.TemVoucher));
+                    await this.Navigation.PushAsync(new PerguntaPage(enquete.Pergunta.Id, enquete.Imagem, enquete.UrlVideo, enquete.TemVoucher, ehInteresse, enquete.Id, enquete.UsuarioCriador));
             }
             catch (Exception ex)
             {

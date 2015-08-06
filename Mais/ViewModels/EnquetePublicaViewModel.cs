@@ -25,6 +25,7 @@ namespace Mais
             var dbEnquete = new Repositorio<Enquete>();
 
             var _enquete = (await dbEnquete.RetornarTodos()).First(p => p.Id == enqueteId);
+            var ehInteresse = _enquete.Tipo == EnumTipoEnquete.Interesse;
 
             if (_enquete.EnqueteRespondida)
             {
@@ -32,7 +33,7 @@ namespace Mais
                     {
                         Acr.UserDialogs.UserDialogs.Instance.HideLoading();
                     });
-                await this.Navigation.PushAsync(new PerguntaRespondidaPage((int)_enquete.PerguntaId, _enquete.Imagem, _enquete.UrlVideo, _enquete.TemVoucher));
+                await this.Navigation.PushAsync(new PerguntaRespondidaPage((int)_enquete.PerguntaId, _enquete.Imagem, _enquete.UrlVideo, ehInteresse, _enquete.Id, _enquete.UsuarioCriador, _enquete.TemVoucher));
             }
             else
             {
@@ -40,7 +41,7 @@ namespace Mais
                     {
                         Acr.UserDialogs.UserDialogs.Instance.HideLoading();
                     });
-                await this.Navigation.PushAsync(new PerguntaPage((int)_enquete.PerguntaId, _enquete.Imagem, _enquete.UrlVideo, _enquete.TemVoucher));
+                await this.Navigation.PushAsync(new PerguntaPage((int)_enquete.PerguntaId, _enquete.Imagem, _enquete.UrlVideo, _enquete.TemVoucher, ehInteresse, _enquete.Id, _enquete.UsuarioCriador));
             }
 			
         }
