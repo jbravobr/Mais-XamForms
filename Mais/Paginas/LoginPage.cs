@@ -20,6 +20,24 @@ namespace Mais
                 Source = ImageSource.FromResource(RetornaCaminhoImagem.GetImagemCaminho("logo.png"))
             };
 
+            var imgFacebook = new Image();
+            imgFacebook.Source = ImageSource.FromResource(RetornaCaminhoImagem.GetImagemCaminho("LoginFacebook.png"));
+            imgFacebook.VerticalOptions = LayoutOptions.Center;
+            imgFacebook.HorizontalOptions = LayoutOptions.CenterAndExpand;
+            imgFacebook.HeightRequest = 100;
+            imgFacebook.WidthRequest = 100;
+
+            var img_Click = new TapGestureRecognizer();
+            img_Click.Tapped += async (sender, e) =>
+            {
+                if (Device.OS == TargetPlatform.iOS)
+                    await this.Navigation.PushModalAsync(new CadastroComFacebookPage());
+                else
+                    await this.Navigation.PushModalAsync(new CadastroComFacebookPage());
+            };
+
+            imgFacebook.GestureRecognizers.Add(img_Click);
+
             var stackLogo = new StackLayout
             {
                 VerticalOptions = LayoutOptions.Center,

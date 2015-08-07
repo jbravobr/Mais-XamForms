@@ -43,6 +43,8 @@ namespace Mais
         public const string uriAtualizaUsuarioPushWoosh = "atualizapush/";
 
         public const string uriAtualizaUsuarioFacebook = "atualizafacebook/";
+
+        public const string uriAtualizaCategoriasFB = "atualizacategoriasFB";
     }
 }
 

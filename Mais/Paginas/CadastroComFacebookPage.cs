@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Autofac;
 using Xamarin;
+using System.Threading.Tasks;
 
 namespace Mais
 {
@@ -33,6 +34,8 @@ namespace Mais
                 
                 if (Device.OS == TargetPlatform.iOS)
                 {
+                    Acr.UserDialogs.UserDialogs.Instance.ShowLoading("Atualizando informações ...");
+
                     if (!String.IsNullOrEmpty(App.FacebookAccessToken) && !String.IsNullOrEmpty(App.FacebookUserID))
                     {
                         var db = new Repositorio<FacebookInfos>();
@@ -42,11 +45,21 @@ namespace Mais
                         if (dados != null && dados.Any())
                         {
                             var usuarioNome = dados.First(k => k.Key == "name").Value.ToString();
-                            Device.BeginInvokeOnMainThread(() =>
-                                {
-                                    this.entNome.Text = usuarioNome;
-                                    Acr.UserDialogs.UserDialogs.Instance.HideLoading();
-                                });
+//                            Device.BeginInvokeOnMainThread(() =>
+//                                {
+//                                    this.entNome.Text = usuarioNome;
+//                                    Acr.UserDialogs.UserDialogs.Instance.HideLoading();
+//                                });
+
+                            var result = await this.FazCadastro(usuarioNome);
+
+                            if (result)
+                                await this.Navigation.PushModalAsync(new CategoriasPosCadastroFBPage());
+                            else
+                            {
+                                Acr.UserDialogs.UserDialogs.Instance.HideLoading();
+                                Acr.UserDialogs.UserDialogs.Instance.ShowError("Erro ao cadastrar", 2);
+                            }
                         }
                     }       
                 }
@@ -60,15 +73,35 @@ namespace Mais
                             var db = new Repositorio<FacebookInfos>();
                             await db.Inserir(new FacebookInfos { access_token = App.FacebookAccessToken, user_id = App.FacebookUserID });
                             var dados = await DependencyService.Get<IFacebook>().RecuperaDadosUsuario(App.FacebookAccessToken);
-                
+
                             if (dados != null && dados.Any())
                             {
                                 var usuarioNome = dados.First(k => k.Key == "name").Value.ToString();
-                                Device.BeginInvokeOnMainThread(() =>
-                                    {
-                                        this.entNome.Text = usuarioNome;
-                                        Acr.UserDialogs.UserDialogs.Instance.HideLoading();
-                                    });
+                                //                            Device.BeginInvokeOnMainThread(() =>
+                                //                                {
+                                //                                    this.entNome.Text = usuarioNome;
+                                //                                    Acr.UserDialogs.UserDialogs.Instance.HideLoading();
+                                //                                });
+
+                                var result = await this.FazCadastro(usuarioNome);
+
+                                if (result)
+                                {
+                                    var dbUsuario = new Repositorio<Usuario>();
+                                    var _usuario = (await db.RetornarTodos()).FirstOrDefault();
+
+                                    Acr.UserDialogs.UserDialogs.Instance.HideLoading();
+
+                                    if (_usuario != null)
+                                        await this.Navigation.PushModalAsync(new MenuPrincipalPage());
+                                    else
+                                        await this.Navigation.PushModalAsync(new CategoriasPosCadastroFBPage());
+                                }
+                                else
+                                {
+                                    Acr.UserDialogs.UserDialogs.Instance.HideLoading();
+                                    Acr.UserDialogs.UserDialogs.Instance.ShowError("Erro ao cadastrar", 2);
+                                }
                             }
                         }       
                     });
@@ -79,8 +112,18 @@ namespace Mais
             }			
         }
 
+        private async Task<bool> FazCadastro(string nome)
+        {
+            var srv = App.Container.Resolve<CadastroViewModel>();
+            var result = await srv.FazerCadastro(nome);
+
+            return result;
+        }
+
         public CadastroComFacebookPage()
         {
+
+           
             try
             {
                 this.BindingContext = model = App.Container.Resolve<CadastroViewModel>();

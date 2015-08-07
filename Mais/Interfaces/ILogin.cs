@@ -18,7 +18,7 @@ namespace Mais
 
         Task<ICollection<PerguntaResposta>> CadastrarRespostaEnquete(PerguntaResposta r);
 
-        Task<Usuario> CadastraNovoUsuario(Usuario u);
+        Task<Usuario> CadastraNovoUsuario(Usuario u, bool fromFB = false);
 
         Task<ICollection<Categoria>> RetornarCategorias(int categoriaId);
 
@@ -37,6 +37,8 @@ namespace Mais
         Task<bool> GravaChavePushWoosh(string token, int usuarioId);
 
         Task<bool> AtualizaFacebookToken(string token, int usuarioId);
+
+        Task<Usuario> AtualizarCategoriasFB(Usuario usuario);
     }
 }
 

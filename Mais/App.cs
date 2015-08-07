@@ -61,6 +61,7 @@ namespace Mais
 
             // Página inicial do App.
             MainPage = new ColetaDadosPage();
+
         }
 
         protected override void OnStart()

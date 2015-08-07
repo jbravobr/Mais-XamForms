@@ -13,9 +13,9 @@ namespace Mais
         [PrimaryKey]
         public int Id { get; set; }
 
-        public EnumSexo Sexo { get; set; }
+        public EnumSexo? Sexo { get; set; }
 
-        public DateTime DataNascimento { get; set; }
+        public DateTime? DataNascimento { get; set; }
 
         [OneToMany(CascadeOperations = CascadeOperation.CascadeInsert | CascadeOperation.CascadeRead)]
         public List<Categoria> Categorias { get; set; }

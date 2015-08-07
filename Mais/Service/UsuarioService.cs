@@ -17,18 +17,67 @@ namespace Mais
 
         #region ILogin implementation
 
-        public async Task<Usuario> CadastraNovoUsuario(Usuario NovoUsuario)
+
+        public async Task<Usuario> AtualizarCategoriasFB(Usuario user)
         {
             using (var client = CallAPI.RetornaClientHttp())
             {
-                var usuarioJSON = JsonConvert.SerializeObject(NovoUsuario);
+                var _json = this.MontaUsuarioMobile2(user);
+                var usuarioJSON = JsonConvert.SerializeObject(_json);
+                response = await client.PostAsJsonAsync(Constants.uriAtualizaCategoriasFB, usuarioJSON);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var json = await response.Content.ReadAsStringAsync();
+                    var usuario = JsonConvert.DeserializeObject<Usuario>(json);
+
+                    var dbCategoria = new Repositorio<Categoria>();
+                    var cats = string.Empty;
+
+                    foreach (var item in usuario.Categorias)
+                    {
+                        var cat = await dbCategoria.RetornarPorId(item.Id);
+                        cat.UsuarioId = usuario.Id;
+
+                        await dbCategoria.Atualizar(cat);
+
+                        cats += item.Id.ToString() + ';';
+                    }
+                    cats = cats.TrimEnd(';');
+                    usuario.CategoriaMobileSelection = cats;
+
+                    var dbUsuario = new Repositorio<Usuario>();
+                    await dbUsuario.Atualizar(usuario);
+
+                    return (await dbUsuario.RetornarTodos()).First();
+                }
+
+                throw new ArgumentException("Erro Geral");
+            }
+        }
+
+        public async Task<Usuario> CadastraNovoUsuario(Usuario NovoUsuario, bool fromFB = false)
+        {
+            using (var client = CallAPI.RetornaClientHttp())
+            {
+
+                var json = this.MontaUsuarioMobile(NovoUsuario);
+                var usuarioJSON = JsonConvert.SerializeObject(json);
                 response = await client.PostAsJsonAsync(Constants.uriNovoCadastro, usuarioJSON);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    var id = await response.Content.ReadAsAsync<int>();
-                    NovoUsuario.Id = id;
-                    return await Task.FromResult(NovoUsuario);
+                    if (!fromFB)
+                    {
+                        var id = await response.Content.ReadAsAsync<int>();
+                        NovoUsuario.Id = id;
+                        return await Task.FromResult(NovoUsuario);
+                    }
+                    else
+                    {
+                        var usuario = await response.Content.ReadAsAsync<Usuario>();
+                        return await Task.FromResult(usuario);
+                    }
                 }
                 else if (!response.IsSuccessStatusCode && response.StatusCode == HttpStatusCode.BadRequest)
                     return null;
@@ -313,7 +362,60 @@ namespace Mais
             }
         }
 
+        private UsuarioMobile MontaUsuarioMobile(Usuario user)
+        {
+            return new UsuarioMobile
+            {
+                Id = 0,
+                Nome = user.Nome,
+                EmpresaApp = user.EmpresaApp,
+                CategoriaMobileSelection = user.CategoriaMobileSelection,
+                FacebookID = user.FacebookID
+            };
+        }
+
+        private UsuarioMobile2 MontaUsuarioMobile2(Usuario user)
+        {
+            return new UsuarioMobile2
+            {
+                Id = user.Id,
+                Nome = user.Nome,
+                EmpresaApp = user.EmpresaApp,
+                CategoriaMobileSelection = user.CategoriaMobileSelection,
+                FacebookID = user.FacebookID,
+                Email = user.Email
+            };
+        }
+
         #endregion
+    }
+
+    public class UsuarioMobile
+    {
+        public int Id { get; set; }
+
+        public string Nome { get; set; }
+
+        public int? EmpresaApp { get; set; }
+
+        public string CategoriaMobileSelection { get; set; }
+
+        public string FacebookID { get; set; }
+    }
+
+    public class UsuarioMobile2
+    {
+        public int Id { get; set; }
+
+        public string Nome { get; set; }
+
+        public int? EmpresaApp { get; set; }
+
+        public string CategoriaMobileSelection { get; set; }
+
+        public string FacebookID { get; set; }
+
+        public string Email { get; set; }
     }
 }
 

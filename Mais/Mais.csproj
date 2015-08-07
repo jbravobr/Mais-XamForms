@@ -144,6 +144,10 @@
     <Compile Include="Paginas\TutorialPage_iOS.cs" />
     <Compile Include="Paginas\TutorialPage_Android.cs" />
     <Compile Include="Helpers\GenericComparer.cs" />
+    <Compile Include="Paginas\Login_v2Page.cs" />
+    <Compile Include="Paginas\CategoriasPosCadastroFBPage.cs" />
+    <Compile Include="CustomControls\CustomEntry.cs" />
+    <Compile Include="Paginas\LogoffPage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Fody.1.28.3\build\Fody.targets" Condition="Exists('..\packages\Fody.1.28.3\build\Fody.targets')" />
@@ -341,5 +345,7 @@
     <EmbeddedResource Include="Content\Imagens\tutorial_android.PNG" />
     <EmbeddedResource Include="Content\Imagens\tutorial_ios.PNG" />
     <EmbeddedResource Include="Content\Imagens\waste.png" />
+    <EmbeddedResource Include="Content\Imagens\full_moon.png" />
+    <EmbeddedResource Include="Content\Imagens\export.png" />
   </ItemGroup>
 </Project>

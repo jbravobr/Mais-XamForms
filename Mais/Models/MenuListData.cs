@@ -57,6 +57,14 @@ namespace Mais
                     TipoPagina = typeof(CadastroEdicaoPage),
                     Color = Colors._defaultColorFromHexLighter
                 });
+
+            this.Add(new MenuItem()
+                { 
+                    Titulo = "Efetuar logoff", 
+                    Icone = ImageSource.FromResource(RetornaCaminhoImagem.GetImagemCaminho("export.png")), 
+                    TipoPagina = typeof(LogoffPage),
+                    Color = Colors._defaultColorFromHex
+                });
         }
     }
 }

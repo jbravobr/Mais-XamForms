@@ -101,7 +101,7 @@ namespace Mais
                 else
                 {
                     App.Current.Properties["isLogado"] = false;
-                    await this.Navigation.PushModalAsync(new RootPage(), false);
+                    await this.Navigation.PushModalAsync(new Login_v2Page(), false);
                 }
             }
             catch (Exception ex)

@@ -203,6 +203,32 @@ namespace Mais
             }
         }
 
+        public async Task<bool> FazerCadastro(string Nome)
+        {
+            var dbFacebook = new Repositorio<FacebookInfos>();
+            var _token = (await dbFacebook.RetornarTodos()).FirstOrDefault();
+
+            if (_token != null)
+            {
+                this.Usuario.FacebookID = _token.user_id;
+                this.Usuario.FacebookToken = _token.access_token;
+            }
+
+            this.Usuario.EmpresaApp = 1;
+            this.Usuario.Nome = Nome;
+
+            var cadastrou = await this.service.CadastraNovoUsuario(this.Usuario, true);
+
+            if (cadastrou != null)
+            {
+                var dbUsuario = new Repositorio<Usuario>();
+                await dbUsuario.Inserir(cadastrou);
+                return await Task.FromResult(true);
+            }
+
+            return await Task.FromResult(false);
+        }
+
         private async Task Voltar()
         {
             await this.Navigation.PopModalAsync();
@@ -227,6 +253,32 @@ namespace Mais
             {
                 Insights.Report(ex);
             }
+        }
+
+        public async Task<bool> FazCadastroCategoriasFB(List<Categoria> categorias, string email)
+        {
+            var dbUsuario = new Repositorio<Usuario>();
+            var query = await dbUsuario.RetornarTodos();
+            var _usuario = query.First();
+
+            var cats = string.Empty;
+            foreach (var categoria in categorias)
+            {
+                cats += categoria.Id.ToString() + ';';
+            }
+            cats = cats.TrimEnd(';');
+
+            _usuario.CategoriaMobileSelection = cats;
+
+            if (!String.IsNullOrEmpty(email))
+                _usuario.Email = email;
+
+            var result = await this.service.AtualizarCategoriasFB(_usuario);
+
+            if (result != null)
+                return await Task.FromResult(true);
+
+            return await Task.FromResult(false);
         }
 
         public async Task<Usuario> RetornarUsuario()

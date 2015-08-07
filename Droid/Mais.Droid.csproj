@@ -204,6 +204,7 @@
     <Compile Include="VideoPage.cs" />
     <Compile Include="FacebookIntegration_Droid.cs" />
     <Compile Include="EntryNoKeyboardRenderer.cs" />
+    <Compile Include="CustomEntry_Droid.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
