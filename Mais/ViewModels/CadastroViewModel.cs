@@ -29,7 +29,7 @@ namespace Mais
             this.Navigation = navigation;
         }
 
-        public async Task<bool> AtualizarCadastro(Usuario user, INavigation nav)
+        public async Task<bool> AtualizarCadastro(Usuario user, INavigation nav, DateTime? dataNascimento, int? sexo)
         {
             var categorias = string.Empty;
             foreach (var item in this.Categorias)
@@ -37,7 +37,7 @@ namespace Mais
                 categorias += item.Id.ToString() + ';';
             }
 
-            categorias.TrimEnd(';');
+            categorias = categorias.TrimEnd(new char[]{ ';' });
 
             user.CategoriaMobileSelection = categorias;
 
@@ -52,10 +52,25 @@ namespace Mais
 
             user.EmpresaApp = 1;
 
+            if (dataNascimento.HasValue)
+                user.DataNascimento = dataNascimento;
+
+            if (sexo != null && sexo > 0)
+            {
+                if (sexo == 1)
+                    user.Sexo = EnumSexo.Masculino;
+                else
+                    user.Sexo = EnumSexo.Feminino;
+            }
+
             var atualizou = await service.AtualizarUsuario(user);
 
             if (atualizou)
             {
+
+                var dbUsuario = new Repositorio<Usuario>();
+                await dbUsuario.Atualizar(user);
+
                 Acr.UserDialogs
 					.UserDialogs
 					.Instance
@@ -276,16 +291,27 @@ namespace Mais
             var result = await this.service.AtualizarCategoriasFB(_usuario);
 
             if (result != null)
+            {
                 return await Task.FromResult(true);
+            }
 
             return await Task.FromResult(false);
         }
 
         public async Task<Usuario> RetornarUsuario()
         {
-            var dbUsuario = new Repositorio<Usuario>();
-            var temRegistro = await dbUsuario.ExisteRegistro();
-            return temRegistro ? (await dbUsuario.RetornarTodos()).FirstOrDefault() : null;
+            try
+            {
+                var dbUsuario = new Repositorio<Usuario>();
+                var temRegistro = await dbUsuario.ExisteRegistro();
+
+                return temRegistro ? (await dbUsuario.RetornarTodos()).FirstOrDefault() : null;
+            }
+            catch (Exception ex)
+            {
+                Insights.Report(ex);
+                return null;
+            }
         }
     }
 }

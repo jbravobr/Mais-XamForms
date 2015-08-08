@@ -41,7 +41,7 @@ namespace Mais
         {
             try
             {
-                var _clickBackButton = new Action(async () =>
+                var _clickBackButton = new Action(() =>
                     {
                         //await this.LayoutTo(new Rectangle(0, 0, screenWidth * -1, screenHeight * -1), 750, Easing.CubicOut);
                         MessagingCenter.Send<CategoriasPage,ICollection<Categoria>>(this, "gravarCategorias", this.model.Categorias.Where(b => b.Selecionada).ToList());

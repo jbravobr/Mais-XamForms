@@ -66,43 +66,45 @@ namespace Mais
                 
                 MessagingCenter.Subscribe<CadastroComFacebookPage>(this, "CadastrouComFacebook", async (obj) =>
                     {
-                        Acr.UserDialogs.UserDialogs.Instance.ShowLoading("Atualizando informações ...");
-                
-                        if (!String.IsNullOrEmpty(App.FacebookAccessToken) && !String.IsNullOrEmpty(App.FacebookUserID))
+                        try
                         {
-                            var db = new Repositorio<FacebookInfos>();
-                            await db.Inserir(new FacebookInfos { access_token = App.FacebookAccessToken, user_id = App.FacebookUserID });
-                            var dados = await DependencyService.Get<IFacebook>().RecuperaDadosUsuario(App.FacebookAccessToken);
-
-                            if (dados != null && dados.Any())
+                            Acr.UserDialogs.UserDialogs.Instance.ShowLoading("Atualizando informações ...");
+                            
+                            if (!String.IsNullOrEmpty(App.FacebookAccessToken) && !String.IsNullOrEmpty(App.FacebookUserID))
                             {
-                                var usuarioNome = dados.First(k => k.Key == "name").Value.ToString();
-                                //                            Device.BeginInvokeOnMainThread(() =>
-                                //                                {
-                                //                                    this.entNome.Text = usuarioNome;
-                                //                                    Acr.UserDialogs.UserDialogs.Instance.HideLoading();
-                                //                                });
-
-                                var result = await this.FazCadastro(usuarioNome);
-
-                                if (result)
+                                var db = new Repositorio<FacebookInfos>();
+                                await db.Inserir(new FacebookInfos { access_token = App.FacebookAccessToken, user_id = App.FacebookUserID });
+                                var dados = await DependencyService.Get<IFacebook>().RecuperaDadosUsuario(App.FacebookAccessToken);
+                            
+                                if (dados != null && dados.Any())
                                 {
-                                    var dbUsuario = new Repositorio<Usuario>();
-                                    var _usuario = (await db.RetornarTodos()).FirstOrDefault();
+                                    var usuarioNome = dados.First(k => k.Key == "name").Value.ToString();
 
-                                    Acr.UserDialogs.UserDialogs.Instance.HideLoading();
+                                    var result = await this.FazCadastro(usuarioNome);
 
-                                    if (_usuario != null)
-                                        await this.Navigation.PushModalAsync(new MenuPrincipalPage());
+                                    if (result)
+                                    {
+                                        var dbUsuario = new Repositorio<Usuario>();
+                                        var _usuario = (await dbUsuario.RetornarTodos()).FirstOrDefault();
+
+                                        Acr.UserDialogs.UserDialogs.Instance.HideLoading();
+
+                                        if (_usuario != null && !String.IsNullOrEmpty(_usuario.CategoriaMobileSelection))
+                                            await this.Navigation.PushModalAsync(new MenuPrincipalPage());
+                                        else
+                                            await this.Navigation.PushModalAsync(new CategoriasPosCadastroFBPage());
+                                    }
                                     else
-                                        await this.Navigation.PushModalAsync(new CategoriasPosCadastroFBPage());
-                                }
-                                else
-                                {
-                                    Acr.UserDialogs.UserDialogs.Instance.HideLoading();
-                                    Acr.UserDialogs.UserDialogs.Instance.ShowError("Erro ao cadastrar", 2);
+                                    {
+                                        Acr.UserDialogs.UserDialogs.Instance.HideLoading();
+                                        Acr.UserDialogs.UserDialogs.Instance.ShowError("Erro ao cadastrar", 2);
+                                    }
                                 }
                             }
+                        }
+                        catch (Exception ex)
+                        {
+                            Insights.Report(ex);
                         }       
                     });
             }
