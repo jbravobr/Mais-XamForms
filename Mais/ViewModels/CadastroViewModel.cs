@@ -236,6 +236,13 @@ namespace Mais
 
             if (cadastrou != null)
             {
+
+                if (_token != null)
+                {
+                    cadastrou.FacebookID = _token.user_id;
+                    cadastrou.FacebookToken = _token.access_token;
+                }
+
                 var dbUsuario = new Repositorio<Usuario>();
                 await dbUsuario.Inserir(cadastrou);
                 return await Task.FromResult(true);

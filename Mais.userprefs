@@ -1,6 +1,10 @@
 ﻿<Properties StartupItem="Droid/Mais.Droid.csproj" GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.10.71.34.101:5555" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.10.71.34.101:5555" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Mais/Paginas/CadastroEdicaoPage.cs">
+    <Files>
+      <File FileName="Mais/Paginas/CadastroEdicaoPage.cs" Line="39" Column="78" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

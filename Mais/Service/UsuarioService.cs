@@ -46,6 +46,15 @@ namespace Mais
                     cats = cats.TrimEnd(';');
                     usuario.CategoriaMobileSelection = cats;
 
+                    var dbFacebook = new Repositorio<FacebookInfos>();
+                    var _token = (await dbFacebook.RetornarTodos()).FirstOrDefault();
+
+                    if (_token != null)
+                    {
+                        usuario.FacebookID = _token.user_id;
+                        usuario.FacebookToken = _token.access_token;
+                    }
+
                     var dbUsuario = new Repositorio<Usuario>();
                     await dbUsuario.Atualizar(usuario);
 

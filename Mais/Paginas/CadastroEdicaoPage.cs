@@ -19,6 +19,7 @@ namespace Mais
         Grid gridWrapSexoNascimento;
         Grid gridWrapSexoNascimentoEdicao;
         DatePicker dataNasc;
+        PickerSexoMais sexoPickerDois;
 
         protected async override void OnAppearing()
         {
@@ -32,6 +33,10 @@ namespace Mais
                     sexoPicker.Items.Add("Selecione uma opção");
                     sexoPicker.Items.Add(AppResources.TextoSexoMasculino);
                     sexoPicker.Items.Add(AppResources.TextoSexoFeminino);
+
+                    sexoPickerDois.Items.Add("Selecione uma opção");
+                    sexoPickerDois.Items.Add(AppResources.TextoSexoMasculino);
+                    sexoPickerDois.Items.Add(AppResources.TextoSexoFeminino);
                 }
                 
                 model = App.Container.Resolve<CadastroViewModel>();
@@ -62,10 +67,21 @@ namespace Mais
                     sexoPicker.Items.Add("Selecione uma opção");
                     sexoPicker.Items.Add(AppResources.TextoSexoMasculino);
                     sexoPicker.Items.Add(AppResources.TextoSexoFeminino);
+
+                    sexoPickerDois.Items.Add("Selecione uma opção");
+                    sexoPickerDois.Items.Add(AppResources.TextoSexoMasculino);
+                    sexoPickerDois.Items.Add(AppResources.TextoSexoFeminino);
                 }
                 else if (Device.OS == TargetPlatform.iOS && (model == null || model.Usuario == null))
                 {
                     sexoPicker.Focused += (sender, e) =>
+                    {
+                        ((PickerSexoMais)sender).Items.Add("Selecione uma opção");
+                        ((PickerSexoMais)sender).Items.Add(AppResources.TextoSexoMasculino);
+                        ((PickerSexoMais)sender).Items.Add(AppResources.TextoSexoFeminino);
+                    };
+
+                    sexoPickerDois.Focused += (sender, e) =>
                     {
                         ((PickerSexoMais)sender).Items.Add("Selecione uma opção");
                         ((PickerSexoMais)sender).Items.Add(AppResources.TextoSexoMasculino);
@@ -86,9 +102,9 @@ namespace Mais
                 if (model.Usuario.Sexo.HasValue)
                 {
                     if (model.Usuario.Sexo == EnumSexo.Masculino)
-                        sexoPicker.SelectedIndex = 1;
+                        sexoPickerDois.SelectedIndex = 1;
                     else
-                        sexoPicker.SelectedIndex = 2;
+                        sexoPickerDois.SelectedIndex = 2;
                 }
             }
             catch (Exception ex)
@@ -171,13 +187,14 @@ namespace Mais
                 };
 
                 dataNasc = new DatePicker();
+                sexoPickerDois = new PickerSexoMais();
 
                 gridWrapSexoNascimento = new Grid();
                 gridWrapSexoNascimento.Children.Add(sexoPicker, 0, 0);
                 gridWrapSexoNascimento.Children.Add(nascimentoPicker, 1, 0);
 
                 gridWrapSexoNascimentoEdicao = new Grid();
-                gridWrapSexoNascimentoEdicao.Children.Add(sexoPicker, 0, 0);
+                gridWrapSexoNascimentoEdicao.Children.Add(sexoPickerDois, 0, 0);
                 gridWrapSexoNascimentoEdicao.Children.Add(dataNasc, 1, 0);
 
                 var gridWrapDDDTelefone = new Grid();
@@ -193,10 +210,10 @@ namespace Mais
                 };
                 btnCriar.Clicked += async (sender, e) =>
                 {
-                    var result = await model.AtualizarCadastro(model.Usuario, this.Navigation, gridWrapSexoNascimento.IsVisible ? nascimentoPicker.Date : dataNasc.Date, sexoPicker.SelectedIndex);
+                    var result = await model.AtualizarCadastro(model.Usuario, this.Navigation, gridWrapSexoNascimento.IsVisible ? nascimentoPicker.Date : dataNasc.Date, gridWrapSexoNascimento.IsVisible ? sexoPicker.SelectedIndex : sexoPickerDois.SelectedIndex);
                 
                     if (result)
-                        this.Navigation.PushModalAsync(new MainPage());
+                        await this.Navigation.PushModalAsync(new MainPage());
                 };
                 
                 var gridWrapButtons = new Grid

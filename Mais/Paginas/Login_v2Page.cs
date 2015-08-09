@@ -86,6 +86,7 @@ namespace Mais
                     await model.EsqueciMinhaSenha(result.Text);
                 }
             };
+            esqueciSenha.GestureRecognizers.Add(esqueciSenha_Click);
             
             var entrarStack = new StackLayout
             {
@@ -125,6 +126,7 @@ namespace Mais
                 var paginaCadastro = Activator.CreateInstance<CadastroPage>();
                 await this.Navigation.PushModalAsync(paginaCadastro);
             };
+            novoCadastro.GestureRecognizers.Add(novoCadastro_Click);
 
             var cadastroStack = new StackLayout
             {
