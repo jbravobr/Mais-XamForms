@@ -49,11 +49,26 @@ namespace Mais
                 }
             };
 
+            var btnSelTodos = new Button
+            {
+                Style = Estilos._estiloPadraoButtonFonteMenor,
+                HorizontalOptions = LayoutOptions.EndAndExpand,
+                Text = "Sel. Todos" 
+            };
+            btnSelTodos.Clicked += (sender, e) =>
+            {
+                foreach (var amigo in this.model.Amigos)
+                {
+                    amigo.Selecionado = true;
+                }
+            };
+
             var wrapperImage = new StackLayout
             {
                 Padding = new Thickness(10, 5, 10, 5),
                 VerticalOptions = LayoutOptions.FillAndExpand,
-                Children = { imgCancel }
+                Orientation = StackOrientation.Horizontal,
+                Children = { imgCancel, btnSelTodos }
             };
 
             var headerWrap = new StackLayout

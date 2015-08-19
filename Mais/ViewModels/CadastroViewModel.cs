@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
 using Xamarin;
+using PropertyChanged;
 
 namespace Mais
 {
+    [ImplementPropertyChanged]
     public class CadastroViewModel
     {
         public ICollection<Categoria> Categorias { get; protected set; }
@@ -32,9 +34,28 @@ namespace Mais
         public async Task<bool> AtualizarCadastro(Usuario user, INavigation nav, DateTime? dataNascimento, int? sexo)
         {
             var categorias = string.Empty;
-            foreach (var item in this.Categorias)
+
+            if (Device.OS == TargetPlatform.iOS)
             {
-                categorias += item.Id.ToString() + ';';
+                if (App.Current.Properties.ContainsKey("Categorias_iOS"))
+                {
+                    var c = (ICollection<Categoria>)App.Current.Properties["Categorias_iOS"];
+
+                    if (c != null && c.Any())
+                    {
+                        foreach (var item in c)
+                        {
+                            categorias += item.Id.ToString() + ';';
+                        }
+                    }
+                }
+            }
+            else
+            {
+                foreach (var item in this.Categorias)
+                {
+                    categorias += item.Id.ToString() + ';';
+                }
             }
 
             categorias = categorias.TrimEnd(new char[]{ ';' });
@@ -57,7 +78,7 @@ namespace Mais
 
             if (sexo != null && sexo > 0)
             {
-                if (sexo == 1)
+                if ((int)sexo == 1)
                     user.Sexo = EnumSexo.Masculino;
                 else
                     user.Sexo = EnumSexo.Feminino;
@@ -72,67 +93,92 @@ namespace Mais
                 await dbUsuario.Atualizar(user);
 
                 Acr.UserDialogs
-					.UserDialogs
-					.Instance
+                    .UserDialogs
+                    .Instance
                     .ShowSuccess("Cadastro Atualizado com sucesso!");
                 return await Task.FromResult(true);
             }
             else
             {
                 await Acr.UserDialogs
-					.UserDialogs
-					.Instance
-					.AlertAsync("Erro na atualização, tente novamente", AppResources.TituloErro, "OK");
+                    .UserDialogs
+                    .Instance
+                    .AlertAsync("Erro na atualização, tente novamente", AppResources.TituloErro, "OK");
                 return await Task.FromResult(false);
             }
         }
 
-        private async Task EfetuarCadastro()
+        /*
+                    var _sexo = sexoPicker.SelectedIndex;
+                    var _nascimento = nascimentoPicker.Date;
+                    var _email = entEmail.Text;
+                    var _nome = entNome.Text;
+                    var _ddd = entDDD.Text;
+                    var _tel = entTelefone.Text;
+                    var _municipio = entMunicipio.Text;
+        */
+
+        public async Task EfetuarCadastro(int? sexo, DateTime? nascimento, string email, string nome, string ddd, string tel, string municipio, string senha)
         {
             try
             {
                 Acr.UserDialogs.UserDialogs.Instance.ShowLoading("Enviando...");
-                
-                if (this.Usuario.Sexo != null &&
-                    this.Usuario.DataNascimento != null &&
+
+                if (sexo != null &&
+                    nascimento != null &&
                     (this.Usuario.Categorias != null && this.Usuario.Categorias.Any()) &&
-                    this.Usuario.DDD != null &&
-                    this.Usuario.Telefone != null &&
-                    this.Usuario.Nome != null &&
-                    this.Usuario.Email != null &&
-                    this.Usuario.Municipio != null)
+                    !String.IsNullOrEmpty(email) &&
+                    !String.IsNullOrEmpty(nome) &&
+                    !String.IsNullOrEmpty(ddd) &&
+                    !String.IsNullOrEmpty(tel) &&
+                    !String.IsNullOrEmpty(municipio) &&
+                    !String.IsNullOrEmpty(senha))
                 {
                     var db = new Repositorio<Usuario>();
-                
+                    Usuario usuario = new Usuario();
+
                     if (this.Usuario.Categorias == null || !this.Usuario.Categorias.Any())
                     {
                         Acr.UserDialogs.UserDialogs.Instance.HideLoading();
                         await Acr.UserDialogs.UserDialogs.Instance.AlertAsync("Selecione ao menos uma categoria, clique no botão 'Selecionar Categoria'");
                         return;
                     }
-                
+
                     var categorias = string.Empty;
                     foreach (var categoria in this.Usuario.Categorias)
                     {
                         categorias += categoria.Id.ToString() + ';';
                     }
                     categorias = categorias.TrimEnd(';');
-                
-                    this.Usuario.CategoriaMobileSelection = categorias;
-                
+
+                    usuario.CategoriaMobileSelection = categorias;
+
                     var dbFacebook = new Repositorio<FacebookInfos>();
                     var _token = (await dbFacebook.RetornarTodos()).FirstOrDefault();
-                
+
                     if (_token != null)
                     {
-                        this.Usuario.FacebookID = _token.user_id;
-                        this.Usuario.FacebookToken = _token.access_token;
+                        usuario.FacebookID = _token.user_id;
+                        usuario.FacebookToken = _token.access_token;
                     }
-                
-                    this.Usuario.EmpresaApp = 1;
-                
-                    var cadastrou = await this.service.CadastraNovoUsuario(this.Usuario);
-                
+
+                    usuario.EmpresaApp = 1;
+                    usuario.Nome = nome;
+                    usuario.DataNascimento = nascimento;
+                    usuario.DDD = ddd;
+                    usuario.Telefone = tel;
+                    usuario.Email = email;
+                    usuario.Municipio = municipio;
+                    usuario.Senha = senha;
+                    //usuario.Categorias = this.Usuario.Categorias;
+
+                    if (sexo == 1)
+                        usuario.Sexo = EnumSexo.Masculino;
+                    else
+                        usuario.Sexo = EnumSexo.Feminino;
+
+                    var cadastrou = await this.service.CadastraNovoUsuario(usuario);
+
                     try
                     {
                         if (cadastrou != null)
@@ -141,19 +187,19 @@ namespace Mais
                                 {
                                     Acr.UserDialogs.UserDialogs.Instance.HideLoading();
 
-                                    var autenticado = await this.service.FazerLogin(this.Usuario.Email, this.Usuario.Senha);
-                
+                                    var autenticado = await this.service.FazerLogin(cadastrou.Email, cadastrou.Senha);
+
                                     if (autenticado)
                                     {
                                         var dbUsuario = new Repositorio<Usuario>();
-                
+
                                         var temUsuario = (await dbUsuario.RetornarTodos()).FirstOrDefault();
                                         if (temUsuario != null)
                                             await dbUsuario.Inserir(cadastrou);
-                
+
                                         var dbSession = new Repositorio<ControleSession>();
                                         await dbSession.Inserir(new ControleSession { Logado = true });
-                
+
                                         if (temUsuario != null)
                                             await this.Navigation.PushModalAsync(new MainPage());
                                         else
@@ -162,47 +208,48 @@ namespace Mais
                                     else
                                         Acr.UserDialogs.UserDialogs.Instance.Alert("Dados incorretos!", "Erro", "OK");
                                 });
-                
+
                             await db.Inserir(cadastrou);
-                            foreach (var categoria in cadastrou.Categorias)
+                            foreach (var categoria in cadastrou.CategoriaMobileSelection.Split(';'))
                             {
                                 var dbUsuarioCategoria = new Repositorio<UsuarioCategoria>();
-                                dbUsuarioCategoria.Inserir(new UsuarioCategoria{ CategoriaId = categoria.Id });
+
+                                await dbUsuarioCategoria.Inserir(new UsuarioCategoria{ CategoriaId = Convert.ToInt32(categoria) });
                             }
-                
+
                             Acr.UserDialogs.UserDialogs.Instance.HideLoading();
-                
+
                             Task.Run(() => Acr.UserDialogs
-                .UserDialogs
-                .Instance
+                                .UserDialogs
+                                .Instance
                                 .ShowSuccess(AppResources.MensagemSucessoCadastroNovoUsuario, 2));
-                
+
                             this.Logar.Invoke();
                         }
                         else
                         {
                             Acr.UserDialogs.UserDialogs.Instance.HideLoading();
-                
+
                             await Acr.UserDialogs
-                .UserDialogs
-                .Instance
-                .AlertAsync(AppResources.MsgErroCadastroUsuario, AppResources.TituloErro, "OK");
+                                .UserDialogs
+                                .Instance
+                                .AlertAsync(AppResources.MsgErroCadastroUsuario, AppResources.TituloErro, "OK");
                         }
                     }
                     catch (NullReferenceException)
                     {
                         Acr.UserDialogs.UserDialogs.Instance.HideLoading();
-                
+
                         await Acr.UserDialogs
-                .UserDialogs
-                .Instance
-                .AlertAsync(AppResources.MsgErroCadastroUsuarioCamposEmBranco, AppResources.TituloErro, "OK");
+                            .UserDialogs
+                            .Instance
+                            .AlertAsync(AppResources.MsgErroCadastroUsuarioCamposEmBranco, AppResources.TituloErro, "OK");
                     }
                 }
                 else
                 {
                     Acr.UserDialogs.UserDialogs.Instance.HideLoading();
-                
+
                     if (this.Usuario.Categorias == null || !this.Usuario.Categorias.Any())
                     {
                         await Acr.UserDialogs.UserDialogs.Instance.AlertAsync("Selecione ao menos uma categoria, clique no botão 'Categorias de Interesse'");
@@ -251,14 +298,14 @@ namespace Mais
             return await Task.FromResult(false);
         }
 
-        private async Task Voltar()
+        public async Task Voltar()
         {
             await this.Navigation.PopModalAsync();
         }
 
         public CadastroViewModel(ILogin service)
         {
-            this.btnCadastrar_Click = new Command(async (obj) => await this.EfetuarCadastro());
+            //this.btnCadastrar_Click = new Command(async (obj) => await this.EfetuarCadastro());
             this.btnVoltar_Click = new Command(async () => await this.Voltar());
             this.Usuario = new Usuario();
             this.service = service;
@@ -268,6 +315,7 @@ namespace Mais
         {
             try
             {
+                App.Current.Properties["Categorias_iOS"] = categorias;
                 this.Categorias = categorias;
                 this.Usuario.Categorias = categorias.ToList();
             }

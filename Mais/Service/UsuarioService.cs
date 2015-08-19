@@ -69,9 +69,19 @@ namespace Mais
         {
             using (var client = CallAPI.RetornaClientHttp())
             {
+                UsuarioMobile json;
+                var usuarioJSON = string.Empty;
 
-                var json = this.MontaUsuarioMobile(NovoUsuario);
-                var usuarioJSON = JsonConvert.SerializeObject(json);
+                if (fromFB)
+                {
+                    json = this.MontaUsuarioMobile(NovoUsuario);
+                    usuarioJSON = JsonConvert.SerializeObject(json);
+                }
+                else
+                {
+                    usuarioJSON = JsonConvert.SerializeObject(NovoUsuario);
+                }
+               
                 response = await client.PostAsJsonAsync(Constants.uriNovoCadastro, usuarioJSON);
 
                 if (response.IsSuccessStatusCode)

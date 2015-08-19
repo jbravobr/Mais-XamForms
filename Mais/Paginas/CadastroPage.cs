@@ -86,6 +86,7 @@ namespace Mais
                     HorizontalOptions = LayoutOptions.FillAndExpand
                 };
                 entEmail.SetBinding<CadastroViewModel>(Entry.TextProperty, x => x.Usuario.Email);
+
                 
                 entNome = new Entry
                 { 
@@ -93,6 +94,7 @@ namespace Mais
                     HorizontalOptions = LayoutOptions.FillAndExpand
                 };
                 entNome.SetBinding<CadastroViewModel>(Entry.TextProperty, x => x.Usuario.Nome);
+
                 
                 var entSenha = new Entry
                 { 
@@ -101,18 +103,21 @@ namespace Mais
                     IsPassword = true
                 };
                 entSenha.SetBinding<CadastroViewModel>(Entry.TextProperty, x => x.Usuario.Senha);
+
                 
                 var entDDD = new Entry
                 { 
                     Placeholder = AppResources.TextoPlaceHolderDDDCadastro,
                 };
                 entDDD.SetBinding<CadastroViewModel>(Entry.TextProperty, x => x.Usuario.DDD);
+
                 
                 var entTelefone = new Entry
                 { 
                     Placeholder = AppResources.TextoPlaceHolderTelefoneCadastro
                 };
                 entTelefone.SetBinding<CadastroViewModel>(Entry.TextProperty, x => x.Usuario.Telefone);
+
                 
                 var entMunicipio = new Entry
                 { 
@@ -120,6 +125,7 @@ namespace Mais
                     HorizontalOptions = LayoutOptions.FillAndExpand
                 };
                 entMunicipio.SetBinding<CadastroViewModel>(Entry.TextProperty, x => x.Usuario.Municipio);
+
                 
                 btnCategorias = new Button
                 { 
@@ -162,7 +168,21 @@ namespace Mais
                     HorizontalOptions = LayoutOptions.End,
                     VerticalOptions = LayoutOptions.Start
                 };
-                btnCriar.SetBinding<CadastroViewModel>(Button.CommandProperty, x => x.btnCadastrar_Click);
+                //btnCriar.SetBinding<CadastroViewModel>(Button.CommandProperty, x => x.btnCadastrar_Click);
+                btnCriar.Clicked += async (sender, e) =>
+                {
+                    var _sexo = sexoPicker.SelectedIndex;
+                    var _nascimento = nascimentoPicker.Date;
+                    var _email = entEmail.Text;
+                    var _nome = entNome.Text;
+                    var _ddd = entDDD.Text;
+                    var _tel = entTelefone.Text;
+                    var _municipio = entMunicipio.Text;
+                    var _senha = entSenha.Text;
+
+                    await this.model.EfetuarCadastro(_sexo, _nascimento, _email, _nome, _ddd, _tel, _municipio, _senha);
+                    
+                };
                 
                 var btnVoltar = new Button
                 {
@@ -171,7 +191,8 @@ namespace Mais
                     HorizontalOptions = LayoutOptions.Start,
                     VerticalOptions = LayoutOptions.Start
                 };
-                btnVoltar.SetBinding<CadastroViewModel>(Button.CommandProperty, x => x.btnVoltar_Click);
+                //btnVoltar.SetBinding<CadastroViewModel>(Button.CommandProperty, x => x.btnVoltar_Click);
+                btnVoltar.Clicked += async (sender, e) => await this.model.Voltar();
                 
                 var gridWrapButtons = new Grid
                 {

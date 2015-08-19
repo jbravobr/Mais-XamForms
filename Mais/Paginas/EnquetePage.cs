@@ -331,9 +331,9 @@ namespace Mais
                     stackBanner = new StackLayout
                     { 
                         Children = { new EnqueteInteresseView(model.Banners[0]) },
-                        Padding = new Thickness(0, 0, 0, 10),
-                        VerticalOptions = LayoutOptions.CenterAndExpand,
-                        HorizontalOptions = LayoutOptions.CenterAndExpand
+                        Padding = new Thickness(0, 0, 10, 0),
+                        VerticalOptions = LayoutOptions.Center,
+                        HorizontalOptions = LayoutOptions.Center,
                     };
                 }
 
@@ -377,8 +377,16 @@ namespace Mais
 
             foreach (var enquete in this.model.Enquetes.Where(x=>x.AtivaNoFront).Distinct())
             {
-                if (enquete.Categoria == null && enquete.CategoriaId <= 0 && enquete.Tipo != EnumTipoEnquete.Mensagem)
+                if (enquete.Categoria == null
+                    && enquete.CategoriaId <= 0
+                    && enquete.Tipo != EnumTipoEnquete.Mensagem
+                    && enquete.propria)
                     enquete.Categoria = new Categoria{ Nome = "Suas Enquetes" };
+                else if (enquete.Categoria == null
+                         && enquete.CategoriaId <= 0
+                         && enquete.Tipo != EnumTipoEnquete.Mensagem
+                         && !enquete.propria)
+                    enquete.Categoria = new Categoria{ Nome = "Dos seus Amigos" };
             }
 
             var enquetesAgrupadas = from e in this.model.Enquetes.Where(x => x.AtivaNoFront).Distinct()

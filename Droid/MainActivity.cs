@@ -52,6 +52,7 @@ namespace Mais.Droid
         {
             this.RequestedOrientation = Android.Content.PM.ScreenOrientation.Portrait;
 
+            this.FragmentManager.PopBackStack();
 
             base.OnBackPressed();
         }

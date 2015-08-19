@@ -1,12 +1,25 @@
 ﻿<Properties StartupItem="Droid/Mais.Droid.csproj" GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.10.71.34.101:5555" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Mais/Paginas/CadastroEdicaoPage.cs">
-    <Files>
-      <File FileName="Mais/Paginas/CadastroEdicaoPage.cs" Line="39" Column="78" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Mais" expanded="True">
+            <Node name="Mais.Droid" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/Rodrigo/Desktop/Mais_App-master/Mais/ViewModels/CadastroViewModel.cs" line="503" column="1" />
+      <Breakpoint file="/Users/Rodrigo/Desktop/Mais_App-master/Mais/ViewModels/CadastroViewModel.cs" line="516" column="1" />
+      <Breakpoint file="/Users/Rodrigo/Desktop/Mais_App-master/Mais/ViewModels/CadastroViewModel.cs" line="520" column="1" />
+      <Breakpoint file="/Users/Rodrigo/Desktop/Mais_App-master/Mais/ViewModels/CadastroViewModel.cs" line="676" column="1" />
+      <Breakpoint file="/Users/Rodrigo/Desktop/Mais_App-master/Mais/ViewModels/CadastroViewModel.cs" line="681" column="1" />
+      <Breakpoint file="/Users/Rodrigo/Desktop/Mais_App-master/Mais/ViewModels/CadastroViewModel.cs" line="643" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
     <Watch file="Mais/ViewModels/CadastroViewModel.cs" line="33" offsetX="662" offsetY="187" expression="this.Usuario" liveUpdate="False" />
@@ -14,6 +27,5 @@
   <DisabledProjects>
     <String>UITests/Mais.UITests.csproj</String>
     <String>MaisDroid/MaisDroid.csproj</String>
-    <String>iOS/Mais.iOS.csproj</String>
   </DisabledProjects>
 </Properties>

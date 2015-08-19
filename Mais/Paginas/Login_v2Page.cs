@@ -118,13 +118,13 @@ namespace Mais
                 FontSize = 13,
                 TextColor = Color.FromHex("##BBEEFF"),
                 HorizontalOptions = LayoutOptions.Center,
-                YAlign = TextAlignment.Center
+                //YAlign = TextAlignment.Center
             };
             var novoCadastro_Click = new TapGestureRecognizer();
             novoCadastro_Click.Tapped += async (sender, e) =>
             {
-                var paginaCadastro = Activator.CreateInstance<CadastroPage>();
-                await this.Navigation.PushModalAsync(paginaCadastro);
+                //var paginaCadastro = Activator.CreateInstance<CadastroPage>();
+                await this.Navigation.PushModalAsync(new CadastroPage());
             };
             novoCadastro.GestureRecognizers.Add(novoCadastro_Click);
 
@@ -147,8 +147,8 @@ namespace Mais
             facebook.Source = ImageSource.FromResource(RetornaCaminhoImagem.GetImagemCaminho("LoginFacebook.png"));
             facebook.VerticalOptions = LayoutOptions.Center;
             facebook.HorizontalOptions = LayoutOptions.CenterAndExpand;
-            facebook.HeightRequest = 60;
-            facebook.WidthRequest = 63;
+            facebook.HeightRequest = 100;
+            facebook.WidthRequest = 100;
 
             var facebook_Click = new TapGestureRecognizer();
             facebook_Click.Tapped += async (sender, e) =>
@@ -168,7 +168,7 @@ namespace Mais
                     Android: "Roboto",
                     WinPhone: "Segoe"
                 ),
-                FontSize = 13,
+                FontSize = 16,
                 HorizontalOptions = LayoutOptions.Center,
                 YAlign = TextAlignment.Center,
                 TextColor = Color.White
@@ -190,7 +190,7 @@ namespace Mais
             var mainLayout = new StackLayout
             {
                 Padding = new Thickness(5, Device.OnPlatform(40, 40, 0), 5, 5),
-                Children = { logoStack, camposLoginStack, entrarStack, cadastroStack, linhaVerticalHum, facebookStack }
+                Children = { logoStack, cadastroStack, camposLoginStack, entrarStack, linhaVerticalHum, facebookStack }
             };
             
             this.BackgroundColor = Colors._loginBackgroundColorFromHex;

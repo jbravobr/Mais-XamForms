@@ -93,7 +93,7 @@ namespace Mais
                             service.GravaGeolocalizacao(geo).Wait();
                 
                             Task.Delay(10000, CancellationToken.None).ContinueWith(capturaPosicaoPeriodica, CancellationToken.None);
-                            //Debug.WriteLine(String.Format("Posição é: LAT: {0} e LONG {1} - Data: {2}", geo.Latitude, geo.Longitude, DateTime.Now.ToString()));
+                            Debug.WriteLine(String.Format("Posição é: LAT: {0} e LONG {1} - Data: {2}", geo.Latitude, geo.Longitude, DateTime.Now.ToString()));
                         }
                     }
                 };

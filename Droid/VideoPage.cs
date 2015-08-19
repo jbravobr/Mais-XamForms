@@ -53,7 +53,6 @@ namespace Mais.Droid
                 _webViewPlayer.LoadData(String.Format("<html><body><iframe allowfullscreen=\"allowfullscreen\" width=\"100%\" height=\"100%\" src=\"{0}?autoplay=1&fullscreen=1&modestbranding=1&showinfo=0&fs=0\" frameborder=\"0\" allowfullscreen></iframe></body></html>", App.UrlVideo), "text/html", "UTF-8");
                 _webViewPlayer.SetWebChromeClient(new WebChromeClient());
 
-
                 AddView(view);
 					
             }

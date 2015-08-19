@@ -13,6 +13,7 @@ namespace Mais
         [PrimaryKey]
         public int Id { get; set; }
 
+        //public int? Sexo { get; set; }
         public EnumSexo? Sexo { get; set; }
 
         public DateTime? DataNascimento { get; set; }

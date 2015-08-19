@@ -51,7 +51,6 @@
     <Compile Include="Paginas\CadastroPage.cs" />
     <Compile Include="CustomControls\CategoriasViewCell.cs" />
     <Compile Include="Helpers\RetornaCaminhoImagem.cs" />
-    <Compile Include="ViewModels\CadastroViewModel.cs" />
     <Compile Include="Paginas\CategoriasPage.cs" />
     <Compile Include="ViewModels\RootViewModel.cs" />
     <Compile Include="Paginas\RootPage.cs" />
@@ -148,6 +147,7 @@
     <Compile Include="Paginas\CategoriasPosCadastroFBPage.cs" />
     <Compile Include="CustomControls\CustomEntry.cs" />
     <Compile Include="Paginas\LogoffPage.cs" />
+    <Compile Include="ViewModels\CadastroViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Fody.1.28.3\build\Fody.targets" Condition="Exists('..\packages\Fody.1.28.3\build\Fody.targets')" />
