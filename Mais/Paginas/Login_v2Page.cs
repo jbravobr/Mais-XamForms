@@ -12,7 +12,7 @@ namespace Mais
         Button btnentrar;
         Label esqueciSenha;
         Label textoCadastrar;
-        Label novoCadastro;
+        Button novoCadastro;
         Image linhaVerticalHum;
         Image linhaVerticalDois;
         Image circulo;
@@ -107,26 +107,16 @@ namespace Mais
                 TextColor = Color.White
             };
 
-            novoCadastro = new Label
+            novoCadastro = new Button
             {
-                Text = "Cadastre-se aqui !",
-                FontFamily = Device.OnPlatform(
-                    iOS: "Helvetica",
-                    Android: "Roboto",
-                    WinPhone: "Segoe"
-                ),
-                FontSize = 13,
-                TextColor = Color.FromHex("##BBEEFF"),
-                HorizontalOptions = LayoutOptions.Center,
-                //YAlign = TextAlignment.Center
+                Text = "Cadastrar",
+                Style = Estilos._estiloPadraoButton,
+                HorizontalOptions = LayoutOptions.Center
             };
-            var novoCadastro_Click = new TapGestureRecognizer();
-            novoCadastro_Click.Tapped += async (sender, e) =>
+            novoCadastro.Clicked += async (sender, e) =>
             {
-                //var paginaCadastro = Activator.CreateInstance<CadastroPage>();
                 await this.Navigation.PushModalAsync(new CadastroPage());
             };
-            novoCadastro.GestureRecognizers.Add(novoCadastro_Click);
 
             var cadastroStack = new StackLayout
             {

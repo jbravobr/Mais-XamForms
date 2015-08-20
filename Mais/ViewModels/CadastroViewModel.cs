@@ -219,10 +219,10 @@ namespace Mais
 
                             Acr.UserDialogs.UserDialogs.Instance.HideLoading();
 
-                            Task.Run(() => Acr.UserDialogs
-                                .UserDialogs
-                                .Instance
-                                .ShowSuccess(AppResources.MensagemSucessoCadastroNovoUsuario, 2));
+//                            Acr.UserDialogs
+//                                .UserDialogs
+//                                .Instance
+//                                .ShowSuccess(AppResources.MensagemSucessoCadastroNovoUsuario, 2);
 
                             this.Logar.Invoke();
                         }
