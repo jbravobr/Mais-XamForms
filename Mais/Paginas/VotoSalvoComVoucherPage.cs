@@ -88,35 +88,8 @@ namespace Mais
             };
             btnCompartilhar.Clicked += async (sender, e) =>
             {
-                var dbResposta = new Repositorio<Resposta>();
-                var _resposta = await dbResposta.RetornarPorId(this.pergunta.Respostas.First(x => x.Respondida).Id);
-
-                var msg = String.Format("Eu votei na enquete {0} com {1}%... minha resposta foi {2}"
-						, this.pergunta.TextoPergunta
-						, _resposta.percentualResposta
-						, _resposta.TextoResposta);
-
-                var dbFacebook = new Repositorio<FacebookInfos>();
-                var userToken = await dbFacebook.RetornarTodos();
-
-                if (userToken == null)
-                {
-                    await Acr.UserDialogs.UserDialogs.Instance.AlertAsync("Erro na autenticação com o Facebook, tente novamente!");
-                    return;
-                }
-
-                var postou = await DependencyService.Get<IFacebook>().PostToWall(msg, userToken.First().access_token);
-
-                if (postou)
-                {
-                    await Acr.UserDialogs.UserDialogs.Instance.AlertAsync("Postagem concluída com sucesso!");
-                    await this.Navigation.PushModalAsync(new MainPage());
-                }
-                else
-                    await Acr.UserDialogs.UserDialogs.Instance.AlertAsync("Erro ao postar, tente novamente!");
+                await this.Navigation.PushModalAsync(new CompartilharFBPage(this.pergunta, string.Empty));
             };
-
-
 
             var absLayout = new AbsoluteLayout { HeightRequest = 400 };
 

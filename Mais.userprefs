@@ -1,15 +1,8 @@
-﻿<Properties StartupItem="Droid/Mais.Droid.csproj" GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.Nexus 4 (KitKat)" />
+﻿<Properties StartupItem="iOS/Mais.iOS.csproj" GitUserInfo="UsingGIT">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" />
   <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/Rodrigo/Desktop/Mais_App-master/Mais/ViewModels/CadastroViewModel.cs" line="503" column="1" />
-      <Breakpoint file="/Users/Rodrigo/Desktop/Mais_App-master/Mais/ViewModels/CadastroViewModel.cs" line="516" column="1" />
-      <Breakpoint file="/Users/Rodrigo/Desktop/Mais_App-master/Mais/ViewModels/CadastroViewModel.cs" line="520" column="1" />
-      <Breakpoint file="/Users/Rodrigo/Desktop/Mais_App-master/Mais/ViewModels/CadastroViewModel.cs" line="676" column="1" />
-      <Breakpoint file="/Users/Rodrigo/Desktop/Mais_App-master/Mais/ViewModels/CadastroViewModel.cs" line="681" column="1" />
-      <Breakpoint file="/Users/Rodrigo/Desktop/Mais_App-master/Mais/ViewModels/CadastroViewModel.cs" line="643" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
     <Watch file="Mais/ViewModels/CadastroViewModel.cs" line="33" offsetX="662" offsetY="187" expression="this.Usuario" liveUpdate="False" />

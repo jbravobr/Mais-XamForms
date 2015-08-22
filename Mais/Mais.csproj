@@ -148,6 +148,7 @@
     <Compile Include="CustomControls\CustomEntry.cs" />
     <Compile Include="Paginas\LogoffPage.cs" />
     <Compile Include="ViewModels\CadastroViewModel.cs" />
+    <Compile Include="Paginas\CompartilharFBPage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Fody.1.28.3\build\Fody.targets" Condition="Exists('..\packages\Fody.1.28.3\build\Fody.targets')" />

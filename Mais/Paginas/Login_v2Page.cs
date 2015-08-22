@@ -174,13 +174,13 @@ namespace Mais
             {
                 Children = { logo },
                 HorizontalOptions = LayoutOptions.Center,
-                Padding = new Thickness(20, Device.OnPlatform(40, 40, 0), 5, 30)
+                Padding = new Thickness(20, Device.OnPlatform(30, 30, 0), 5, 30)
             };
 
             var mainLayout = new StackLayout
             {
-                Padding = new Thickness(5, Device.OnPlatform(40, 40, 0), 5, 5),
-                Children = { logoStack, cadastroStack, camposLoginStack, entrarStack, linhaVerticalHum, facebookStack }
+                Padding = new Thickness(5, Device.OnPlatform(30, 30, 0), 5, 5),
+                Children = { logoStack, cadastroStack, facebookStack, linhaVerticalHum, camposLoginStack, entrarStack  }
             };
             
             this.BackgroundColor = Colors._loginBackgroundColorFromHex;

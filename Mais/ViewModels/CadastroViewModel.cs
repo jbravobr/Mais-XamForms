@@ -120,19 +120,18 @@ namespace Mais
 
         public async Task EfetuarCadastro(int? sexo, DateTime? nascimento, string email, string nome, string ddd, string tel, string municipio, string senha)
         {
-            try
-            {
-                Acr.UserDialogs.UserDialogs.Instance.ShowLoading("Enviando...");
+            Acr.UserDialogs.UserDialogs.Instance.ShowLoading("Enviando...");
 
-                if (sexo != null &&
-                    nascimento != null &&
-                    (this.Usuario.Categorias != null && this.Usuario.Categorias.Any()) &&
-                    !String.IsNullOrEmpty(email) &&
-                    !String.IsNullOrEmpty(nome) &&
-                    !String.IsNullOrEmpty(ddd) &&
-                    !String.IsNullOrEmpty(tel) &&
-                    !String.IsNullOrEmpty(municipio) &&
-                    !String.IsNullOrEmpty(senha))
+            if (this.Usuario.Categorias == null || !this.Usuario.Categorias.Any())
+            {
+                Acr.UserDialogs.UserDialogs.Instance.HideLoading();
+
+                await Acr.UserDialogs.UserDialogs.Instance.AlertAsync("Selecione ao menos uma categoria, clique no botão 'Categorias de Interesse'");
+                return;
+            }
+            else
+            {
+                try
                 {
                     var db = new Repositorio<Usuario>();
                     Usuario usuario = new Usuario();
@@ -218,12 +217,6 @@ namespace Mais
                             }
 
                             Acr.UserDialogs.UserDialogs.Instance.HideLoading();
-
-//                            Acr.UserDialogs
-//                                .UserDialogs
-//                                .Instance
-//                                .ShowSuccess(AppResources.MensagemSucessoCadastroNovoUsuario, 2);
-
                             this.Logar.Invoke();
                         }
                         else
@@ -246,22 +239,10 @@ namespace Mais
                             .AlertAsync(AppResources.MsgErroCadastroUsuarioCamposEmBranco, AppResources.TituloErro, "OK");
                     }
                 }
-                else
+                catch (Exception ex)
                 {
-                    Acr.UserDialogs.UserDialogs.Instance.HideLoading();
-
-                    if (this.Usuario.Categorias == null || !this.Usuario.Categorias.Any())
-                    {
-                        await Acr.UserDialogs.UserDialogs.Instance.AlertAsync("Selecione ao menos uma categoria, clique no botão 'Categorias de Interesse'");
-                        return;
-                    }
-                    else
-                        await Acr.UserDialogs.UserDialogs.Instance.AlertAsync("Informe todas as informações solicitadas.");
+                    Insights.Report(ex);
                 }
-            }
-            catch (Exception ex)
-            {
-                Insights.Report(ex);
             }
         }
 
