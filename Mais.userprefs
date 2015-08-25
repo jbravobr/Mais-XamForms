@@ -1,6 +1,11 @@
-﻿<Properties StartupItem="iOS/Mais.iOS.csproj" GitUserInfo="UsingGIT">
+﻿<Properties StartupItem="Droid/Mais.Droid.csproj" GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Droid/MainActivity.cs">
+    <Files>
+      <File FileName="Droid/MainActivity.cs" Line="28" Column="6" />
+      <File FileName="Droid/VideoPage.cs" Line="54" Column="74" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
