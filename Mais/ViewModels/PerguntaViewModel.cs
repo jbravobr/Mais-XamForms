@@ -74,6 +74,8 @@ namespace Mais
 
         private async Task GravarResposta()
         {
+            Acr.UserDialogs.UserDialogs.Instance.ShowLoading("Enviando");
+
             if (this.Respostas != null)
             {
                 var db = new Repositorio<Resposta>();
@@ -100,6 +102,7 @@ namespace Mais
 
                             if (salvouNoServidor == null || !salvouNoServidor.Any())
                             {
+                                Acr.UserDialogs.UserDialogs.Instance.HideLoading();
                                 await Acr.UserDialogs.UserDialogs.Instance.AlertAsync("Erro ao salvar resposta, tente novamente");
                                 return;
                             }
@@ -120,11 +123,13 @@ namespace Mais
 
                         if (enquete.TemVoucher)
                         {
+                            Acr.UserDialogs.UserDialogs.Instance.HideLoading();
                             var pagina = Activator.CreateInstance(typeof(VotoSalvoComVoucherPage), new[]{ this.Pergunta }) as VotoSalvoComVoucherPage;
                             await this.Navigation.PushModalAsync(pagina);
                         }
                         else
                         {
+                            Acr.UserDialogs.UserDialogs.Instance.HideLoading();
                             var pagina = Activator.CreateInstance(typeof(VotoSalvoPage), new[]{ this.Pergunta }) as VotoSalvoPage;
                             await this.Navigation.PushModalAsync(pagina);
                         }
@@ -132,7 +137,10 @@ namespace Mais
                 }
             }
             else
+            {
+                Acr.UserDialogs.UserDialogs.Instance.HideLoading();
                 await Acr.UserDialogs.UserDialogs.Instance.AlertAsync(AppResources.TituloErro, AppResources.MsgErroAoResponder, "OK");
+            }
         }
 
         private void Compartilhar()

@@ -53,11 +53,16 @@ namespace Mais.Droid
             this.RequestedOrientation = Android.Content.PM.ScreenOrientation.Portrait;
 
             var webView = this.FindViewById<Android.Webkit.WebView>(Resource.Id.VideoPlayer);
-            webView.OnPause();
-            webView.LoadUrl("about:Blank");
-            this.FragmentManager.PopBackStack();
 
-            base.OnBackPressed();
+            if (webView != null)
+            {
+                webView.OnPause();
+                webView.LoadUrl("about:Blank");
+                this.FragmentManager.PopBackStack();
+
+                base.OnBackPressed();
+
+            }
         }
 
         protected override void OnCreate(Bundle bundle)

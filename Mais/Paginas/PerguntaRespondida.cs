@@ -172,7 +172,7 @@ namespace Mais
                         {
                             HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2.5,
                             HorizontalOptions = LayoutOptions.Start,
-                            Children = { lblUsuarioCriador, imgExcluir, imgThumbVideo, listaRespostas, btnCompartilhar },
+                            Children = { lblUsuarioCriador, imgExcluir, imgThumbVideo, listaRespostas/*, btnCompartilhar*/ },
                             Padding = 20
                         };
                     }
@@ -182,7 +182,7 @@ namespace Mais
                         {
                             HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2.5,
                             HorizontalOptions = LayoutOptions.Start,
-                            Children = { lblUsuarioCriador, imgExcluir, webView, listaRespostas, btnCompartilhar },
+                            Children = { lblUsuarioCriador, imgExcluir, webView, listaRespostas/*, btnCompartilhar*/ },
                             Padding = 20
                         };
                     }
@@ -195,7 +195,7 @@ namespace Mais
                         {
                             HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2.5,
                             HorizontalOptions = LayoutOptions.Start,
-                            Children = { lblUsuarioCriador, imgExcluir, imgThumbVideo, btnCompartilhar },
+                            Children = { lblUsuarioCriador, imgExcluir, imgThumbVideo/*, btnCompartilhar*/ },
                             Padding = 20
                         };
                     }
@@ -205,7 +205,7 @@ namespace Mais
                         {
                             HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2.5,
                             HorizontalOptions = LayoutOptions.Start,
-                            Children = { lblUsuarioCriador, imgExcluir, webView, btnCompartilhar },
+                            Children = { lblUsuarioCriador, imgExcluir, webView/*, btnCompartilhar*/ },
                             Padding = 20
                         };   
                     }
@@ -220,7 +220,7 @@ namespace Mais
                     {
                         HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2.5,
                         HorizontalOptions = LayoutOptions.Start,
-                        Children = { Imagem, listaRespostas, btnCompartilhar },
+                        Children = { Imagem, listaRespostas/*, btnCompartilhar*/ },
                         Padding = 20
                     };
                 }
@@ -230,7 +230,7 @@ namespace Mais
                     {
                         HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2.5,
                         HorizontalOptions = LayoutOptions.Start,
-                        Children = { Imagem, btnCompartilhar },
+                        Children = { Imagem/*, btnCompartilhar*/ },
                         Padding = 20
                     };
                 }
@@ -244,7 +244,7 @@ namespace Mais
                     {
                         HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2.5,
                         HorizontalOptions = LayoutOptions.Start,
-                        Children = { listaRespostas, btnCompartilhar },
+                        Children = { listaRespostas/*, btnCompartilhar*/ },
                         Padding = 20
                     };
                 }
@@ -254,7 +254,7 @@ namespace Mais
                     {
                         HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2.5,
                         HorizontalOptions = LayoutOptions.Start,
-                        Children = { btnCompartilhar },
+                        Children = { /*, btnCompartilhar*/ },
                         Padding = 20
                     };
                 }

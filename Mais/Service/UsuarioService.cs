@@ -256,6 +256,10 @@ namespace Mais
                 if (response.IsSuccessStatusCode)
                 {
                     var enqueteResponse = response.Content.ReadAsStringAsync().Result;
+
+//                    if (enqueteResponse == "Não há enquetes disponíveis")
+//                        return new Task<ICollection<Enquete>>();
+
                     var enquetesJsonToDomain = JsonConvert.DeserializeObject(enqueteResponse);
                     var listaEnquetesInteresse = JsonConvert.DeserializeObject<List<Enquete>>(enquetesJsonToDomain.ToString());
                     return listaEnquetesInteresse;

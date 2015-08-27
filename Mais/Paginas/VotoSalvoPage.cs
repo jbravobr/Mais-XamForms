@@ -112,7 +112,7 @@ namespace Mais
             absLayout.Children.Add(sucesso);
             absLayout.Children.Add(aviso);
             absLayout.Children.Add(imagem);
-            absLayout.Children.Add(btnCompartilhar);
+            //absLayout.Children.Add(btnCompartilhar);
 
             this.Content = absLayout;
         }
