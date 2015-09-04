@@ -1,10 +1,8 @@
-﻿<Properties StartupItem="Droid/Mais.Droid.csproj" GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.10.71.34.101:5555" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Mais/ViewModels/PerguntaViewModel.cs">
+﻿<Properties StartupItem="iOS/Mais.iOS.csproj" GitUserInfo="UsingGIT">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="iOS/Info.plist">
     <Files>
-      <File FileName="Droid/MainActivity.cs" Line="65" Column="14" />
-      <File FileName="Mais/Paginas/PerguntaPage.cs" Line="36" Column="58" />
-      <File FileName="Mais/ViewModels/PerguntaViewModel.cs" Line="141" Column="65" />
+      <File FileName="iOS/Info.plist" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

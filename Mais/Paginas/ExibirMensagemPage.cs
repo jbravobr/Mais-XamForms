@@ -6,6 +6,7 @@ using System.Net;
 using System.IO;
 using Autofac;
 using System.Linq;
+using Xamarin;
 
 namespace Mais
 {
@@ -116,25 +117,21 @@ namespace Mais
                 };
                 btnCompartilhar.Clicked += async (sender, e) =>
                 {
-
-                    var dbFacebook = new Repositorio<FacebookInfos>();
-                    var userToken = await dbFacebook.RetornarTodos();
-
-                    if (userToken == null)
+                    try
                     {
-                        await Acr.UserDialogs.UserDialogs.Instance.AlertAsync("Erro na autenticação com o Facebook, tente novamente!");
-                        return;
+                        string link = string.Empty;
+
+                        if (Device.OS == TargetPlatform.Android)
+                            link = "https://play.google.com/store/apps/details?id=com.aplicativo.mais&hl=pt_BR";
+                        else
+                            link = "https://itunes.apple.com/us/app/mais-app/id1028918789?ls=1&mt=8";
+
+                        DependencyService.Get<IShare>().ShareLink(this.enquete.Titulo, string.Empty, link);
                     }
-
-                    var postou = await DependencyService.Get<IFacebook>().PostToWall(this.enquete.Titulo, userToken.First().access_token);
-
-                    if (postou)
+                    catch (Exception ex)
                     {
-                        await Acr.UserDialogs.UserDialogs.Instance.AlertAsync("Postagem concluída com sucesso!");
-                        await this.Navigation.PushModalAsync(new MainPage());
+                        Insights.Report(ex);
                     }
-                    else
-                        await Acr.UserDialogs.UserDialogs.Instance.AlertAsync("Erro ao postar, tente novamente!");
                 };
 
                 if (App.Current.Properties.ContainsKey("UsuarioLogado"))
@@ -157,7 +154,7 @@ namespace Mais
                         {
                             HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenWidth * 2,
                             HorizontalOptions = LayoutOptions.Center,
-                            Children = { imgThumbVideo /*btnCompartilhar*/ },
+                            Children = { imgThumbVideo, btnCompartilhar },
                             Padding = 20
                         };
                     }
@@ -166,7 +163,7 @@ namespace Mais
                         {
                             HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenWidth * 2,
                             HorizontalOptions = LayoutOptions.Center,
-                            Children = { webView /*btnCompartilhar*/ },
+                            Children = { webView, btnCompartilhar },
                             Padding = 20
                         };
 						
@@ -177,7 +174,7 @@ namespace Mais
                     {
                         HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenWidth * 2,
                         HorizontalOptions = LayoutOptions.Center,
-                        Children = { Imagem /*btnCompartilhar*/ },
+                        Children = { Imagem, btnCompartilhar },
                         Padding = 20
                     };
                 }
@@ -187,7 +184,7 @@ namespace Mais
                     {
                         HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenWidth * 2,
                         HorizontalOptions = LayoutOptions.Center,
-                        //Children = { btnCompartilhar },
+                        Children = { btnCompartilhar },
                         Padding = 20
                     };
                 }

@@ -3,6 +3,7 @@
 using Xamarin.Forms;
 using System.Linq;
 using Share.Forms.Plugin.Abstractions;
+using Xamarin;
 
 namespace Mais
 {
@@ -21,8 +22,8 @@ namespace Mais
                 var dbFacebook = new Repositorio<FacebookInfos>();
                 var dadosFacebook = await dbFacebook.ExisteRegistroFacebook();
 
-                if (dadosFacebook == null || String.IsNullOrEmpty(dadosFacebook.access_token))
-                    btnCompartilhar.IsVisible = false;
+//                if (dadosFacebook == null || String.IsNullOrEmpty(dadosFacebook.access_token))
+//                    btnCompartilhar.IsVisible = false;
             }
         }
 
@@ -88,7 +89,32 @@ namespace Mais
             };
             btnCompartilhar.Clicked += async (sender, e) =>
             {
-                await this.Navigation.PushModalAsync(new CompartilharFBPage(this.pergunta, string.Empty));
+
+                try
+                {
+                    var dbResposta = new Repositorio<Resposta>();
+                    var _resposta = await dbResposta.RetornarPorId(this.pergunta.Respostas.First(x => x.Respondida).Id);
+
+                    var msg = String.Format("Eu votei na enquete {0} com {1}%... minha resposta foi {2}"
+                            , this.pergunta.TextoPergunta
+                            , _resposta.percentualResposta
+                            , _resposta.TextoResposta);
+
+                    string link = string.Empty;
+
+                    if (Device.OS == TargetPlatform.Android)
+                        link = "https://play.google.com/store/apps/details?id=com.aplicativo.mais&hl=pt_BR";
+                    else
+                        link = "https://itunes.apple.com/us/app/mais-app/id1028918789?ls=1&mt=8";
+
+                    DependencyService.Get<IShare>().ShareLink(msg, string.Empty, link);
+                }
+                catch (Exception ex)
+                {
+                    Insights.Report(ex);
+                }
+
+                //await this.Navigation.PushModalAsync(new CompartilharFBPage(this.pergunta, string.Empty));
             };
 
             var absLayout = new AbsoluteLayout { HeightRequest = 400 };
@@ -112,7 +138,7 @@ namespace Mais
             absLayout.Children.Add(sucesso);
             absLayout.Children.Add(aviso);
             absLayout.Children.Add(imagem);
-            //absLayout.Children.Add(btnCompartilhar);
+            absLayout.Children.Add(btnCompartilhar);
 
             this.Content = absLayout;
         }

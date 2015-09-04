@@ -19,13 +19,13 @@ namespace Mais
 
             await dbControlaSession.Atualizar(_control);
 
-            Device.StartTimer(TimeSpan.FromSeconds(10), (() =>
-                {                    
-                    this.Navigation.PushModalAsync(new NavigationPage(new MenuPrincipalPage()));
-                    return false;
-                }
-
-                ));
+//            Device.StartTimer(TimeSpan.FromSeconds(10), (() =>
+//                {                    
+//                    this.Navigation.PushModalAsync(new NavigationPage(new MenuPrincipalPage()));
+//                    return false;
+//                }
+//
+//                ));
         }
 
         public TutorialPage_iOS()
@@ -37,9 +37,10 @@ namespace Mais
                 VerticalOptions = LayoutOptions.FillAndExpand
             };
 
-
             var img_Click = new TapGestureRecognizer();
             img_Click.Tapped += async (sender, e) => await this.Navigation.PushModalAsync(new NavigationPage(new MenuPrincipalPage()));
+
+            img.GestureRecognizers.Add(img_Click);
 
             Content = new StackLayout
             { 

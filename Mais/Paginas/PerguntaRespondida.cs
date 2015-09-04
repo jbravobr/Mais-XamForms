@@ -6,6 +6,7 @@ using System.Net;
 using System.IO;
 using Autofac;
 using System.Linq;
+using Xamarin;
 
 namespace Mais
 {
@@ -148,7 +149,31 @@ namespace Mais
             };
             btnCompartilhar.Clicked += async (sender, e) =>
             {
-                await this.Navigation.PushModalAsync(new CompartilharFBPage(this.pergunta, string.Empty));
+                try
+                {
+                    var dbResposta = new Repositorio<Resposta>();
+                    var _resposta = await dbResposta.RetornarPorId(this.pergunta.Respostas.First(x => x.Respondida).Id);
+
+                    var msg = String.Format("Eu votei na enquete {0} com {1}%... minha resposta foi {2}"
+                            , this.pergunta.TextoPergunta
+                            , _resposta.percentualResposta
+                            , _resposta.TextoResposta);
+
+                    string link = string.Empty;
+
+                    if (Device.OS == TargetPlatform.Android)
+                        link = "https://play.google.com/store/apps/details?id=com.aplicativo.mais&hl=pt_BR";
+                    else
+                        link = "https://itunes.apple.com/us/app/mais-app/id1028918789?ls=1&mt=8";
+
+                    DependencyService.Get<IShare>().ShareLink(msg, string.Empty, link);
+                }
+                catch (Exception ex)
+                {
+                    Insights.Report(ex);
+                }
+
+                //await this.Navigation.PushModalAsync(new CompartilharFBPage(this.pergunta, string.Empty));
             };
 
             if (App.Current.Properties.ContainsKey("UsuarioLogado"))
@@ -172,7 +197,7 @@ namespace Mais
                         {
                             HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2.5,
                             HorizontalOptions = LayoutOptions.Start,
-                            Children = { lblUsuarioCriador, imgExcluir, imgThumbVideo, listaRespostas/*, btnCompartilhar*/ },
+                            Children = { lblUsuarioCriador, imgExcluir, imgThumbVideo, listaRespostas, btnCompartilhar },
                             Padding = 20
                         };
                     }
@@ -182,7 +207,7 @@ namespace Mais
                         {
                             HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2.5,
                             HorizontalOptions = LayoutOptions.Start,
-                            Children = { lblUsuarioCriador, imgExcluir, webView, listaRespostas/*, btnCompartilhar*/ },
+                            Children = { lblUsuarioCriador, imgExcluir, webView, listaRespostas, btnCompartilhar },
                             Padding = 20
                         };
                     }
@@ -195,7 +220,7 @@ namespace Mais
                         {
                             HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2.5,
                             HorizontalOptions = LayoutOptions.Start,
-                            Children = { lblUsuarioCriador, imgExcluir, imgThumbVideo/*, btnCompartilhar*/ },
+                            Children = { lblUsuarioCriador, imgExcluir, imgThumbVideo, btnCompartilhar },
                             Padding = 20
                         };
                     }
@@ -205,7 +230,7 @@ namespace Mais
                         {
                             HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2.5,
                             HorizontalOptions = LayoutOptions.Start,
-                            Children = { lblUsuarioCriador, imgExcluir, webView/*, btnCompartilhar*/ },
+                            Children = { lblUsuarioCriador, imgExcluir, webView, btnCompartilhar },
                             Padding = 20
                         };   
                     }
@@ -220,7 +245,7 @@ namespace Mais
                     {
                         HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2.5,
                         HorizontalOptions = LayoutOptions.Start,
-                        Children = { Imagem, listaRespostas/*, btnCompartilhar*/ },
+                        Children = { Imagem, listaRespostas, btnCompartilhar },
                         Padding = 20
                     };
                 }
@@ -230,7 +255,7 @@ namespace Mais
                     {
                         HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2.5,
                         HorizontalOptions = LayoutOptions.Start,
-                        Children = { Imagem/*, btnCompartilhar*/ },
+                        Children = { Imagem, btnCompartilhar },
                         Padding = 20
                     };
                 }
@@ -244,7 +269,7 @@ namespace Mais
                     {
                         HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2.5,
                         HorizontalOptions = LayoutOptions.Start,
-                        Children = { listaRespostas/*, btnCompartilhar*/ },
+                        Children = { listaRespostas, btnCompartilhar },
                         Padding = 20
                     };
                 }
@@ -254,7 +279,7 @@ namespace Mais
                     {
                         HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2.5,
                         HorizontalOptions = LayoutOptions.Start,
-                        Children = { /*, btnCompartilhar*/ },
+                        Children = { btnCompartilhar },
                         Padding = 20
                     };
                 }
