@@ -232,7 +232,8 @@ namespace Mais
                 };
 				
                 var cat = string.Empty;
-                var enquetesAgrupadas = from e in this.model.Enquetes.Distinct()
+                var enquetesAgrupadas = from e in this.model.Enquetes.Where(c => c.Status == EnumStatusEnquete.Ativa ||
+                                                            c.Status == EnumStatusEnquete.Publicada).Distinct()
                                                     group e by e.Categoria.Nome into g
                                                     select new
 					{
@@ -304,7 +305,8 @@ namespace Mais
             ldg.Show();
 
             model.Enquetes = await model.GetEnquetesDeSeuInteresse();
-            this.BindingContext = model.Enquetes.Where(x => x.AtivaNoFront);
+            this.BindingContext = model.Enquetes.Where(x => x.AtivaNoFront && (x.Status == EnumStatusEnquete.Ativa ||
+                x.Status == EnumStatusEnquete.Publicada));
 
             var enquetesLayout = new StackLayout
             {   

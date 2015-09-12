@@ -181,8 +181,8 @@ namespace Mais
                 var dbFacebook = new Repositorio<FacebookInfos>();
                 var dadosFacebook = await dbFacebook.ExisteRegistroFacebook();
 
-                if (dadosFacebook == null || String.IsNullOrEmpty(dadosFacebook.access_token))
-                    btnCompartilhar.IsVisible = false;
+//                if (dadosFacebook == null || String.IsNullOrEmpty(dadosFacebook.access_token))
+//                    btnCompartilhar.IsVisible = false;
             }
 
             StackLayout perguntaLayout;

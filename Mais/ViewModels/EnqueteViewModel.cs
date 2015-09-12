@@ -165,6 +165,15 @@ namespace Mais
 
                 if (listaEnquetes != null && listaEnquetes.Any())
                 {
+                    foreach (var item in listaEnquetes)
+                    {
+                        Expression<Func<Enquete,bool>> porServerId = (x) => x.ServerEnqueteId == item.ServerEnqueteId;
+                        var achou = await db.ProcurarPorFiltro(porServerId);
+
+                        if (achou != null)
+                            item.Id = achou.Id;
+                    }
+
                     await db.InserirTodos(listaEnquetes.ToList());
 
                     foreach (var item in listaEnquetes)

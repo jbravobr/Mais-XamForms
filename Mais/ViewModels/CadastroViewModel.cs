@@ -50,7 +50,7 @@ namespace Mais
                     }
                 }
             }
-            else
+            else if (this.Categorias != null & this.Categorias.Any())
             {
                 foreach (var item in this.Categorias)
                 {
@@ -340,6 +340,24 @@ namespace Mais
             {
                 var dbUsuario = new Repositorio<Usuario>();
                 var temRegistro = await dbUsuario.ExisteRegistro();
+
+                if (temRegistro)
+                {
+                    string c = (await dbUsuario.RetornarTodos()).FirstOrDefault().CategoriaMobileSelection;
+
+                    if (!String.IsNullOrEmpty(c))
+                    {
+                        this.Categorias = new List<Categoria>();
+
+                        foreach (var item in c.Split(';'))
+                        {
+                            var dbCategoria = new Repositorio<Categoria>();
+                            var cat = await dbCategoria.RetornarPorId(Convert.ToInt32(item));
+
+                            this.Categorias.Add(cat);
+                        }
+                    }
+                }
 
                 return temRegistro ? (await dbUsuario.RetornarTodos()).FirstOrDefault() : null;
             }
