@@ -128,6 +128,11 @@ namespace Mais.Droid
             }
         }
 
+        public byte[] ResizeImageIOS(byte[] imageData, float width, float height)
+        {
+            return new byte[200];
+        }
+
         #endregion
     }
 }

@@ -27,7 +27,7 @@ namespace Mais
                     {
                         Text = AppResources.TituloTabEnquetePublica, 
                         TextColor = Color.White,
-                        FontSize = 18,
+                        FontSize = Device.OS == TargetPlatform.iOS ? 14 : 18,
                         FontFamily = Device.OnPlatform(
                             iOS: "Helvetica",
                             Android: "Roboto",
@@ -59,7 +59,7 @@ namespace Mais
                     {
                         Text = AppResources.TituloTabEnqueteInteresse, 
                         TextColor = Color.White,
-                        FontSize = 18,
+                        FontSize = Device.OS == TargetPlatform.iOS ? 14 : 18,
                         FontFamily = Device.OnPlatform(
                             iOS: "Helvetica",
                             Android: "Roboto",

@@ -4,17 +4,19 @@ using System.Threading.Tasks;
 
 namespace Mais
 {
-	public interface ISaveAndLoadFile
-	{
-		Task<bool> SaveImage(ImageSource img, string imageName);
+    public interface ISaveAndLoadFile
+    {
+        Task<bool> SaveImage(ImageSource img, string imageName);
 
-		string GetImage(string imageName);
+        string GetImage(string imageName);
 
-		byte[] GetImageArray(string imageName);
+        byte[] GetImageArray(string imageName);
 
-		Task<bool> BaixaImagemSalvarEmDisco(string imagem, string url);
+        Task<bool> BaixaImagemSalvarEmDisco(string imagem, string url);
 
-		Task<bool> BaixaThumbnailYoutubeSalvarEmDisco(string url, string imageName);
-	}
+        Task<bool> BaixaThumbnailYoutubeSalvarEmDisco(string url, string imageName);
+
+        byte[] ResizeImageIOS(byte[] imageData, float width, float height);
+    }
 }
 

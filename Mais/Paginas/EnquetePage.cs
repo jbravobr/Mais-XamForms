@@ -334,8 +334,8 @@ namespace Mais
                     { 
                         Children = { new EnqueteInteresseView(model.Banners[0]) },
                         Padding = new Thickness(0, 0, 10, 0),
-                        VerticalOptions = LayoutOptions.Center,
-                        HorizontalOptions = LayoutOptions.Center,
+                        //VerticalOptions = LayoutOptions.Center,
+                        //HorizontalOptions = LayoutOptions.Center,
                     };
                 }
 

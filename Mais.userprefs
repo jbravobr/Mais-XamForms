@@ -1,6 +1,13 @@
 ﻿<Properties StartupItem="Droid/Mais.Droid.csproj" GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.AVD_for_Nexus_4_by_Google" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone5.8.4" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="MaisImageResizer/ImageResizer.cs">
+    <Files>
+      <File FileName="Mais/Paginas/EnquetePage.cs" Line="336" Column="25" />
+      <File FileName="Mais/CustomControls/EnqueteInteresseView.cs" Line="25" Column="85" />
+      <File FileName="iOS/SaveAndLoadFile_IOS.cs" Line="1" Column="1" />
+      <File FileName="MaisImageResizer/ImageResizer.cs" Line="36" Column="30" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
