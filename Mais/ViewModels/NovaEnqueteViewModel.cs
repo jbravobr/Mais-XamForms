@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using System.Linq;
+using Xamarin;
 
 namespace Mais
 {
@@ -122,6 +123,7 @@ namespace Mais
                             }
                             catch (Exception ex)
                             {
+                                Insights.Report(ex);
                                 throw ex;
                             }
                         }
@@ -140,6 +142,7 @@ namespace Mais
                 }
                 catch (Exception ex)
                 {
+                    Insights.Report(ex);
                     throw ex;
                 }
             }

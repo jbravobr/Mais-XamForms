@@ -20,6 +20,8 @@ namespace Mais
         [Ignore]
         public bool Selecionada { get; set; }
 
+        public string Imagem { get; set; }
+
         [ForeignKey(typeof(Usuario))]
         public int UsuarioId{ get; set; }
 

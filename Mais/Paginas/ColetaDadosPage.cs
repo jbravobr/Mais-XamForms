@@ -54,6 +54,21 @@ namespace Mais
                 var categorias = await this.model.RetornarCategoriasDoServidor(ultimaCategoria);
 
                 await dbCategoria.InserirTodos(categorias.ToList());
+
+                try
+                {
+                    var _categorias = await dbCategoria.RetornarTodos();
+                    
+                    foreach (var item in categorias)
+                    {
+                        if (!String.IsNullOrEmpty(item.Imagem))
+                            await DependencyService.Get<ISaveAndLoadFile>().BaixaImagemSalvarEmDisco(item.Imagem, Constants.baseImageAddress);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Insights.Report(ex);
+                }
                 
                 #endregion
                 
