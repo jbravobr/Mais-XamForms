@@ -264,7 +264,8 @@ namespace Mais
                             enquetesLayout.Children.Add(lblCategoriaNome);
                         }
 				
-                        if (item.Tipo == EnumTipoEnquete.Publica && !enquetesNatela.Contains(item.Id))
+                        if ((item.Tipo == EnumTipoEnquete.Publica || item.Tipo == EnumTipoEnquete.Quiz
+                            && !enquetesNatela.Contains(item.Id)))
                         {
                             var frame = new EnquetePublicaView(item);
                             enquetesLayout.Children.Add(frame);

@@ -123,15 +123,41 @@ namespace Mais
 
                         if (enquete.TemVoucher)
                         {
-                            Acr.UserDialogs.UserDialogs.Instance.HideLoading();
-                            var pagina = Activator.CreateInstance(typeof(VotoSalvoComVoucherPage), new[]{ this.Pergunta }) as VotoSalvoComVoucherPage;
-                            await this.Navigation.PushModalAsync(pagina);
+                            var dbQuiz = new Repositorio<RespostaQuiz>();
+
+                            if ((await dbQuiz.RetornarTodos()).Any(x => x.EnqueteId == enquete.ServerEnqueteId))
+                            {
+                                this.Pergunta.correta = (await dbQuiz.RetornarTodos()).Any(c => c.EnqueteId == enquete.ServerEnqueteId && c.RespostaId == this.Respostas.First(r => r.Respondida).RespostaServerId);
+
+                                Acr.UserDialogs.UserDialogs.Instance.HideLoading();
+                                var pagina = Activator.CreateInstance(typeof(VotoSalvoComVoucherQuizPage), new[]{ this.Pergunta }) as VotoSalvoComVoucherQuizPage;
+                                await this.Navigation.PushModalAsync(pagina);
+                            }
+                            else
+                            {
+                                Acr.UserDialogs.UserDialogs.Instance.HideLoading();
+                                var pagina = Activator.CreateInstance(typeof(VotoSalvoComVoucherPage), new[]{ this.Pergunta,  }) as VotoSalvoComVoucherPage;
+                                await this.Navigation.PushModalAsync(pagina);
+                            }
                         }
                         else
                         {
-                            Acr.UserDialogs.UserDialogs.Instance.HideLoading();
-                            var pagina = Activator.CreateInstance(typeof(VotoSalvoPage), new[]{ this.Pergunta }) as VotoSalvoPage;
-                            await this.Navigation.PushModalAsync(pagina);
+                            var dbQuiz = new Repositorio<RespostaQuiz>();
+
+                            if ((await dbQuiz.RetornarTodos()).Any(x => x.EnqueteId == enquete.ServerEnqueteId))
+                            {
+                                this.Pergunta.correta = (await dbQuiz.RetornarTodos()).Any(c => c.EnqueteId == enquete.ServerEnqueteId && c.RespostaId == this.Respostas.First(r => r.Respondida).RespostaServerId);
+
+                                Acr.UserDialogs.UserDialogs.Instance.HideLoading();
+                                var pagina = Activator.CreateInstance(typeof(VotoSalvoQuizPage), new[]{ this.Pergunta }) as VotoSalvoQuizPage;
+                                await this.Navigation.PushModalAsync(pagina);
+                            }
+                            else
+                            {
+                                Acr.UserDialogs.UserDialogs.Instance.HideLoading();
+                                var pagina = Activator.CreateInstance(typeof(VotoSalvoPage), new[]{ this.Pergunta }) as VotoSalvoPage;
+                                await this.Navigation.PushModalAsync(pagina);
+                            }
                         }
                     }
                 }

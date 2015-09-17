@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.aplicativo.mais" android:versionCode="529" android:versionName="5.0.29">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.aplicativo.mais" android:versionCode="530" android:versionName="5.0.30">
 	<uses-sdk android:minSdkVersion="15" android:targetSdkVersion="21" />
 	<application android:hardwareAccelerated="true" android:label="Mais" android:theme="@android:style/Theme.Holo.Light" android:icon="@drawable/ic_launcher">
 		<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />

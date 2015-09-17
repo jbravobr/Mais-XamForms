@@ -188,6 +188,24 @@ namespace Mais
             return null;
         }
 
+        public async Task RetornarEnqueteTipoQuiz()
+        {
+            using (var client = CallAPI.RetornaClientHttp())
+            {
+                response = await client.GetAsync(string.Format("{0}", Constants.uriGetEnquetesQuiz));
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var quizResponse = response.Content.ReadAsStringAsync().Result;
+                    var quisToJson = JsonConvert.DeserializeObject(quizResponse);
+                    var listaQuiz = JsonConvert.DeserializeObject<List<RespostaQuiz>>(quisToJson.ToString());
+
+                    var dbQuiz = new Repositorio<RespostaQuiz>();
+                    await dbQuiz.InserirTodos(listaQuiz);
+                }
+            }
+        }
+
         public async Task<ICollection<Enquete>> RetornarEnquetesPublicas(int intMaiorEnquete)
         {
             using (var client = CallAPI.RetornaClientHttp())

@@ -39,6 +39,8 @@ namespace Mais
         Task<bool> AtualizaFacebookToken(string token, int usuarioId);
 
         Task<Usuario> AtualizarCategoriasFB(Usuario usuario);
+
+        Task RetornarEnqueteTipoQuiz();
     }
 }
 

@@ -53,7 +53,9 @@ namespace Mais
                 }
                 
                 var db = new Repositorio<Enquete>();
-                
+
+                await this.service.RetornarEnqueteTipoQuiz();
+
                 var ultimaEnquete = 0;
                 ICollection<Enquete> listaEnquetes = null;
                 
@@ -85,7 +87,7 @@ namespace Mais
                 }
                 else
                 {
-                    ultimaEnquete = (await db.RetornarTodos()).OrderByDescending(e => e.Id).First(e => e.ServerEnqueteId != -1 && e.Tipo == EnumTipoEnquete.Publica).ServerEnqueteId;
+                    ultimaEnquete = (await db.RetornarTodos()).OrderByDescending(e => e.Id).First(e => e.ServerEnqueteId != -1 && (e.Tipo == EnumTipoEnquete.Publica || e.Tipo == EnumTipoEnquete.Quiz)).ServerEnqueteId;
                     listaEnquetes = await this.service.RetornarEnquetesPublicas(ultimaEnquete);
                 
                     if (listaEnquetes != null && listaEnquetes.Any())
@@ -107,7 +109,7 @@ namespace Mais
                         }
                     }
                 
-                    var enquetesNoTelefone = (await db.RetornarTodos()).Where(e => e.Tipo == EnumTipoEnquete.Publica);
+                    var enquetesNoTelefone = (await db.RetornarTodos()).Where(e => e.Tipo == EnumTipoEnquete.Publica || e.Tipo == EnumTipoEnquete.Quiz);
                 
                     foreach (var enquete in enquetesNoTelefone)
                     {
@@ -118,7 +120,7 @@ namespace Mais
                 
                 Acr.UserDialogs.UserDialogs.Instance.HideLoading();
                 //return new ObservableCollection<Enquete>(listaEnquetes.Where(e => e.Tipo == EnumTipoEnquete.Publica));
-                return await this.GetMensagens(listaEnquetes.Where(e => e.Tipo == EnumTipoEnquete.Publica));
+                return await this.GetMensagens(listaEnquetes.Where(e => e.Tipo == EnumTipoEnquete.Publica || e.Tipo == EnumTipoEnquete.Quiz));
             }
             catch (Exception ex)
             {

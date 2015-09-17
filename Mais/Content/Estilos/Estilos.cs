@@ -184,6 +184,25 @@ namespace Mais
             }
         };
 
+        public static Style _estiloFonteSucessoRespostaQuiz = new Style(typeof(Label))
+        {
+            Setters =
+            {
+                new Setter{ Property = Label.FontSizeProperty, Value = 22 },
+                new Setter { Property = Label.TextColorProperty, Value = Color.White },
+                new Setter{ Property = Label.LineBreakModeProperty, Value = LineBreakMode.WordWrap },
+                new Setter
+                {
+                    Property = Label.FontFamilyProperty,
+                    Value = Device.OnPlatform(
+                        iOS: "Helvetica",
+                        Android: "Roboto",
+                        WinPhone: "Segoe"
+                    )
+                }
+            }
+        };
+
         public static Style _estiloFonteSucessoRespostaSucessoVoucher = new Style(typeof(Label))
         {
             Setters =

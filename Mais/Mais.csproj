@@ -150,6 +150,9 @@
     <Compile Include="ViewModels\CadastroViewModel.cs" />
     <Compile Include="Paginas\CompartilharFBPage.cs" />
     <Compile Include="Interfaces\IShare.cs" />
+    <Compile Include="Models\RespostaQuiz.cs" />
+    <Compile Include="Paginas\VotoSalvoComVoucherQuizPage.cs" />
+    <Compile Include="Paginas\VotoSalvoQuizPage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Fody.1.28.3\build\Fody.targets" Condition="Exists('..\packages\Fody.1.28.3\build\Fody.targets')" />

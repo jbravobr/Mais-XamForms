@@ -15,8 +15,8 @@ namespace Mais
                 //if (!TestaConexao())
                 //new NetworkErrorAlert();
 
-                client.BaseAddress = new Uri(Constants.baseAddress);
-                //client.BaseAddress = new Uri(Constants.baseAddressTest); // URL de Teste
+                //client.BaseAddress = new Uri(Constants.baseAddress);
+                client.BaseAddress = new Uri(Constants.baseAddressTest); // URL de Teste
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 client.Timeout = TimeSpan.FromMinutes(3);

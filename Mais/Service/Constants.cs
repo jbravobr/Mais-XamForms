@@ -6,7 +6,7 @@ namespace Mais
     {
         public const string baseAddress = "http://app01.training.cloudfacil.net/maisapi/usuario/";
 
-        public const string baseAddressTest = "http://macbookpro.local/PollPlus/maisapi/usuario/";
+        public const string baseAddressTest = "http://app02.training.cloudfacil.net/maisapi/usuario/";
 
         public const string baseImageAddress = "http://app01.training.cloudfacil.net/images/";
 
@@ -45,6 +45,8 @@ namespace Mais
         public const string uriAtualizaUsuarioFacebook = "atualizafacebook/";
 
         public const string uriAtualizaCategoriasFB = "atualizacategoriasFB";
+
+        public const string uriGetEnquetesQuiz = "quiz";
     }
 }
 
