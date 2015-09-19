@@ -33,18 +33,26 @@ namespace Mais
             btnSelecionarAmigos.Clicked += async (sender, e) =>
             {
                 var dbAmigos = new Repositorio<Amigo>();
-
-                for (int i = 0; i < 5; i++)
-                {
-                    dbAmigos.Inserir(new Amigo
-                        {
-                            FacebookID = "1",
-                            Nome = "Amigo Teste",
-                            UsuarioId = 99
-                        });
-                }
+//
+//                for (int i = 0; i < 5; i++)
+//                {
+//                    dbAmigos.Inserir(new Amigo
+//                        {
+//                            FacebookID = "1",
+//                            Nome = "Amigo Teste",
+//                            UsuarioId = 99
+//                        });
+//                }
 
                 var _amigos = await dbAmigos.RetornarTodos();
+
+                if (_amigos.Any(c => c.FacebookID == "1" && c.UsuarioId == 99))
+                {
+                    foreach (var i in _amigos.Where(c=>c.FacebookID == "1" && c.UsuarioId == 99))
+                    {
+                        _amigos.Remove(i);
+                    }         
+                }
 
                 if (_amigos == null || (_amigos != null && _amigos.Count == 0))
                 {
