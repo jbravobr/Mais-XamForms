@@ -152,7 +152,7 @@ namespace Mais
                     {
                         perguntaLayout = new StackLayout
                         {
-                            HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenWidth * 2,
+                            HeightRequest = Acr.DeviceInfo.DeviceInfo.Hardware.ScreenWidth * 2,
                             HorizontalOptions = LayoutOptions.Center,
                             Children = { imgThumbVideo, btnCompartilhar },
                             Padding = 20
@@ -161,7 +161,7 @@ namespace Mais
                     else
                         perguntaLayout = new StackLayout
                         {
-                            HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenWidth * 2,
+                            HeightRequest = Acr.DeviceInfo.DeviceInfo.Hardware.ScreenWidth * 2,
                             HorizontalOptions = LayoutOptions.Center,
                             Children = { webView, btnCompartilhar },
                             Padding = 20
@@ -172,7 +172,7 @@ namespace Mais
                 {
                     perguntaLayout = new StackLayout
                     {
-                        HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenWidth * 2,
+                        HeightRequest = Acr.DeviceInfo.DeviceInfo.Hardware.ScreenWidth * 2,
                         HorizontalOptions = LayoutOptions.Center,
                         Children = { Imagem, btnCompartilhar },
                         Padding = 20
@@ -182,7 +182,7 @@ namespace Mais
                 {
                     perguntaLayout = new StackLayout
                     {
-                        HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenWidth * 2,
+                        HeightRequest = Acr.DeviceInfo.DeviceInfo.Hardware.ScreenWidth * 2,
                         HorizontalOptions = LayoutOptions.Center,
                         Children = { btnCompartilhar },
                         Padding = 20
@@ -221,7 +221,7 @@ namespace Mais
             {
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 Orientation = StackOrientation.Vertical,
-                HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenWidth,
+                HeightRequest = Acr.DeviceInfo.DeviceInfo.Hardware.ScreenWidth,
                 Padding = new Thickness(0, 20, 0, 10)
             };
 

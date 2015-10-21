@@ -38,7 +38,7 @@ namespace Mais
                 Orientation = StackOrientation.Horizontal,
                 Children = { imgBanner },
                 HeightRequest = 180,
-                WidthRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenWidth - 10
+                WidthRequest = Acr.DeviceInfo.DeviceInfo.Hardware.ScreenWidth - 10
             };
 
             Content = contanierLayout;

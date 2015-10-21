@@ -9,14 +9,13 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Org.Json;
-using ArelloMobile.Push;
-using ArelloMobile.Push.Utils;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using Acr.UserDialogs;
 using Xamarin;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using Pushwoosh;
 
 namespace Mais.Droid
 {
@@ -81,7 +80,7 @@ namespace Mais.Droid
             mRegisterReceiver.activity = this;
             registerReceivers();
 
-            ArelloMobile.Push.PushManager manager = ArelloMobile.Push.PushManager.GetInstance(this);
+            Pushwoosh.PushManager manager = Pushwoosh.PushManager.GetInstance(this);
             manager.OnStartup(this);
 
             //Register for push!
@@ -218,7 +217,7 @@ namespace Mais.Droid
         }
     }
 
-    public class LocalMessageBroadcastReceiver : BasePushMessageReceiver
+    class LocalMessageBroadcastReceiver : BasePushMessageReceiver
     {
         public MainActivity activity { get; set; }
 
@@ -228,7 +227,7 @@ namespace Mais.Droid
         }
     }
 
-    public class LocalRegisterBroadcastReceiver : RegisterBroadcastReceiver
+    class LocalRegisterBroadcastReceiver : BaseRegistrationReceiver
     {
         public MainActivity activity { get; set; }
 

@@ -32,7 +32,7 @@ namespace Mais
                 ((ListView)sender).SelectedItem = null; 
             };
 
-            var screenWidth = Acr.DeviceInfo.DeviceInfo.Instance.ScreenWidth;
+            var screenWidth = Acr.DeviceInfo.DeviceInfo.Hardware.ScreenWidth;
 
             var imgCancel = new Button
             {

@@ -16,7 +16,7 @@ namespace Mais.iOS
     {
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            UserDialogs.Init();
+            //UserDialogs.Init();
             global::Xamarin.Forms.Forms.Init();
             Insights.Initialize("0d729b1f8027a9219421908d521e3af664ae52fc");
             PushNotificationManager pushmanager = PushNotificationManager.PushManager;

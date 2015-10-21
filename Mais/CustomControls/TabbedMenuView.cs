@@ -18,7 +18,7 @@ namespace Mais
 
             var buttonLeft = new StackLayout
             {
-                WidthRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenWidth / 2,
+                WidthRequest = Acr.DeviceInfo.DeviceInfo.Hardware.ScreenWidth / 2,
                 HeightRequest = 70,
                 BackgroundColor = Colors._defaultColorFromHex,
                 Children =
@@ -50,7 +50,7 @@ namespace Mais
 
             var buttonRight = new StackLayout
             {
-                WidthRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenWidth / 2,
+                WidthRequest = Acr.DeviceInfo.DeviceInfo.Hardware.ScreenWidth / 2,
                 HeightRequest = 70,
                 BackgroundColor = Colors._defaultColorDarkerFromHex,
                 Children =

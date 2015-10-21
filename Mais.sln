@@ -9,9 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mais.Droid", "Droid\Mais.Dr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mais.UITests", "UITests\Mais.UITests.csproj", "{BF36D8FA-B04F-4AF1-B518-A9FB216E0AEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PushwooshSDK", "Droid\PushwooshSDK\PushwooshSDK.csproj", "{0549FEEA-F489-40C9-8288-863FE9FA6EE7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pushwoosh", "..\..\Downloads\pushwoosh-xamarin-master\iOS\Pushwoosh\Pushwoosh.csproj", "{44A022F7-B823-4378-B609-5DEE80AD38B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pushwoosh", "iOS\Pushwoosh\Pushwoosh.csproj", "{44A022F7-B823-4378-B609-5DEE80AD38B3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PushwooshSDK", "..\..\Downloads\pushwoosh-xamarin-master\Android\PushwooshSDK\PushwooshSDK.csproj", "{0549FEEA-F489-40C9-8288-863FE9FA6EE7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

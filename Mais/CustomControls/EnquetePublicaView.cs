@@ -43,7 +43,7 @@ namespace Mais
 //				
 //                var contanierLayout = new AbsoluteLayout
 //                {
-//                    //WidthRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenWidth - 50,
+//                    //WidthRequest = Acr.DeviceInfo.DeviceInfo.Hardware.ScreenWidth - 50,
 //                    InputTransparent = true,
 //                    VerticalOptions = LayoutOptions.FillAndExpand,
 //                };
@@ -60,7 +60,7 @@ namespace Mais
                 {
                     Content = overlay,
                     VerticalOptions = LayoutOptions.FillAndExpand,
-                    WidthRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenWidth,
+                    WidthRequest = Acr.DeviceInfo.DeviceInfo.Hardware.ScreenWidth,
                     InputTransparent = true
                 };
 				

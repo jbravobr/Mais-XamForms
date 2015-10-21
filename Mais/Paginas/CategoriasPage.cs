@@ -78,7 +78,7 @@ namespace Mais
                     ((ListView)sender).SelectedItem = null; 
                 };
                 
-                var screenWidth = Acr.DeviceInfo.DeviceInfo.Instance.ScreenWidth;
+                var screenWidth = Acr.DeviceInfo.DeviceInfo.Hardware.ScreenWidth;
                 
                 var imgCancel_Tapped = new TapGestureRecognizer();
                 imgCancel_Tapped.Tapped += async (sender, e) =>

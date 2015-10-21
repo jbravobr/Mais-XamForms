@@ -8,7 +8,6 @@
     <Watch file="Mais/ViewModels/CadastroViewModel.cs" line="33" offsetX="662" offsetY="187" expression="this.Usuario" liveUpdate="False" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
   <DisabledProjects>
-    <String>UITests/Mais.UITests.csproj</String>
     <String>MaisDroid/MaisDroid.csproj</String>
   </DisabledProjects>
 </Properties>

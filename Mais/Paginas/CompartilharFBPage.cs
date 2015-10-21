@@ -47,7 +47,7 @@ namespace Mais
             {
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 HeightRequest = 70,
-                WidthRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenWidth,
+                WidthRequest = Acr.DeviceInfo.DeviceInfo.Hardware.ScreenWidth,
             };
 
             var btnCompartilhar = new Button

@@ -69,7 +69,7 @@ namespace Mais
 
             var stackResposta = new StackLayout
             {
-                HeightRequest = HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2, 
+                HeightRequest = HeightRequest = Acr.DeviceInfo.DeviceInfo.Hardware.ScreenHeight * 2, 
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 Orientation = StackOrientation.Vertical,
                 Children = { enqueteContent } 

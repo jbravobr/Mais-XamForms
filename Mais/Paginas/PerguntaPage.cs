@@ -166,7 +166,7 @@ namespace Mais
                     {
                         perguntaLayout = new StackLayout
                         {
-                            HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2,
+                            HeightRequest = Acr.DeviceInfo.DeviceInfo.Hardware.ScreenHeight * 2,
                             HorizontalOptions = LayoutOptions.Start,
                             Children = { lblUsuarioCriador, imgExcluir, imgThumbVideo, listaRespostas },
                             Padding = 20
@@ -175,7 +175,7 @@ namespace Mais
                     else
                         perguntaLayout = new StackLayout
                         {
-                            HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2,
+                            HeightRequest = Acr.DeviceInfo.DeviceInfo.Hardware.ScreenHeight * 2,
                             HorizontalOptions = LayoutOptions.Start,
                             Children = { lblUsuarioCriador, imgExcluir, webView, listaRespostas },
                             Padding = 20
@@ -186,7 +186,7 @@ namespace Mais
                 {
                     perguntaLayout = new StackLayout
                     {
-                        HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2,
+                        HeightRequest = Acr.DeviceInfo.DeviceInfo.Hardware.ScreenHeight * 2,
                         HorizontalOptions = LayoutOptions.Start,
                         Children = { lblUsuarioCriador, imgExcluir, Imagem, listaRespostas },
                         Padding = 20
@@ -196,7 +196,7 @@ namespace Mais
                 {
                     perguntaLayout = new StackLayout
                     {
-                        HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2,
+                        HeightRequest = Acr.DeviceInfo.DeviceInfo.Hardware.ScreenHeight * 2,
                         HorizontalOptions = LayoutOptions.Start,
                         Children = { lblUsuarioCriador, imgExcluir, listaRespostas },
                         Padding = 20
@@ -240,7 +240,7 @@ namespace Mais
                 {
                     VerticalOptions = LayoutOptions.FillAndExpand,
                     Orientation = StackOrientation.Vertical,
-                    HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 2,
+                    HeightRequest = Acr.DeviceInfo.DeviceInfo.Hardware.ScreenHeight * 2,
                     Padding = new Thickness(0, 20, 0, 10)
                 };
                 

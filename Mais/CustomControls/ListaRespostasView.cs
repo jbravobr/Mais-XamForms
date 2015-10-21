@@ -38,7 +38,7 @@ namespace Mais
                 var mainLayout = new StackLayout
                 {
                     Children = { listViewRespostas },
-                    HeightRequest = Acr.DeviceInfo.DeviceInfo.Instance.ScreenHeight * 3
+                    HeightRequest = Acr.DeviceInfo.DeviceInfo.Hardware.ScreenHeight * 3
                 };
                 
                 this.Content = new ScrollView{ Content = mainLayout, Orientation = ScrollOrientation.Vertical };
