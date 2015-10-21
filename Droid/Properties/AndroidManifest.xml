@@ -49,25 +49,15 @@
 	<!-- Keeps the processor from sleeping when a message is received. -->
 	<uses-permission android:name="android.permission.WAKE_LOCK" />
 	<!--for Samsung-->
-	<uses-permission android:name="com.sec.android.provider.badge.permission.READ" />
-	<uses-permission android:name="com.sec.android.provider.badge.permission.WRITE" />
-	<!--for htc-->
-	<uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS" />
-	<uses-permission android:name="com.htc.launcher.permission.UPDATE_SHORTCUT" />
-	<!--for sony-->
-	<uses-permission android:name="com.sonyericsson.home.permission.BROADCAST_BADGE" />
-	<!--for apex-->
-	<uses-permission android:name="com.anddoes.launcher.permission.UPDATE_COUNT" />
-	<!--for solid-->
-	<uses-permission android:name="com.majeur.launcher.permission.UPDATE_BADGE" />
+
 	<!--
   Creates a custom permission so only this app can receive its messages.
  
   NOTE: the permission *must* be called PACKAGE.permission.C2D_MESSAGE,
         where PACKAGE is the application's package name.
  -->
-	<permission android:name="com.aplicativo.mais.MESSAGE.permission.C2D_MESSAGE" android:protectionLevel="signature" />
-	<uses-permission android:name="com.aplicativo.mais.MESSAGE.permission.C2D_MESSAGE" />
+	<permission android:name="com.aplicativo.mais.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+	<uses-permission android:name="com.aplicativo.mais.permission.C2D_MESSAGE" />
 	<!-- This app has permission to register and receive data message. -->
 	<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 </manifest>

@@ -22,7 +22,7 @@ namespace Mais.Droid
     [Activity(Label = "Mais", 
         LaunchMode = LaunchMode.SingleTask,
         MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation),
-        IntentFilter(new string[]{ "com.aplicativo.mais.MESSAGE" }, Categories = new string[]{ "android.intent.category.DEFAULT" })]
+        IntentFilter(new string[]{ "com.aplicativo.mais" }, Categories = new string[]{ "android.intent.category.DEFAULT" })]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicationActivity
     {
         LocalMessageBroadcastReceiver mMessageReceiver;
