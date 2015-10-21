@@ -37,12 +37,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\iOS\Mais.iOS.csproj">
-      <Project>{CFDD8F17-0DDB-469C-8EAA-5C9E6125AFE0}</Project>
-      <Name>Mais.iOS</Name>
-      <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
-      <Private>False</Private>
-    </ProjectReference>
     <ProjectReference Include="..\Droid\Mais.Droid.csproj">
       <Project>{6D88F1E0-DA53-4161-B5CD-1F7D7B93E093}</Project>
       <Name>Mais.Droid</Name>
